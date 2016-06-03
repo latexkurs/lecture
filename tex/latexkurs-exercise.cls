@@ -37,6 +37,7 @@
 	prefix=ltxkurs@,
 }
 \DeclareStringOption{blattnr}
+\DeclareStringOption{datum}
 \DeclareStringOption{ausgabe}
 \DeclareStringOption{abgabe}
 \DeclareBoolOption{vorläufig}
@@ -61,10 +62,10 @@
 \setkomafont{pagefoot}{\small\itshape}
 \ihead{Einführung in das\\Textsatzsystem \LaTeX}
 \chead{\bfseries Übungsblatt \ltxkurs@blattnr}
-\ohead{Ausgegeben: \ifthenelse{\equal{\ltxkurs@ausgabe}{}}{\today}{\ltxkurs@ausgabe}\\\ifthenelse{\equal{\ltxkurs@abgabe}{}}{}{Abgabe: \ltxkurs@abgabe}}
+\ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{\ltxkurs@datum}{Ausgegeben: \ltxkurs@ausgabe}\\\ifthenelse{\equal{\ltxkurs@abgabe}{}}{}{Abgabe: \ltxkurs@abgabe}}
 \ifoot{Heidelberg, WS 2016}
 \cfoot{}
-\ofoot{Seite~\thepage~von~\textcolor{black}{\pageref{LastPage}}}
+\ofoot{Seite~\thepage~von~\pageref{LastPage}}
 
 \lstloadlanguages{TeX}
 \lstset{% for exercise sheets
