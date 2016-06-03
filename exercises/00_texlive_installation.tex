@@ -1,0 +1,85 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig, 
+	ausgabe=17.10.2016,
+]{../tex/latexkurs-exercise}
+
+\begin{document}
+\begin{center}
+\sffamily\bfseries\Large \TeX-Installation
+\end{center}
+\begin{abstract}
+\noindent
+Diese Anleitung erklärt ganz grundlegend, wie man eine aktuelle \TeXlive-Distribution Installiert, die für den \LaTeX-Kurs vorausgesetzt wird.
+Ein funktionierendes \TeX-System besteht im Grundsatz aus zwei Teilen: einer \TeX-Distribution und einem 
+Editor.
+\end{abstract}
+
+\section{Die \TeX-Distribution}
+Damit man sich nicht darum kümmern muss, alle notwendigen Dateien herunter zu laden und an der richtigen Stelle abzulegen gibt es sogennante Distributionen, die sich um alles kümmern. Für die unterschiedlichen Betriebssysteme werden verschiedene Distributionen angeboten. In der Vorlesung wird von einer Installation von \href{http://www.tug.org/texlive/}{\TeXlive} der Version 2016 augegangen. Wer weiß, was er oder sie tut, darf davon aber grundsätzlich abweichen.\footnote{Sollten Übungsaufgaben (z.\,B. aufgrund von veralteten Paketen) aus unserer Sicht falsch gelöst sein, kann es zu Punktabzug kommen.}
+
+Sollte auf dem Rechner schon ein veraltetes oder nicht genutzes \TeX-System installiert sein, empfiehlt es sich, es vor der Installation \emph{vollständig} zu entfernen, um mögliche Konflikte zu vermeiden.
+
+\subsection*{Windows}
+Für Windows ist neben \href{http://www.tug.org/texlive/}{\TeXlive} auch die \href{http://www.miktex.org/}{\MikTeX-Distribution} verfügbar. \MikTeX ist recht einfach zu installieren und kann fehlende Pakete automatisch nachinstallieren. Aufbauend auf \MikTeX existiert auch das \href{http://www.tug.org/protext/}{pro\TeX t-Bundle}, dass besonders leicht einzurichten sein will und die Editoren \TeX studio und \TeX nicCenter gleich mitbringt.
+
+Zur Installation von \TeXlive genügt es den Installer |install-tl-windows.exe| herunter zu laden und zu starten. Wählt man das Installationsschema |simple install| aus, werden alle in \TeXlive enthaltenen Pakete und Programme aus dem Internet geladen und installiert. Informationen, Anleitungen und Downloads für \TeXlive finden sich auf:\\ \url{http://www.tug.org/texlive/}
+
+
+\subsection*{Unix/Linux}
+
+Die meisten Linux-Distributionen haben ein \TeXlive-Paket, das über den systemeigenen Paketmanager installiert werden kann (apt, emerge, pacman, yum, …).
+Dabei sollte darauf geachtet werden, dass tatsächlich die aktuelle Version 2016 in den Paketquellen vorliegt. Alternativ kann man \TeXlive auch unter Linux von Hand installieren:
+
+
+Für eine manuelle Installation müssen zunächst alle möglicherweise vorhandenen \TeX-Pakete \emph{entfernt} werden. Auch Abhängigkeiten z.\,B. von Editoren (Emacs, Kile, Vim) müssen gelöst werden.\footnote{Bei Problemen mit dem Lösen von Abhängigkeiten am besten an den Linux-Experten des Vertrauens wenden.}
+
+Sind alle vorhandenen \TeX-Reste entfernt, kann der Installer des \TeXlive-Systems von der \TeX\ Users Group (TUG) unter \url{http://www.tug.org/texlive/} heruntergeladen werden. Die dortige Installationsanleitung ist ausreichend und ausführlich. Die Installation kann als normaler Nutzer durchgeführt werden. Bitte auf Rechte zum Schreiben bei der Installation achten.
+
+\enlargethispage{\baselineskip}
+
+\subsection*{Mac}
+Für Mac~OS gibt es die \href{http://www.tug.org/mactex}{Mac\TeX-Distribution}. Damit wird automatisch  \TeXlive aufgespielt und  der Editor \TeX shop eingerichtet. Auf der Projektseite \url{http://www.tug.org/mactex} werden Download, Anleitung und Hilfe angeboten.
+
+
+\newpage
+
+\section{Editor}
+
+Mit der \TeX-Distribution haben wir alle nötigen Pakete und die Programme, die tex-Dateien in pdf übersetzen können. Um die tex-Dateien anzulegen benötigen wir einen Editor. Grundsätzlich ist jeder Editor, der Textdateien in |utf8|-Kodierung abspeichern kann, für \TeX\ geeignet. Es gibt allerdings eine Reihe von Editoren, die extra für die Arbeit mit \LaTeX\ entwickelt wurden, Syntaxhervorhebung und einige nützliche Zusatzfunktionen enthalten. Oft andelt es sich um sogenannte intergierte Entwicklungsumgebungen (IDE), die einen eigenen pdf-Viewer mitbringen und Schnellzugriffe auf wichtige \TeX-Funktionen enthalten.
+
+Da man die meiste Zeit mit dem Editor arbeiten wird und das eigentliche \TeX-System nur im Hintergrund arbeitet, lohnt es sich, etwas Aufwand in die Wahl des richtigen Editors zu stecken. Im folgenden findet sich eine Liste beliebter Editoren.
+
+\begin{description}
+\item[\href{http://www.tug.org/texworks/}{\TeX works}]
+Der freie Editor {\TeX works} ist dem, unter Mac verfügbaren, \TeX shop nachempfunden. Unter Windows gehört er zur \TeX\ live-Installation dazu, unter Linux kann man ihn unabhängig davon installieren. \TeX works bringt einen eigenen pdf-Betrachter mit und unterstützt sync\TeX. Mit diesem Programm ist es möglich, zwischen Quellcode und pdf zu navigieren: Klicken auf eine Stelle im pdf öffnet die entsprechende Stelle im Quellcode – und umgekehrt! Das kann vor allem bei großen Dokumenten ein sehr mächtiges Hilfsmittel sein. \TeX works wird für den Kurs sehr empfohlen.
+
+\item[\href{http://www.xm1math.net/texmaker/}{TeXmaker}]
+Ein zuverlässiger, funktionenreicher Editor für Linux, Mac und Windows mit sync\TeX-Support.
+
+\item[\href{http://texstudio.sourceforge.net/}{\TeX studio}]
+Auf TeXmaker aufbauender Editor, der einige zusätzliche Funktionen wie Echtzeit-Syntax-Überprüfung anbietet.
+
+\item[\href{http://www.texniccenter.org/}{\TeX nicCenter}]
+Ein häufig empfohlener Editor für Windows, der automatisch bei einer \hologo{MiKTeX}\-Installation dabei ist. Zusammen mit dem Sumatra-pdf-Viewer ist auch sync\TeX\ möglich.
+
+\item[\href{http://kile.sourceforge.net/}{Kile}]
+Kile ist der KDE-Editor für \LaTeX, sollte aber auch unter Mac und Windows zum laufen gebracht werden können. Kile ist sehr einfach und intuitiv zu verwenden, bietet alle Funktionen, die man zum effizienten Arbeiten mit \LaTeX\ benötigt und kann ein sehr nützliches Werkzeug sein. Es gibt u.\,a. eine integrierte Vorschau-Funktion für dvi- und pdf-Dateien mit sync\TeX.
+
+\item[\href{http://www.vim.org/}{Vim}, \href{http://www.gnu.org/software/emacs}{Emacs}]
+Für die Klassiker unter den Editoren gibt es, mit \href{http://vim-latex.sourceforge.net/}{Vim-LaTeX} und \href{http://www.gnu.org/software/auctex/}{AUC\TeX}, Plugins die das Arbeiten mit \LaTeX\ erleichtern. Wer ohnehin Vim oder Emacs benutzt wird wahrscheinlich damit glücklich werden, für alle anderen könnte die Lernkurve etwas zu steil sein, um \LaTeX\ und einen mächtigen Editor \emph{gleichzeitig} zu lernen.
+
+\item[\href{http://pages.uoregon.edu/koch/texshop}{\TeX shop}]
+\TeX-Editor für Mac~OS, der mit Mac\TeX\ mitgeliefert wird. Der Editor wird für seine Intuitive und gut ins Betriebssystem integrierte Oberfläche immer wieder hoch gelobt.
+\end{description}
+
+\noindent Einen ausführlichen Vergleich vieler \TeX-Editoren findet man z.\,B. bei Wikipedia:\\ \url{https://en.wikipedia.org/wiki/Comparison_of_TeX_editors}
+
+
+
+\end{document}

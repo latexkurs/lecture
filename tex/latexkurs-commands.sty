@@ -1,0 +1,37 @@
+% !TEX encoding = UTF-8 Unicode
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\NeedsTeXFormat{LaTeX2e}[1996/12/01]
+\ProvidesPackage{latexkurs-commands}[2016/06/03 v0.1 handy commands ]
+
+\RequirePackage{
+	dantelogo,
+	hologo,
+	tikz,
+	shortvrb,
+	showexpl,
+	xspace,
+}
+
+%% Logos
+\newcommand{\TeXlive}{\TeX\,Live\xspace}
+\newcommand{\XeLaTeX}{\hologo{XeLaTeX}\xspace}
+\newcommand{\XeTeX}{\hologo{XeTeX}\xspace}
+\newcommand{\luaTeX}{\hologo{LuaTeX}\xspace}
+\newcommand{\MikTeX}{\hologo{MiKTeX}\xspace}
+
+%% fancy-quotes
+	\usepackage{tikz}
+	\newcommand*\openquote{\makebox(25,-22){\scalebox{7}{\fontspec{Linux Biolinum O}“}}}
+	\newcommand*\closequote{\makebox(25,-22){\scalebox{7}{\fontspec{Linux Biolinum O}”}}}
+	\newcommand*{\OpenQuote}{\tikz[remember picture,overlay,xshift=-15pt,yshift=-10pt]
+	     \node (OQ) {\openquote};}
+	\newcommand*{\CloseQuote}{\tikz[remember picture,overlay,xshift=15pt,yshift=10pt]
+	     \node (CQ) {\closequote};}
+	\newenvironment{fancyquote}%
+	{\hspace{-1em}\begin{quote}\OpenQuote\vspace*{1ex}\\\hspace*{1em}\begin{minipage}{.835\textwidth}}
+	{\end{minipage}\vspace*{3.8ex}\\\hfill\CloseQuote\end{quote}}
+	\newcommand\quoted[1]{\null\hfill{\scriptsize\sf #1}}
+
+%% Listings
