@@ -1,0 +1,415 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true,
+	datum=2016-10-21,
+	titel={Einführung und grundlegende Bedienung},
+	web=true,
+]{../tex/latexkurs-slides}
+
+
+\begin{document}
+
+\section{Organisatorisches}
+
+\begin{frame}[t]{Organisatorisches}%{Allgemeines}
+	\begin{block}<1->{Anmeldung}
+		\begin{itemize}
+			\item	 Anmeldung im \href{https://www.mathi.uni-heidelberg.de/muesli/lecture/view/601}{MÜSLI} obligatorisch
+			\item Verwaltung der Zettelpunkte über \href{https://www.mathi.uni-heidelberg.de/muesli/lecture/view/484}{MÜSLI}
+		\end{itemize}
+	\end{block}
+	\begin{block}<2>{Materialien}
+		\begin{itemize}
+			\item Übungszettel und Vorlesungsfolien stehen auf der \href{http://latexkurs.github.io}{Vorlesungshomepage} zum Download
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[t]{Organisatorisches}%{Übungsbetrieb}
+	\begin{block}{Prüfungsmodalitäten}
+		\begin{itemize}
+			\item Bearbeiten der wöchentlichen Übungszettel
+			\item Erreichen von mindestens 50\% der möglichen Gesamtpunktzahl
+			\item Übungspunkte ergeben Scheinnote 
+			\item 2 ECTS-Punkte für Übergreifende Kompetenz
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile, t]{Organisatorisches}%{Übungen}
+	\begin{block}{Übungszettel}
+		\begin{itemize}
+			\item Übungszettel auf \url{http://latexkurs.github.io/exercises/}
+			\item Ausgabe Freitag nach der Vorlesung
+		\end{itemize}
+	\end{block}
+	\begin{block}{Abgabe}
+	Je nach Aufgabenstellung per E-Mail oder ausgedruckt
+		\begin{description}
+			\item[E-Mail] \href{mailto:abgabe@latexkurs.de}{\texttt{abgabe@latexkurs.de}}\\
+			\item[Betreff] |LaTeX-Abgabe: Musterfrau, Mustermann|\\
+			\item[Dateinamen] |uebung2.1_musterfrau_mustermann.tex|
+		\end{description}
+		\vspace{-1ex}
+		\begin{itemize}
+			\item Abgabe per E-Mail bis Freitag 14:00
+			\item Abgabe der Ausdrucke Freitag in der Vorlesung
+			\item Abgabe in Dreiergruppen möglich (ausgenommen erstes Blatt)
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+
+%%% ...
+
+
+\section{Inhaltsübersicht}
+
+\begin{frame}{Inhalt (vorläufig)}
+	\begin{enumerate}
+		\item Einführung und grundlegende Bedienung
+		\item allgemeine Formatierung und Pakete
+		\item Mathematiksatz I
+		\item Gleitumgebungen, Tabellen
+		\item Mathematiksatz II
+		\item Grafiken, Abbildungen, TikZ
+		\item Diagramme
+		\item umfangreiche Dokumente
+		\item Bibliographien, mehrsprachiger Satz
+		\item Präsentationen
+		\item Briefe, Lebensläufe
+		\item komplexe Makros und Befehle
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Aspekte der Vorlesung}
+	\begin{block}{Nutzung von \LaTeX{}}
+		\begin{itemize}
+			\item \emph{Wie} erreiche ich, was ich haben will?
+			\item Wie funktionieren Syntax und Semantik?
+		\end{itemize}
+	\end{block}
+	\begin{block}{Verstehen von \LaTeX{}}
+		\begin{itemize}
+			\item \emph{Was} passiert, wenn ich auf den Knopf drücke?
+			\item Was sind zugrundeliegende Paradigmen?
+		\end{itemize}
+	\end{block}
+	\begin{block}{Typographie}
+		\begin{itemize}
+			\item \emph{Warum} macht \LaTeX{} manche Dinge so und nicht anders?
+			\item Auf welche Details sollte ich achten?
+		\end{itemize}
+	\end{block}
+\end{frame}	
+
+\begin{frame}{Laientypografie}
+	Häufig gehörte Aussage: „Typographie ist doch Geschmackssache. Ich mach das so, wie es
+schön aussieht!“ \\[1em] \pause
+	
+	\begin{fancyquote}
+		Das Selbermachen ist längst üblich, die Ergebnisse oft
+		fragwürdig, weil Laien-Typografen nicht sehen, was nicht stimmt
+		und nicht wissen können, worauf es ankommt. So gewöhnt man
+		sich an falsche und schlechte Typografie. […] \\ Jetzt könnte der
+		Einwand kommen, Typografie sei doch Geschmackssache. Wenn
+		es um Dekoration ginge, könnte man das Argument vielleicht
+		gelten lassen, da es aber bei Typografie in erster Linie um
+		Information geht, können Fehler nicht nur stören, sondern sogar
+		Schaden anrichten.
+		\quoted{HPW, FF}
+	\end{fancyquote}
+\end{frame}
+
+
+\section{\TeX}
+
+\begin{frame}[<+->][t]{The Name of the Game}
+	\begin{itemize}
+		\item Programm \alert{\TeX} (Seit 1977)
+			\only<1>{\\ Geschrieben von Donald E. Knuth für sein Buch\\„The Art of Computer Programming“.
+			\\ „\TeX“ von griechisch τέχνη} % téchne, altgr. Fähigkeit, Kunstfertigkeit, Handwerk
+		\item Makropaket \alert{plain}\TeX
+			\only<2>{\\ Macht \TeX\ für normale Nutzer bedienbar.}
+		\item großes Makropaket \alert{La}\TeX\ (Anfänge 1980er)
+			\only<3>{\\ Von Leslie Lamport: „Lamport’s \TeX“.\\ Viele Vereinfachungen für den normalen Anwender.}
+		\item aktuelle, stabile Version: \alert{La}\TeX\,\alert{2$_\varepsilon$} (1994)
+			\only<4>{\\ „in einer $\varepsilon$-Umgebung von 2“…}
+		\item zukünftige Entwicklung: \LaTeX{}3 \\ noch nicht eigenständig verfügbar, aber als Paket \texttt{expl3} in \LaTeXe%\\ (bietet \LaTeX{}3-Syntax für Paketautoren)
+	\end{itemize}		
+\end{frame}
+
+\begin{frame}[t]{Was ist \TeX\ – und was nicht?}
+	\only<1>{
+		\begin{block}{Dafür ist \LaTeX{} gut geeignet …}
+			\begin{itemize}
+				%\item Programm, um „The Art of Computer Programming“ zu schreiben
+				\item Alle Schriftstücke mit logischem Aufbau
+				\begin{itemize}
+					\item Naturwissenschaftliche Arbeiten (hervorragender Mathesatz)
+					\item Geisteswissenschaftliche Arbeiten (hervorragende Mehrsprachigkeit, Bibliographieerstellung, 	Erstellung von Apparaten etc.)
+					\item Artikel, Diplomarbeiten, Dissertationen, …
+					\item Buchreihen, Briefe
+					\item Präsentationen
+				\end{itemize}
+				\item Viel „Missbrauch“ durch kreative Paketautoren
+			\end{itemize}
+		\end{block}
+	}\only<2>{
+		\begin{block}{Dafür ist \LaTeX{} weniger gut geeignet …}
+			\begin{itemize}
+				\item Dokumente ohne logische Struktur
+				\begin{itemize}
+					\item Präsentationen (bunt, drehend, blinkend, „durcheinander“)
+					\item Werbezettel
+					\item Plakate 
+				\end{itemize}
+				\item Dokumente mit vielen uneinheitlichen Bildern, die frei bewegt werden
+			\end{itemize}
+		\end{block}
+	}
+\end{frame}
+
+\begin{frame}{Wie funktioniert \TeX?}
+	\begin{itemize}
+		\item WYSIWYM
+		\item reine Textdateien
+		\item keine versteckten Einstellungen
+		\item Textauszeichnung durch besondere Befehle:
+		\begin{itemize}
+			\item „Ich will einen Artikel schreiben!“
+			\item „Setze eine Überschrift!“
+			\item „Schreibe das folgende fett!“
+			\item „Setze eine Tabelle, die …“
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Wie funktioniert \TeX?}
+	\begin{columns}
+		\begin{column}{.45\textwidth}
+			\begin{block}{Vorteile}
+				\begin{itemize}
+					\item Stabilität und Portabilität
+					\item geringe Dateigrößen
+					\item Bearbeitung mit beliebigem Editor
+					\item Textdateien \emph{immer} lesbar
+					\item Ausgabe überall gleich
+				\end{itemize}
+			\end{block}
+		\end{column}
+		\begin{column}{.45\textwidth}
+			\begin{block}{Nachteile}
+				\begin{itemize}
+					\item Ergebnis nicht direkt sichtbar
+					\item unintuitive Bedienung
+					\item steile Lernkurve
+					\item Bei Änderungen muss alles neu kompiliert werden
+					\item komplizierte Layout-wünsche schwer realisierbar
+				\end{itemize}
+			\end{block}
+		\end{column}
+	\end{columns}
+\end{frame}
+	
+
+\begin{frame}[fragile]{Ein einfaches \TeX-Dokument}
+	Wie lässt sich Text von Befehlen unterscheiden?\\[1em]
+	
+	Ansatz in \emph{klassischen} Programmiersprachen:
+\begin{lstlisting}
+print ( “ Hallo Welt! ” );
+\end{lstlisting}
+	⇒ für ein Textsatzprogramm ungeeignet
+\end{frame}
+\begin{frame}[fragile]{Ein einfaches \TeX-Dokument}
+	\begin{itemize}
+		\item \TeX{} ist eine Auszeichnungssprache (\emph{markup language})
+		\item einzelne Zeichen haben besondere Bedeutung
+		\item Backslash (\verb|\|) dient als \emph{escape character} und markiert den Anfang eines Befehls: \verb|\chapter \section \author|
+	\end{itemize}\quad\\[1em]
+	Einfachstes \TeX-Dokument:
+\begin{lstlisting}
+Hallo Welt! \bye 
+\end{lstlisting}\quad\\[1em]
+	\pause
+	„|tex dokument.tex|“ erzeugt ein |.dvi|-Dokument und eine |.log|-Datei
+	% Live-Vorführung
+\end{frame}
+
+\begin{frame}[fragile]{Befehlszeichen}
+	\begin{tabular}{ll}
+			\verb|\| & \emph{escape character}, Leitet Befehle ein \\
+			\verb|{}| & \emph{grouping character}, gruppieren zusammengehörende Zeichen \\& z.\,B. Argumente \verb|\textbf{fett}|\\
+			\verb|$| & \emph{math character}, startet und beendet Mathemodus \\
+			\verb|&| & \emph{tabbing character}, trennt Spalten in Tabellen \\
+			\verb|%| & \emph{comment character} Kommentiert den Rest der Zeile aus \\
+			\verb|^_~#| & weitere Zeichen mit besonderer Bedeutung
+	\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{Ein einfaches \LaTeX-Dokument}
+\begin{LTXexample}
+\documentclass{minimal}
+\begin{document}
+Hallo Welt!
+\end{document}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}{Dokumentenklassen}
+	Dokumentenklassen legen grundlegende Eigenschaften des Dokuments fest:
+	\begin{itemize}
+		\item Layout
+		\item Standardschriften
+		\item Satzspiegel
+		\item Gliederungsbefehle
+		\item Aussehen von Verzeichnissen, Tabellen, Aufzählungen, …
+	\end{itemize}
+	Eigenschaften sind durch Änderung von Optionen oder Laden von Paketen anpassbar.
+\end{frame}
+
+\begin{frame}{Dokumentenklassen}
+	\begin{tabular}{rl}
+		&\kern-1.5cm \bf Standardklassen\\
+		article & (Kurze) Artikel\\
+		report & Reporte, Tagungsberichte\\
+		book & Bücher\\
+		letter & Briefe\\
+		minimal & Für Minimalbeispiele\\ \\
+		&\kern-1.5cm \bf KOMA-Script\\
+		scrartcl & Erweiterung von article\\
+		scrreprt & Erweiterung von report\\
+		scrbook & Erweiterung von book\\
+		scrlttr2 & Sehr mächtige Briefklasse\\ \\
+		&\kern-1.5cm \bf Spezialklassen\\
+		beamer & Für Präsentationen\\
+		tikzposter & Wissenschaftliche Poster
+	\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{Gliederungsbefehle}
+\begin{itemize}
+\item Gliederungen strukturieren Dokumente,
+\item ermöglichen automatische Nummerierung, Eintragung in Verzeichnisse, Kolumnentitel etc.
+\item Werden von der Dokumentenklasse definiert
+\item Grundstruktur im Kernel festgelegt
+\item[⇒] bestimmte Elemente immer verfügbar
+\end{itemize}
+\vfill
+\begin{lstlisting}
+\part{Band I}
+\chapter{Kapitel}
+\section{Abschnitt}
+\subsection{Unterabschnitt}
+\subsubsection{Unterunterabschnitt}
+\paragraph{Paragraph}
+\subparagraph{Unterparagraph}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Pakete}
+\begin{itemize}
+\item Pakete bieten zusätzliche Funktionalität
+\item Arbeitserleicherungen
+\item Fehlerkorrekturen
+\item Einbinden in der Präambel mittels
+%\pdfmarginpar[Help]{Die Praeambel ist alles was zwischen documentclass{} und begin{document} steht}
+|\usepackage[|\meta{option(en)}|]{|\meta{paketname}|}|:
+\begin{lstlisting}
+\documentclass{article}
+\usepackage{
+	amsmath,
+	hyperref,
+}
+\usepackage[left=2cm]{geometry}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\iffalse
+\begin{frame}{Kleine Auswahl an Paketen}
+	\begin{tabular}{rl}
+		graphics/x & bietet (erweiterte) Grafikunterstützung\\
+		amsmath & Verbesserungen, Erweiterungen für den Mathesatz\\
+		babel/polyglossia & Spachrensupport (Umbruchregeln, …)\\
+		inputenc & ermöglicht verschiedene Eingabekodierungen\\
+		fontenc & ermöglicht verschiedene Fontkodierungen\\
+		lmodern & Stellt auf die lmodern-Schriften um\\
+		fontspec & ermöglicht Nutzung von Systemschriften\\
+		tikz & sehr mächtige Zeichenumgebung\\
+		\vdots & \vdots
+	\end{tabular}
+\end{frame}
+\fi
+
+\begin{frame}[c,fragile]{Grundbefehle}{allgemein}
+\overleaf{tex0001}
+\hspace{-1cm}
+\begin{tabular}{ll}
+|\textrm{Serifen}| & \textrm{Serifen \quad Abcdxyz}\\
+|\textit{kursiv}| & \textrm{\textit{kursiv \quad Abcdxyz}} \\%(\emph{nicht} |{\it kursiv}| verwenden)\\
+|\textsl{geneigt}| & \textrm{\textsl{geneigt \quad Abcdxyz}}\\
+|\textsf{serifenlos}| & \textsf{serifenlos \quad Abcdxyz}\\
+|\textbf{fett}| & \textbf{fett \quad Abcdxyz}\\
+|\texttt{Schreibmaschine}| & \texttt{Schreibmaschine \quad Abcdxyz}\\
+|\textsc{Kapitälchen}| & \textsc{Kapitälchen \quad Abcdxyz}\\
+|\emph{Hervorhebung}| & \emph{Hervorhebung \quad Abcdxyz}\\
+|\\| & Zeilenende\\
+|\par| oder Leerzeile & Absatzende\\
+|$E = \frac{p^2}{2m}$| & Inline-Mathemodus: $E = \frac{p^2}{2m}$\\
+|\[E = \frac{p^2}{2m}\]| & Display-Mathemodus: $\displaystyle E = \frac{p^2}{2m}$\\ % Arno: „well that’s cheated …“ ;-)
+|\tableofcontents| & Produziert Inhaltsverzeichnis\\
+|\today| & aktuelles Datum
+\end{tabular}
+\end{frame}
+
+\begin{frame}[c,fragile]{Grundbefehle}{Schriftgrößen}
+\overleaf{tex0001}
+\begin{tabular}{ll}
+|\tiny| & \tiny winzig \\
+|\small| & \small klein \\
+|\normalsize| & \normalsize normal\\
+|\large| & \large groß\\
+|\Large| & \Large größer\\
+|\LARGE| & \LARGE noch größer\\
+|\huge| & \huge riesig\\
+|\Huge| & \Huge noch riesiger\\
+\end{tabular}
+%Manuelle Anpassung: |\fontsize{10}{12}\selectfont|
+\end{frame}
+
+\begin{frame}[c]{Hilfsdateien}
+	\begin{tabular}{ll}
+		& \bf Eingabe\\
+		.tex & \TeX-Datei mit Dokumententext\\ \\
+		& \bf Ausgabe\\
+		.pdf & pdf\TeX-Ausgabe oder Umwandlung von (x)dvi\\ \\\pause
+		& \bf Hilfsdateien (nur schreiben)\\
+		.log & Log-Datei mit Informationen, Warnungen, Fehlern\\ \\\pause
+		& \bf Hilfsdateien (schreiben und lesen)\\
+		.aux & Hilfsdatei mit temporären Informationen\\
+		.toc & table of contents\\
+		.lof & list of figures\\
+		.synctex.gz & nötig für die Sync\TeX-Funktion\\
+		\vdots & \vdots
+	\end{tabular}
+\end{frame}
+
+\begin{frame}{Installation eines \TeX-Systems}
+\begin{itemize}
+\item Übungen setzten \TeXlive 2016 voraus
+\item \href{http://latexkurs.github.io/exercises/00_texlive_installation.pdf}{Installationsanleitung auf Vorlesungswebseite}
+\item Editor
+\end{itemize}
+\end{frame}
+
+\frame{\centering \Huge Happy \TeX ing}
+
+\end{document}

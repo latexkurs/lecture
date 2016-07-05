@@ -15,14 +15,16 @@
 }
 
 %% Logos
-\newcommand{\TeXlive}{\TeX\,Live\xspace}
-\newcommand{\XeLaTeX}{\hologo{XeLaTeX}\xspace}
-\newcommand{\XeTeX}{\hologo{XeTeX}\xspace}
-\newcommand{\luaTeX}{\hologo{LuaTeX}\xspace}
-\newcommand{\MikTeX}{\hologo{MiKTeX}\xspace}
+\providecommand{\TeXlive}{\TeX\,Live\xspace}
+\providecommand{\XeLaTeX}{\hologo{XeLaTeX}\xspace}
+\providecommand{\XeTeX}{\hologo{XeTeX}\xspace}
+\providecommand{\luaTeX}{\hologo{LuaTeX}\xspace}
+\providecommand{\MikTeX}{\hologo{MiKTeX}\xspace}
+\providecommand{\TikZ}{Ti\textit{k}Z\xspace}
+\providecommand{\BibTeX}{Bib\TeX\xspace}
 
 %% fancy-quotes
-	\usepackage{tikz}
+\RequirePackage{tikz}
 	\newcommand*\openquote{\makebox(25,-22){\scalebox{7}{\fontspec{Linux Biolinum O}“}}}
 	\newcommand*\closequote{\makebox(25,-22){\scalebox{7}{\fontspec{Linux Biolinum O}”}}}
 	\newcommand*{\OpenQuote}{\tikz[remember picture,overlay,xshift=-15pt,yshift=-10pt]
@@ -35,3 +37,6 @@
 	\newcommand\quoted[1]{\null\hfill{\scriptsize\sf #1}}
 
 %% Listings
+\providecommand{\meta}[1]{\textcolor{gray}{$\langle$\texttt{\textsl{#1}}$\rangle$}}
+\providecommand{\alert}{\relax} % for compatipillity with latexkurs-exercise
+\providecommand{\pkg}[1]{\href{http://ctan.org/pkg/#1}{\alert{\texttt{#1}}}}

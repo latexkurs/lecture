@@ -62,6 +62,10 @@
 \setkomafont{pagefoot}{\small\itshape}
 \ihead{Einführung in das\\Textsatzsystem \LaTeX}
 \chead{\bfseries Übungsblatt \ltxkurs@blattnr}
+
+%% Date Formating
+%\RequirePackage[useregional]{datetime2}
+%\DTMusemodule{german}{de-DE}
 \ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{\ltxkurs@datum}{Ausgegeben: \ltxkurs@ausgabe}\\\ifthenelse{\equal{\ltxkurs@abgabe}{}}{}{Abgabe: \ltxkurs@abgabe}}
 \ifoot{Heidelberg, WS 2016}
 \cfoot{}
@@ -86,11 +90,13 @@
 	rframe={single},
 }
 
+
 \ifltxkurs@vorläufig
 	\AtBeginDocument{\centerline{%
    	\color{red}\Large \sffamily Vorläufige Version}%
 		\vspace*{1ex}%
 	}
 \fi
+
 
 \providecommand{\abgabe}[1]{\par\noindent\textit{Abgabe:} #1}

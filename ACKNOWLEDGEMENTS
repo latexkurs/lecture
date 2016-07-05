@@ -1,0 +1,10 @@
+Parts of this lecture’s contens have been taken from a previous lecture held by Arno Trautmann in the summer term 2010. You can find the original course material on https://github.com/alt/LaTeX-course. (Thanks Arno!)
+
+Other contents especially on classes and packages are from the respective documentation (see http://ctan.org) and from some of the following books:
+R. Bringhurst: “The elements of typographic style”, Hartley & Marks, Point Roberts, 2008.
+V. Eijkhout: “TEX by topic: a TEXnician’s Reference”, Lehmanns, Heidelberg, 2014.
+F. Forssman R. de Jong: “Detailtypografie: Nachschlagewerk für alle Fragen zu Schrift und Satz”, Verlag Hermann Schmidt, Mainz, 2014.
+M. Goossens, F. Mittelbach, und A. Samarin: “Der Latex-Begleiter”, Pearson Studium, München, 2002.
+M. Kohm: “KOMA-Script: eine Sammlung von Klassen und Paketen für LATEX 2e”, Lehmanns, Heidelberg, 2014.
+H. Kopka: “LaTeX Einführung”, Addison-Wesley, Bonn, 1999.
+Wikibooks: “LaTeX”, https://en.wikibooks.org/w/index.php?title=LaTeX , 2016.
