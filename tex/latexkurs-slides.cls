@@ -8,11 +8,7 @@
 
 \LoadClass[aspectratio=43]{beamer}
 
-\RequirePackage{
-	../tex/latexkurs-commands,
-	showexpl,
-	xspace,
-}
+\RequirePackage{../tex/latexkurs-commands}
 
 %% Language
 \RequirePackage{polyglossia}
@@ -39,6 +35,8 @@
 }
 
 %% Listings
+\RequirePackage{showexpl}
+\lstloadlanguages{TeX}
 \lstset{% for slides
 	language=TeX,
 	backgroundcolor=\color[RGB]{229, 229, 239},
@@ -84,7 +82,6 @@
 \subtitle{\ltxkurs@titel}
 \author[Mo]{Moritz Brinkmann\\\url{moritz.brinkmann@iwr.uni-heidelberg.de}}
 \AtBeginDocument{
-	\MakeShortVerb{\|}
 	\frame{\thispagestyle{empty}\titlepage}
 }
 

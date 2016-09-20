@@ -1,4 +1,5 @@
 % !TEX encoding = UTF-8 Unicode
+% 
 % © 2016 Moritz Brinkmann, CC-by-sa
 % http://latexkurs.github.io
 
@@ -9,29 +10,29 @@
 \LoadClass{scrartcl}
 
 \RequirePackage{
+	amssymb,
+	calc,
 	enumitem,
-	fontspec,
-	geometry,
-	ifthen,
-	kvoptions,
-	lastpage,
 	../tex/latexkurs-commands,
-	microtype,
-	polyglossia,
-	scrlayer-scrpage,
-	showexpl,
-	xspace,
-	hyperref,
+	nag,
+	xparse,
+	nag,
 }
 
+%% Language
+\RequirePackage{polyglossia}
 \setmainlanguage{german}
 \setotherlanguage{english}
 
+%% Fonts
+\RequirePackage{fontspec, microtype}
 \setsansfont{Linux Biolinum O}
 \setromanfont{Linux Libertine O}
-\setmonofont[Scale=.85]{Inconsolata}
-%\setmonofont[Scale=.99]{Anonymous Pro}
+\setmonofont[Scale=.95,AutoFakeSlant]{Inconsolata}
+%\setmonofont[Scale=.95]{Anonymous Pro}
 
+%% Option Handling
+\RequirePackage{kvoptions}
 \SetupKeyvalOptions{
 	family=latexkurs,
 	prefix=ltxkurs@,
@@ -40,18 +41,28 @@
 \DeclareStringOption{datum}
 \DeclareStringOption{ausgabe}
 \DeclareStringOption{abgabe}
+\DeclareStringOption{titel}
 \DeclareBoolOption{vorläufig}
+\DeclareBoolOption{lösung}
 \ProcessKeyvalOptions{latexkurs}
 
+%% Geometry
+\RequirePackage{geometry}
 \geometry{a4paper,vmargin=3cm,head=26.0pt}
+
+%% Date Formating
+\RequirePackage[useregional=numeric]{datetime2}
+\DTMusemodule{german}{german}
+\DTMlangsetup[german]{datesep={.}}
+
+%% Layout
+\RequirePackage{microtype}
 \frenchspacing
 \reversemarginpar
-\hypersetup{
-	colorlinks=true,
-	linkcolor=blue,
-	urlcolor=blue,
-}
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+%% Head- and Footline
+\RequirePackage{scrlayer-scrpage, lastpage}
 \pagestyle{scrheadings}
 \KOMAoptions{
 	headtopline = 1pt,
@@ -61,16 +72,14 @@
 \setkomafont{pagehead}{\normalfont\small\sffamily}
 \setkomafont{pagefoot}{\small\itshape}
 \ihead{Einführung in das\\Textsatzsystem \LaTeX}
-\chead{\bfseries Übungsblatt \ltxkurs@blattnr}
-
-%% Date Formating
-%\RequirePackage[useregional]{datetime2}
-%\DTMusemodule{german}{de-DE}
-\ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{\ltxkurs@datum}{Ausgegeben: \ltxkurs@ausgabe}\\\ifthenelse{\equal{\ltxkurs@abgabe}{}}{}{Abgabe: \ltxkurs@abgabe}}
+\chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
+\ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{\DTMdate{\ltxkurs@datum}}{Ausgegeben: \DTMdate{\ltxkurs@ausgabe}}\\\ifthenelse{\equal{\ltxkurs@abgabe}{}}{}{Abgabe: \DTMdate{\ltxkurs@abgabe}}}
 \ifoot{Heidelberg, WS 2016}
 \cfoot{}
 \ofoot{Seite~\thepage~von~\pageref{LastPage}}
 
+%% Listings
+\RequirePackage{showexpl}
 \lstloadlanguages{TeX}
 \lstset{% for exercise sheets
 	backgroundcolor=\color[rgb]{.9 .9 .9},
@@ -90,7 +99,7 @@
 	rframe={single},
 }
 
-
+%% Preliminal Version
 \ifltxkurs@vorläufig
 	\AtBeginDocument{\centerline{%
    	\color{red}\Large \sffamily Vorläufige Version}%
@@ -98,5 +107,38 @@
 	}
 \fi
 
+%% Makros
+\DeclareDocumentCommand\ltxkurs@exercisename{}{Übung}
+\DeclareDocumentCommand\ltxkurs@bonusexercisename{}{Bonusaufgabe}
+\DeclareDocumentCommand\ltxkurs@solutionname{}{Lösung}
+\newcounter{ltxkursexercisecounter}
+%\setcounter{ltxkursexercisecounter}{0}
+\newlength{\starlength}
+\DeclareDocumentEnvironment{aufgabe}{s o d<> m}{%
+		\stepcounter{ltxkursexercisecounter}%
+		\subsection*{%
+			\IfBooleanTF{#1}{\settowidth{\starlength}{$\bigstar$\ }\hspace*{-\the\starlength}$\bigstar$\ \ltxkurs@bonusexercisename}{\ltxkurs@exercisename}\ %
+			\ltxkurs@blattnr.\arabic{ltxkursexercisecounter}\ifthenelse{\equal{#4}{}}{}{: #4}%
+			\hfill\normalfont\normalsize\textit{\IfValueTF{#2}{#2\IfValueT{#3}{ (+#3)} Punkte}{\IfValueT{#3}{+#3 Bonuspunkte}}}%
+		}%
+}{}
+\newlength{\abgabelength}
+\ProvideDocumentCommand\abgabe{+m}{
+	\settowidth{\abgabelength}{{\textbf{Abgabe:}}\ }
+	\par\hangindent\abgabelength\hangafter1\noindent{\textbf{Abgabe:}}\ #1\par
+}
+\DeclareDocumentCommand\lösung{m}{\ifltxkurs@lösung\subsection*{\ltxkurs@solutionname\ \ltxkurs@blattnr.\arabic{ltxkursexercisecounter}} \input{#1}\fi}
+%\def\endlösung{\fi}%hihi endlösung
+%\DeclareDocumentEnvironment{lösung}{}{\ifltxkurs@lösung\subsection*{\ltxkurs@solutionname\ \ltxkurs@blattnr.\arabic{ltxkursexercisecounter}}}{\fi}
 
-\providecommand{\abgabe}[1]{\par\noindent\textit{Abgabe:} #1}
+%% Hypersetup
+\RequirePackage{hyperref}
+\expandafter\hypersetup{%
+  unicode=true,
+  pdfborder={000},
+  pdftitle={LaTeX-Kurs Übungsblatt \ltxkurs@blattnr},
+  pdfauthor={Moritz Brinkmann},
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+}

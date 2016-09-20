@@ -6,15 +6,12 @@
 \ProvidesPackage{latexkurs-commands}[2016/06/03 v0.1 handy commands ]
 
 \RequirePackage{
-	dantelogo,
-	hologo,
 	tikz,
-	shortvrb,
-	showexpl,
 	xspace,
 }
 
 %% Logos
+\RequirePackage{dantelogo, hologo}
 \providecommand{\TeXlive}{\TeX\,Live\xspace}
 \providecommand{\XeLaTeX}{\hologo{XeLaTeX}\xspace}
 \providecommand{\XeTeX}{\hologo{XeTeX}\xspace}
@@ -40,3 +37,7 @@
 \providecommand{\meta}[1]{\textcolor{gray}{$\langle$\texttt{\textsl{#1}}$\rangle$}}
 \providecommand{\alert}{\relax} % for compatipillity with latexkurs-exercise
 \providecommand{\pkg}[1]{\href{http://ctan.org/pkg/#1}{\alert{\texttt{#1}}}}
+
+\RequirePackage{shortvrb}
+\MakeShortVerb{\|}
+%\AtBeginDocument{\MakeShortVerb{\|}}
