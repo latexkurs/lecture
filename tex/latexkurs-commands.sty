@@ -8,7 +8,17 @@
 \RequirePackage{
 	tikz,
 	xspace,
+	nag,
 }
+
+%% Package Options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+	family=latexkurs-commands,
+	prefix=ltxkurscmd@,
+}
+\DeclareBoolOption{shortverb}
+\ProcessKeyvalOptions{latexkurs-commands}
 
 %% Logos
 \RequirePackage{dantelogo, hologo}
@@ -39,5 +49,7 @@
 \providecommand{\pkg}[1]{\href{http://ctan.org/pkg/#1}{\alert{\texttt{#1}}}}
 
 \RequirePackage{shortvrb}
-\MakeShortVerb{\|}
-%\AtBeginDocument{\MakeShortVerb{\|}}
+\ifltxkurscmd@shortverb
+	\MakeShortVerb{\|}
+%	\AtBeginDocument{\MakeShortVerb{\|}}
+\fi

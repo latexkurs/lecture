@@ -5,7 +5,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{latexkurs-exercise}[2016/06/03 v0.1 Exercise sheets for LaTeX Course]
+\ProvidesClass{latexkurs-exercise}[2016/09/20 v0.2 Exercise sheets for LaTeX Course]
 
 \LoadClass{scrartcl}
 
@@ -14,9 +14,7 @@
 	calc,
 	enumitem,
 	../tex/latexkurs-commands,
-	nag,
 	xparse,
-	nag,
 }
 
 %% Language
@@ -128,8 +126,6 @@
 	\par\hangindent\abgabelength\hangafter1\noindent{\textbf{Abgabe:}}\ #1\par
 }
 \DeclareDocumentCommand\lösung{m}{\ifltxkurs@lösung\subsection*{\ltxkurs@solutionname\ \ltxkurs@blattnr.\arabic{ltxkursexercisecounter}} \input{#1}\fi}
-%\def\endlösung{\fi}%hihi endlösung
-%\DeclareDocumentEnvironment{lösung}{}{\ifltxkurs@lösung\subsection*{\ltxkurs@solutionname\ \ltxkurs@blattnr.\arabic{ltxkursexercisecounter}}}{\fi}
 
 %% Hypersetup
 \RequirePackage{hyperref}

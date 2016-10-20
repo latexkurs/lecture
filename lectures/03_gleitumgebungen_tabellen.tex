@@ -1,0 +1,584 @@
+% !TEX program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true,
+	datum=2016-11-11,
+	titel={Gleitumgebungen und Tabellen},
+	web=false,
+	noshortverb=true,
+]{../tex/latexkurs-slides}
+
+
+\usepackage{
+	array,
+	booktabs,
+	caption,
+	longtable,
+	pifont,
+	rotating,
+	supertabular,
+	tabularx,
+	tabulary,
+}
+
+%%%%
+\newcommand\messdaten{
+\toprule
+\bf Pendellänge $l$ [m]& \bf Dauer $T$ [s]\\\midrule
+4 & 8 \\
+2 & 4 \\
+1   & 2 \\
+.9  & 1.8 \\
+0.8 & 1.6 \\
+0.7 & 1.4 \\
+0.6 & 1.2 \\
+0.5 & 1.0 \\
+0.4 & 0.8 \\
+0.3 & 0.6 \\
+0.2 & 0.4 \\
+0.1 & 0.2 \\
+0.05 & 0.1 \\
+0.02 & 0.05 \\
+0.01 & 0.02 \\
+0.005 & 0.01 \\
+0.0025 & 0.005\\
+\bottomrule
+}
+%%%%
+
+\begin{document}
+
+
+\begin{frame}{Übersicht}
+	\tableofcontents
+\end{frame}
+
+\section[Gleitumgebungen]{Allgemeine Gleitumgebungen}
+\begin{frame}{Was sind Gleitobjekte?}
+\begin{itemize}
+\item Objekte, die frei im Dokument „gleiten“ können
+\item Gleiten vermeidet große Leerräume
+\item \TeX\ versucht optimale Positionierung
+\item zu beachten:
+\begin{itemize}
+\item Objekte sollen nicht vor Referenzen auftauchen
+\item Objekte sollen nicht die Reihenfolge tauschen
+\item Seitenumbruch stark abhängig von Gleitobjekten
+\item \emph{optimaler Seitenumbruch ist mit \TeX\ nicht möglich!}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+Eine Gleitumgebung besteht aus verschiedenen Teilen:
+\begin{itemize}
+\item Inhalt (Bild, Tabelle, Text, \dots)
+\item automatische Bezeichnung: „Tabelle 1:“ (\verb|\caption|)
+\item Beschriftung: „Messergebnisse“ (Argument von \verb|\caption{}|)
+\item Markierung für Verweise: \verb|\label{fig:messergebnisse}|
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+\begin{itemize}
+\item \LaTeX\ verfügt über verschiedene Gleitumgebungen:
+\item \verb|table| für Tabellen
+\item \verb|figure| für Abbildungen
+\item Paket \pkg{float} ermöglicht Definition eigener Umgebungen
+\item für zweispaltigen Satz: \verb|table*|, \verb|figure*| über beide Spalten
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+\begin{block}{Positionierungsparameter für Gleitumgebungen:} 
+\verb|\begin{table}[|\meta{Parameter}\verb|]|
+\\
+\begin{description}
+\item[\texttt{!}] ignoriert Einschränkungen und fährt fort 
+\item[\texttt{h}] Objekt genau an dieser Stelle setzen
+\item[\texttt{t}] Objekt am Seitenanfang setzen
+\item[\texttt{b}] Objekt am Seitenende setzen
+\item[\texttt{p}] Objekt in Gleitobjektseite bzw. -spalte setzen
+\item[\texttt{H}] „genau hier und sonst nirgends“ – Paket \pkg{float}
+\end{description}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+\begin{itemize}
+\item Wenn die automatische Positionierung nicht funktioniert:\\%
+\verb|\suppressfloats[t,b]|\\
+\begin{itemize}
+	\item Unterdrückt Positionierung am Kopf oder Fuß der Seite
+	\item vermeidet Bilder eines neuen Abschnittes im alten
+\end{itemize}
+\item nützliche Pakete:
+\begin{itemize}
+	\item \pkg{placeins}
+	\item \pkg{afterpage}
+	\item \pkg{endfloat}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{table}
+\begin{LTXexample}
+\begin{table}
+  \begin{tabular}{ccc}
+    a & b & c
+  \end{tabular}
+  \caption{Eine sinnlose Tabelle}
+  \label{tab:sinnlos}
+\end{table}
+Im Text kann man auf Tabelle
+\ref{tab:sinnlos} verweisen.
+\end{LTXexample}
+\begin{table}
+\begin{tabular}{ccc}
+a & b & c
+\end{tabular}
+\caption{Eine sinnlose Tabelle}
+\label{tab:sinnlos}
+\end{table}
+\end{frame}
+
+\begin{frame}[fragile]{Nichtgleitende Gleitumgebungen}
+nichtgleitende Umgebungen als Gleitumgebungen ausgeben:\\
+Paket \pkg{caption}
+
+\begin{LTXexample}[pos=b]
+Eine kleine Abbildung in einem Text, die eigentlich gar keine ist:
+\begin{minipage}[b]{3cm}
+  \fbox{ich bin kein Bild}
+  \captionof{figure}{test}
+\end{minipage}
+
+In der \verb/minipage/ kann jeder beliebige Inhalt stehen \dots
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{caption}
+\pkg{caption} bietet auch vielfältige Einstellungen für Legenden:
+
+\begin{LTXexample}[pos=b]
+\captionsetup[figure]{textfont=bf, labelsep=period}
+\captionsetup[table]{
+  textfont=it, singlelinecheck=false, labelsep=newline, format=plain, justification=justified
+}
+
+\begin{figure}
+\centering
+\fbox{Bild mit \emph{nicht} angepasster Unterschrift – dank Beamer …}
+\caption{Unterschrift}
+\end{figure}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Drehen von Gleitumgebungen}
+\begin{itemize}
+\item Paket \pkg{rotating} rotiert den Inhalt um 90° bzw. 270°
+\item Umgebungen \verb/sidewaysfigure/, \verb/sidewaystable/
+\item nichtgleitend: \verb/sideways/
+\end{itemize}
+\begin{LTXexample}[width=.4\textwidth]
+\centering
+\begin{sideways}
+[Bild]
+\end{sideways}
+\captionof{figure}{Nicht gedrehte Beschriftung}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{sideways}
+\begin{lstlisting}
+\begin{sidewaysfigure}
+\fbox{Bild}
+\caption{Unterschrift}
+\end{sidewaysfigure}
+\end{lstlisting}
+\end{frame}
+
+\part{Tabellen}
+
+\begin{frame}{Tabellen und \LaTeX}
+\begin{itemize}
+\item[$\pmb-$] Tabellensatz mit \LaTeX\ ist aufwändig!
+\item[$\pmb-$] WYSIWYG-Editoren bieten leichtere, da sichtbare Formatierung von Tabellen.
+\item[$\pmb+$] Ergebnis sieht in \LaTeX\ meist besser aus.
+\item[$\pmb+$] Erscheinungsbild ist frei anpassbar, mit beliebig hohem Aufwand.
+\end{itemize}
+\end{frame}
+
+\section[tabular]{Standardumgebungen – \texttt{tabular}, \texttt{tabular*}}
+\begin{frame}[fragile]{\LaTeX{}s Standardumgebungen}
+\begin{itemize}
+\item \verb/tabular/, \verb/tabular*/
+\item \verb/tabbing/
+\item \alert{nicht zu verwechseln mit \texttt{table}!}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{tabular vs. tabbing}
+\begin{tabular}[]{rcc}
+& \textbf{tabular} & \textbf{tabbing}\\
+Eigener Absatz & nein & ja \\
+Seitenumbruch & nein & ja  \\
+automatische Spaltenbreite & ja & nein\\
+Schachtelung & ja & nein
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile,t]{tabbing}
+Grundbefehle: \verb|\=, \>|
+
+\begin{LTXexample}[pos=b]
+\begin{tabbing}
+  erster Eintrag \= zweiter \= dritter \\
+  eins \> zwei \> drei\\
+  eins \>      \> drei
+\end{tabbing}
+\end{LTXexample}
+\begin{description}
+	\item[\texttt{\textbackslash=}] definiert eine neue Tabulatorposition\\
+	\item[\texttt{\textbackslash>}] rückt zur nächsten definierten Position vor
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile,t]{tabbing}
+Weitere Befehle: \verb|\kill, \`|
+
+\begin{LTXexample}[pos=b]
+\begin{tabbing}
+ \hspace{1.5cm} \= \hspace{1cm} \= \qquad \kill
+ erster \> zweiter \> dritter \\
+ erster Eintrag \> zweiter Eintrag \` dritter Eintrag
+\end{tabbing}
+\end{LTXexample}
+\begin{description}
+\item[\texttt{\textbackslash kill}] löscht Inhalt der Zeile, speichert aber die Tabulatoren
+\item[\texttt{\textbackslash`}] richtet Text rechtsbündig zum \verb/tabbing/-Rand aus
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile]{tabular}
+\begin{LTXexample}[pos=b,preset={\small}]
+\begin{tabular}{l|c||r|p{2cm}@{\ding{53}}c|}
+  links & mitte & rechts & vier & fünf\\\hline\hline
+  links & mitte &  & eine lange vierte Spalte, die umbrochen wird\\\hline
+  & & & &
+\end{tabular}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{tabular}
+\begin{description}
+\item[\texttt{l}] linksbündige Spalte
+\item[\texttt{c}] zentrierte Spalte
+\item[\texttt{r}] rechtbündige Spalte
+\item[\texttt{|}] vertikale Linie zwischen Spalten
+\item[\texttt{||}] doppelte Linie zwischen Spalten (wird nicht durchgestrichen)
+\item[\texttt{p\{\meta{Breite}\}}] Fügt eine \verb|\parbox[t]{|\meta{Breite}\verb|}| ein
+\item[\texttt{@\{\meta{Inhalt}\}}] setzt statt Spaltenabstand \verb/Inhalt/
+\item[\texttt{\kern-.95ex*\{n\}\{\meta{kürz}\}}] setzt $n$ mal \meta{kürz}, z.\,B. \verb/*{2}{|}/
+\end{description}
+\end{frame}
+
+\section[booktabs]{Schöne Tabellen – \texttt{booktabs}}
+
+\begin{frame}[fragile]{Fragwürdiges Layout}
+\begin{itemize}
+\item Paket \pkg{booktabs} (Simon Fear) für hohe Qualität
+\item Empfehlungen aus dem Paket:
+\end{itemize}
+\begin{fancyquote}
+\begin{enumerate}
+\item \alert{Never, ever use vertical rules.}
+\item \alert{Never use double rules.}
+\item<2-> Put the units in the column heading (not in the body of the table).
+\item<2-> Always precede a decimal point by a digit; thus \verb/0.1/ \emph{not} just \verb/.1/.
+\item<2-> Do not use “ditto” signs or any other such convention to repeat a previous
+value. In many circumstances a blank will serve just as well. If it won’t,
+then repeat the value. \quoted{booktabs-Dokumentation}
+\end{enumerate}
+\end{fancyquote}
+\end{frame}
+
+\begin{frame}[fragile]{ohne booktabs}{Negativbeispiel}
+\begin{LTXexample}[width=.45\textwidth,rframe={},preset={\def\ditto{\ --"{}--\ }}]
+\begin{tabular}{l||r|r}
+  \hline
+  Artikel & Zahl & Bezeichnung \\ \hline
+  Die & erste & Zeile \\   \cline{2-3}
+  Die & zweite & Zeile\\
+  Die & dritte & \ditto \\
+  Die & vierte & \ditto \\
+  \hline
+\end{tabular}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{mit booktabs}{Positivbeispiel}
+\begin{LTXexample}[width=.45\textwidth,rframe={}]
+\begin{tabular}{lrr}
+  \toprule
+  Artikel & Zahl & Bezeichnung \\ \midrule
+  Die & erste & Zeile \\   \cmidrule{2-3}
+  Die & zweite & Zeile \\
+  Die & dritte & Zeile \\
+  Die & vierte & Zeile \\
+  \bottomrule
+\end{tabular}
+\end{LTXexample}
+\end{frame}
+
+\section[array]{Erweiterungen – \texttt{array}}
+\begin{frame}[fragile]{array}
+\begin{itemize}
+\item Paket \pkg{array} erweitert die Möglichkeiten von \verb/tabular/
+\item Änderung von vertikalen Linien, neue Spaltentypen:
+\end{itemize}
+\begin{description}
+\item[\texttt{|}] berücksichtigt die Linienbreite
+\item[\texttt{m\{\meta{Breite}\}}] vertikal zentrierte Spalte der angegebenen \meta{Breite}
+\item[\texttt{b\{\meta{Breite}\}}] unten ausgerichtete Spalte der angegebenen \meta{Breite} (vgl. p)
+\item[\texttt{>\{\meta{Befehl}\}}] fügt \meta{Befehl} direkt vor der nächsten Spalte ein
+\item[\texttt{<\{\meta{Befehl}\}}] fügt \meta{Befehl} direkt hinter der letzten Spalte ein
+\item[\texttt{!\{\meta{Befehl}\}}] wie \verb/|/, fügt aber \meta{Befehl} ein. Vgl. \verb/@/, aber Abstand korrigiert
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile]{array}
+\begin{LTXexample}[pos=b]
+\begin{tabular*}{6cm}{|p{1cm}p{3cm}p{1cm}|}
+links & mittlerer Text mit eingebautem Umbruch & rechts
+\end{tabular*}
+\end{LTXexample}
+\end{frame}
+\begin{frame}[fragile]{array}
+\begin{LTXexample}[pos=b]
+\begin{tabular*}{6cm}{|m{1cm}m{3cm}m{1cm}|}
+links & mittlerer Text mit eingebautem Umbruch & rechts
+\end{tabular*}
+\end{LTXexample}
+\end{frame}
+\begin{frame}[fragile]{array}
+\begin{LTXexample}[pos=b]
+\begin{tabular*}{6cm}{|b{1cm}b{3cm}b{1cm}|}
+links & mittlerer Text mit eingebautem Umbruch & rechts
+\end{tabular*}
+\end{LTXexample}
+\end{frame}
+\begin{frame}[fragile]{array}
+\begin{LTXexample}[pos=b]
+\begin{tabular}{>{\bfseries}l|>{\color{red}}r}
+links & rechts\\
+links & rechts
+\end{tabular}
+\end{LTXexample}
+\end{frame}
+
+\section[tabularx, tabulary]{Automatische Breite – \texttt{tabularx}, \texttt{tabulary}}
+\begin{frame}[fragile]{tabular*}
+\begin{itemize}
+\item \verb/tabular*/ ändert \emph{Abstand} der Spalten
+\item \verb/tabularx/ verteilt \emph{Breite} der Spalten \emph{gleichmäßig}
+\item \verb/tabulary/ verteilet \emph{Breite} der Spalten \emph{am Inhalt orientiert}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{automatische Breiten}
+\begin{LTXexample}[width=.4\textwidth]
+\begin{tabular*}{4cm}{|l|!{\extracolsep\fill}>{(}l<{)}|r|}
+a a & b b & c c
+\end{tabular*}
+\\ \\
+\begin{tabular}{|l|!{\extracolsep\fill}l|r|}
+a a & b b & c c
+\end{tabular}
+\\ \\
+\begin{tabularx}{4cm}{|l|>{(}X<{)}|r|}
+a a & b b & c c
+\end{tabularx}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{tabularx}
+Automatische Berechnung der Spaltenbreite:
+\begin{LTXexample}
+\begin{tabularx}{\linewidth}{lX|X|r}
+linke Spalte & Eine längere Spalte& kurz & rechts
+\end{tabularx}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{tabulary}
+\begin{LTXexample}
+\begin{tabulary}{4cm}{|L|L|L|}
+a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
+\end{tabulary}
+\end{LTXexample}
+\begin{LTXexample}
+\begin{tabular}{|l|l|l|}
+a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
+\end{tabular}
+\end{LTXexample}
+\begin{LTXexample}
+\begin{tabular*}{4cm}{|l|l|l|}
+a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
+\end{tabular*}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{tabulary}
+Mögliche Spaltentypen:\\[1em]
+\begin{description}
+\item[\texttt{L}] linksbündig
+\item[\texttt{R}] rechtsbündig
+\item[\texttt{C}] zentriert
+\item[\texttt{J}] Blocksatz
+\end{description}
+\vfill
+\begin{itemize}
+\item Alle Spalten verhalten sich wie \verb/p/-Spalten.
+\item Breite der Spalten ist \emph{nicht} vorher festgelegt.
+\end{itemize}
+\end{frame}
+
+\section[supertabular, longtable]{Mehrseitige Tabellen – \texttt{supertabular}, \texttt{longtable}}
+\begin{frame}[fragile]{lange Tabellen}
+Lösung: \pkg{supertabular} oder \pkg{longtable}\\[1em]
+\begin{description}
+\item[\texttt{supertabular}] mehrseitige Tabelle, Breite variabel
+\item[\texttt{supertabular*}] festgesetzte Breite
+\item[\texttt{mpsupertabular}] setzt Tabelle in \verb/minipage/
+\item[\texttt{mpsupertabular*}] \verb/minipage/ mit fester Breite
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile]{supertabular}
+\begin{supertabular}{cc}
+\messdaten
+\end{supertabular}
+\end{frame}
+
+\begin{supertabular}{cc}
+\messdaten
+\end{supertabular}
+
+\begin{frame}[fragile]{supertabular}
+Wichtige Einstellungsmöglichkeiten:
+\begin{lstlisting}
+\tablehead{links & rechts \\\hline}
+\tablefirsthead{\bf links & \bf rechts \\}
+\tabletail{\small \textit{Fortsetzung auf der nächsten Seite} & \\}
+\tablelasttail{Ende der Messdaten}
+\end{lstlisting}
+\tablehead{links & rechts \\\hline}
+\tablefirsthead{\bf links & \bf rechts \\}
+\tabletail{\small \textit{Fortsetzung auf der nächsten Seite} & \\}
+\tablelasttail{Ende der Messdaten}
+\end{frame}
+
+\begin{supertabular}{cc}
+\messdaten
+\end{supertabular}
+
+\begin{frame}[fragile]{longtable}
+Paket \verb|longtable| bietet Umgebung \verb|longtable|:
+\begin{itemize}
+\item feste Breite der Spalten auf allen Seiten
+\item \verb/head/, \verb/firsthead/ etc. werden \emph{innerhalb} der Tabelle festgelegt
+\item verwendet die .aux-Datei (auf Schreibrechte achten!)
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{longtable}
+\begin{LTXexample}[pos=b]
+\begin{longtable}{cc}
+\textbf{Messdaten}\\
+\endfirsthead
+links & rechts\\
+\endhead
+\small \textit{Weiter auf der nächsten Seite}
+\endfoot
+Ende der Tabelle.
+\endlastfoot
+\messdaten
+\end{longtable}
+\end{LTXexample}
+\end{frame}
+
+\begin{longtable}{cc}
+\textbf{Messdaten}\\
+\endfirsthead
+links & rechts\\
+\endhead
+\small \textit{Weiter auf der nächsten Seite}
+\endfoot
+Ende der Tabelle.
+\endlastfoot
+\messdaten
+\end{longtable}
+
+\iffalse
+\begin{frame}[fragile]{supertabularx, longtablex}
+Für Satz mehrseitiger Tabellen mit automatischer Breitenanpassung:
+\only<1>{\texttt{supertabularx} bzw. \texttt{longtablex}}
+\only<2->{\sout{\texttt{supertabularx} bzw. \texttt{longtablex}}}
+\pause\pause
+\begin{itemize}
+\item Paket \verb/ltxtable/ bietet grundlegende Unterstützung
+\item Kombination von \verb/longtable/ und \verb/tabularx/
+\item Tabelle (\texttt{tabularx}) selbst steht in externer Datei
+\item Nutzer muss diese selbst anlegen, schreiben und verwalten
+\item Einbinden mittels \texttt{\textbackslash LTXtable\{\meta{width}\}\{\meta{file}\}}
+\item am besten mittels \verb/filecontents/ (Umgebung, Paket)
+\end{itemize}
+\end{frame}
+\fi
+
+\begin{frame}[fragile]{Zellen über mehrere Spalten/Zeilen}
+Mit \verb|\multicolumn{|\meta{Spalten}\verb|}{|\meta{Ausrichtung}\verb|}{|\meta{Inhalt}\verb|}| kann eine Zelle mehrere Spalten überdecken.
+\begin{lstlisting}
+\multicolumn{2}{c}{Zelle über zwei Spalten (zentr.)}
+\end{lstlisting}
+\pause\vfill
+Paket \pkg{multirow} bietet Unterstützung für Zellen über mehrere Zeilen.
+\verb|\multirow{|\meta{Zeilen}\verb|}{|\meta{Breite}\verb|}{|\meta{Inhalt}\verb|}|
+\begin{lstlisting}
+\multirow{3}{*}{Zelle über drei Zeilen}
+\end{lstlisting}
+\end{frame}
+
+\section[weiteres]{weitere nützliche Pakete}
+\begin{frame}[fragile]{weitere nützliche Pakete}
+\begin{description}
+\item[\pkg{colortbl}] farbige Linien
+\item[\pkg{hhline}] vielfältige Linien (horizontal, vertikal \dots)
+\item[\pkg{arydshln}] gestrichelte Linien 
+\item[\pkg{tabls}] Zeilenabstände einstellen (inkompatipel zu \verb|array|!)
+\item[\pkg{ltxtable}] mehrseitige Tabellen mit automatischer Breitenanpassung
+%\item[\pkg{multirow}] vertikale Ausrichtung 
+\item[\pkg{dcolumn}] Ausrichtung am Dezimalpunkt % das kann auch siunitx → siehe nächste Vorlesung
+\item[\pkg{threeparttable}] Fußnoten an Tabellen
+\end{description}
+\end{frame}
+
+
+\begin{frame}{Weiterführende Literatur}
+	\begin{thebibliography}{9}
+		\bibitem{booktabs} \textsc{Simon Fear}:
+			\newblock{\href{http://mirrors.ctan.org/macros/latex/contrib/booktabs/booktabs.pdf}{„Publication quality tables in \LaTeX“}}, 
+			\newblock{\href{http://mirrors.ctan.org/macros/latex/contrib/booktabs/booktabs.pdf}{\texttt{texdoc booktabs}}}.
+		\setbeamertemplatebibitembook
+		\bibitem{voss} \textsc{Herbert Voss}:
+			\newblock{„Tabellen mit LateX“},
+			\newblock{Lehmanns Media, 2010}.
+	\end{thebibliography}
+\end{frame}
+\end{document}

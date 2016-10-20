@@ -8,15 +8,13 @@
 
 \LoadClass[aspectratio=43]{beamer}
 
-\RequirePackage{../tex/latexkurs-commands}
-
 %% Language
 \RequirePackage{polyglossia}
 \setmainlanguage{german}
 \setotherlanguage{english}
 
 %% Fonts
-\RequirePackage{fontspec, microtype}
+\RequirePackage{csquotes, fontspec, microtype}
 \setsansfont{Linux Biolinum O}
 \setromanfont{Linux Libertine O}
 \setmonofont[Scale=.95,AutoFakeSlant]{Inconsolata}
@@ -57,6 +55,7 @@
 }
 
 %% Option Handling
+\RequirePackage{kvoptions}
 \SetupKeyvalOptions{
 	family=latexkurs,
 	prefix=ltxkurs@,
@@ -65,7 +64,14 @@
 \DeclareStringOption{datum}
 \DeclareBoolOption{vorläufig}
 \DeclareBoolOption{web}
+\DeclareBoolOption{noshortverb}
 \ProcessKeyvalOptions{latexkurs}
+
+\ifltxkurs@noshortverb
+	\PassOptionsToPackage{shortverb=false}{../tex/latexkurs-commands}
+\else
+	\PassOptionsToPackage{shortverb=true}{../tex/latexkurs-commands}
+\fi
 
 %% Preliminal Version
 \ifltxkurs@vorläufig
@@ -117,6 +123,73 @@
 	\providecommand{\pdfmarginpar}[2][]{\null}
 \fi
 
+%% Bibliography
+\usepackage[backend=biber, style=numeric, doi=false, url=false, isbn=false, block=par]{biblatex}
+\setbeamertemplate{bibliography item}{%
+  \ifboolexpr{ test {\ifentrytype{book}} or test {\ifentrytype{mvbook}}
+    or test {\ifentrytype{collection}} or test {\ifentrytype{mvcollection}}
+    or test {\ifentrytype{reference}} or test {\ifentrytype{mvreference}} }
+    {\setbeamertemplate{bibliography item}[book]}
+    {\ifentrytype{online}
+       {\setbeamertemplate{bibliography item}[online]}
+       {\setbeamertemplate{bibliography item}[article]}}%
+  \usebeamertemplate{bibliography item}}
+
+\defbibenvironment{bibliography}
+  {\list{}
+     {\settowidth{\labelwidth}{\usebeamertemplate{bibliography item}}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}
+  
+\newbibmacro{string+doiurlisbn}[1]{%
+  \iffieldundef{url}{%
+    \iffieldundef{doi}{%
+      \iffieldundef{isbn}{%
+        \iffieldundef{issn}{%
+          #1%
+        }{%
+          \href{http://books.google.com/books?vid=ISSN\thefield{issn}}{#1}%
+        }%
+      }{%
+        \href{http://books.google.com/books?vid=ISBN\thefield{isbn}}{#1}%
+      }%
+    }{%
+      \href{http://dx.doi.org/\thefield{doi}}{#1}%
+    }%
+  }{%
+    \href{\thefield{url}}{#1}%
+  }%
+}
+
+\renewbibmacro*{issue+date}{%
+  \setunit{\addcomma\space}% NEW
+%  \printtext[parens]{% DELETED
+    \iffieldundef{issue}
+      {\usebibmacro{date}}
+      {\printfield{issue}%
+       \setunit*{\addspace}%
+%       \usebibmacro{date}}}% DELETED
+       \usebibmacro{date}}% NEW
+  \newunit}
+
+\DeclareFieldFormat{title}{\usebibmacro{string+doiurlisbn}{\mkbibquote{#1}}\nopunct}
+\DeclareFieldFormat[article,incollection]{title}%
+    {\usebibmacro{string+doiurlisbn}{\mkbibquote{#1}}\nopunct}
+\DeclareFieldFormat[article,book]{author}{#1\nopunct}
+\DeclareFieldFormat{note}{\usebibmacro{string+doiurlisbn}{\texttt{#1}}\nopunct}
+
+\renewbibmacro{in:}{}
+\renewbibmacro{isdot}{}
+
+\addbibresource{literatur.bib}
+%\AtEndDocument{
+\newcommand{\weiterführendeliteratur}{\frame[allowframebreaks]{\frametitle{Weiterführende Literatur}\printbibliography}}
+
 %% Hypersetup
 \RequirePackage{hyperref}
 \hypersetup{%
@@ -126,3 +199,7 @@
   pdftitle={Einführung in das Textsatzsystem LaTeX},
   pdfauthor={Moritz Brinkmann},
 }
+
+
+%% load shared package
+\RequirePackage{../tex/latexkurs-commands}

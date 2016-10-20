@@ -1,0 +1,31 @@
+% !TEX program = xelatex
+% !TEX root = 01_schriften_kodierungen.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+
+Mit \hologo{XeLaTeX} ließe sich die Aufgabe beispielsweise so lösen:
+\begin{lstlisting}
+\documentclass{scrartcl}
+
+\usepackage{polyglossia} 
+\setmainlanguage{german}
+\usepackage{xltxtra}
+
+\lohead{Aufgabe 2.2}
+\rohead{Meier, Müller}
+\pagestyle{scrheadings}
+
+\begin{document}
+
+\begin{enumerate}
+  \item Hündchen
+  \item Kätzchen
+  \item Mäuschen
+\end{enumerate}
+
+\end{document}
+\end{lstlisting}

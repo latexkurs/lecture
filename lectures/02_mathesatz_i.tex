@@ -1,0 +1,542 @@
+% !TEX program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true,
+	datum=2016-11-04,
+	titel={Mathematiksatz I},
+	web=false,
+]{../tex/latexkurs-slides}
+
+\usepackage{
+	mathtools,
+	ulem,
+}
+\normalem
+
+
+\usetikzlibrary{calc,intersections,through, positioning}
+
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} % \pgfkeysalso doesn't change the path
+}}
+
+\begin{document}
+
+\begin{frame}{Übersicht}
+	\tableofcontents
+\end{frame}
+
+\section{Eigene Befehle}
+\begin{frame}[fragile]{Eigene Befehle}
+\overleaf{tex0201}
+\begin{itemize}
+\item |\newcommand{\wasser}{H$_2$O}| ⇒ H$_2$O
+\item Ermöglicht Abkürzungen im Text, die häufig vorkommen\pause
+\item Änderung: |\renewcommand{\wasser}{H\kern-.1em$_2$\kern-.1em O}|:\\ H\kern-.1em$_2$\kern-.1em O
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile,t]{Leerzeichen in \TeX}
+\overleaf{tex0201}
+\TeX\ „frisst“ gerne Leerzeichen – vor allem nach Befehlen:\\
+|\wasser ist nass| ⇒ H$_2$Oist nass.
+
+\pause
+\begin{itemize}
+\item<+-> \TeX\ liest Befehle vom |\| bis zum ersten nicht-Buchstaben%
+\\ (Zahl, Klammer, Leerzeichen, Punkt, \dots)
+\\ \verb*|\LaTeX   ist  manchmal   umständlich|%
+\item<+-> Befehle im Text immer mit |\| oder |{}| beenden:
+\item<+-> \verb*|\LaTeX\ ist manchmal umständlich.|
+\end{itemize}
+\begin{block}{}\hspace{7em}{%
+\only<2-3>{\LaTeX ist manchmal umständlich}%
+\only<4>{\LaTeX\ ist manchmal umständlich}}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Befehle mit Argumenten}
+\begin{lstlisting}
+\newcommand\molekuel[3][H]{Das Molekül #1$_#2$#3}
+\end{lstlisting}
+\begin{itemize}
+\item Argumente werden mit |[3]| definiert
+\item Optionales Argument in eckigen Klammern
+\item Zugriff in der Definition möglich mit |#1|
+\item In der Verwendung meist mit geschweiften Klammern |{Co}|
+\end{itemize}
+\newcommand\molekuel[3][H]{Das Molekül #1$_#2$#3}
+|\molekuel{2}{O}| ⇒ \molekuel{2}{O}\\
+|\molekuel[Co]{7}{O}| ⇒ \molekuel[Co]{7}{O}\\
+\end{frame}
+
+\section{Mathe: inline vs. display}
+\subsection{Inlinemode}
+\begin{frame}[fragile]{Inlinemode}
+\begin{itemize}
+	\item Formeln, die direkt im Fließtext vorkommen
+	\item kurze Formeln, Nennung von Variablen
+	\item Elemente gehen nicht über die Zeilenhöhe hinaus
+	\item Grenzen werden \emph{neben} Integrale, Summen und Produkte gesetzt
+\end{itemize}
+\vfill
+\rmfamily
+\begin{LTXexample}
+Seien $m$ und $n$ natürliche Zahlen mit $n=5 m$.
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}{Inline- vs. Display-Formeln}
+\rmfamily
+\textbf{Inline-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
+\textbf{Inline-Mathe mit Displaystyle:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\displaystyle \int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
+\textbf{Display-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit \[\int^\infty_{-\infty}\sum_{n = 1}^5 dx,\] wobei diese zweite Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
+\end{frame}
+
+\begin{frame}[fragile]{Inlinemode}
+Der Inlinemode ist über drei Wege zu erreichen:
+\begin{itemize}
+\item |\(|\meta{Formel}|\)|
+\item |\begin{math}|\meta{Formel}|\end{math}|
+\item |$|\meta{Formel}|$|
+\end{itemize}
+\overleaf{tex0201}
+\pause
+|$ $| ist meist die beste Variante
+\end{frame}
+
+\begin{frame}[fragile]{Umbrüche}
+Formeln können von \TeX{} umgebrochen werden:
+\begin{itemize}
+\item an Relationen \hfill |=|, |<|, |>|, etc.
+\item an binären Operatoren \hfill |+|, |-|, etc.
+\item Umbruch kann durch Gruppierung vermieden werden. \hfill |{}|
+\end{itemize}
+\begin{LTXexample}
+Ein Text bis zum Zeilenende 
+$a + b + c$ \\
+Ein Text bis zum Zeilenende 
+${a + b + c}$
+\end{LTXexample}
+\end{frame}
+
+\subsection{Displaymode}
+\begin{frame}{Displaymode}
+	\begin{itemize}
+		\item Auszeichnung wichtiger Formeln
+		\item Darstelling langer Rechnungen
+		\item komplexe Formeln
+		\item mehrfach indizierte Größen
+		\item geschachtelte Brüche
+		\item …
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Displaymode}
+\emph{klassische} Display-Formeln sind über drei Wege zu erreichen:
+	\begin{itemize}
+		\item |\begin{displaymath}|\meta{Formel}|\end{displaymath}|\\
+		abgesetzte Formel ohne Nummerierung
+		\item |\[|\meta{Formel}|\]|\\
+		Abkürzung für |displaymath|
+		\item |\begin{equation|\meta{Formel}|\end{equation}|\\
+		abgesetzte Formel mit Nummerierung
+		\item<2> \sout{\texttt{\$\$}\meta{Formel}\texttt{\$\$}}\\\pause
+		\TeX-Syntax führt in \LaTeX{} zu unerwarteten und unerwünschten Ergebnissen\\\alert{⇒ unbedingt vermeiden!}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Display in Inline und umgekehrt}
+	\begin{itemize}
+		\item Dislaystyle kann mit |\displaystyle| im Inline-Modus aufgerufen werden.
+	\end{itemize}
+\begin{LTXexample}[pos=b]
+Hier kommt ein großer Bruch, der
+$\frac{a}{b} < \displaystyle \frac{a}{b}$
+viel zu groß für den normalen Fließtext ist.
+\end{LTXexample}
+	\begin{itemize}
+		\item Inlinestyle kann mit |\textstyle| im Display-Modus aufgerufen werden.
+	\end{itemize}
+\begin{LTXexample}[pos=b]
+\[\frac 12 > \textstyle \frac 12 \]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Option fleqn}
+	\overleaf{tex0201}
+	\begin{itemize}
+		\item Formeln sehen oft zentriert nicht gut aus und wirken zerfleddert
+		\item linksbündige Ausrichtung ggf. besser
+		\item[⇒] |fleqn| als Dokumentenoption 
+	\end{itemize}
+\begin{lstlisting}
+\documentclass[fleqn]{scrartcl}
+\end{lstlisting}
+\end{frame}
+
+\section{\texttt{amsmath}}
+\begin{frame}[fragile]{Mehrzeilige Formeln}
+	Eine Reihe von untereinander ausgerichteten, zueinander angeordneten Gleichungen wird z.\,B. verwendet für:
+	\begin{itemize}
+		\item Herleitungen
+		\item Übersichten
+		\item Vergleich von Formeln
+	\end{itemize}
+	\pause
+	\sout{\TeX-Standardumgebung: \texttt{eqnarray}} \pause \alert{unschön}\\
+	\alert{besser:} |align|-Umgebung aus dem |amsmath|-Paket.
+	\pause
+\begin{LTXexample}
+\begin{align}
+a &= b, &
+c &= d,\\
+abc &= d \\
+&= r
+\end{align}
+\end{LTXexample}
+	ohne Nummerierung: |{align*}|
+\end{frame}
+
+\begin{frame}[fragile]{\hologo{AmS}math}
+	\begin{itemize}
+		\item Paket von der American Mathematical Society (\hologo{AmS})
+		\item besteht aus mehreren Paketen, u.\,a.:\\%
+		|amsmath|, |amssymb|, |amsfonts|%
+		\item bietet umfangreiche Erweiterungen des Mathesatzes:
+		\item vielfältige Umgebungen und Anpassungen
+		\item neue oder verbesserte Definitionen von Befehlen
+		\item Korrekturen von Abständen
+		\item \only<1>{\dots}
+		\pause wird mit Fehlerkorrekturen, etc. ergänzt durch |mathtools| 
+		\pause
+		\item[⇒] kann im Prinzip \emph{immer} geladen werden, wenn man was mit Mathe macht.
+	\end{itemize}
+\begin{lstlisting}
+\usepackage{amsmath, mathtools}
+\end{lstlisting}\pdfmarginpar{Genaugenommen reicht es aus, mathtools zu laden. Es läd amsmath automatisch.}
+\end{frame}
+
+\section{Grundbefehle}
+\subsection{Abstände}
+\begin{frame}[fragile]{Abstände}
+	\begin{itemize}
+		\item \TeX\ bzw. \LaTeX\ bzw. geladene Pakete kontrollieren Abstände
+		\item Unterschiede zwischen Variablen, Operatoren, Relationen etc.
+		\item Festgelegt durch die |\mathcode|s der Zeichen
+		\item Änderbar mit |\kern|, |\|, |\,| etc.
+		\item \alert{niemals} Konstrukte wie |\ \ \ \ | verwenden!
+		\item Besser: |\quad|, |\qquad|, |\hspace{1em}|
+	\end{itemize}
+\end{frame}
+
+\subsection{Größe von Formeln}
+\begin{frame}[fragile]{Größenänderungen}
+	\begin{itemize}
+		\item Standardbefehle wie |\small|,  |\tiny|, |\Huge| haben in Formeln keine Wirkung
+		\item Aber Formeln passen sich der Umgebung an
+	\end{itemize} 
+	\pause
+\begin{LTXexample}[pos=b]
+\small \[ 
+  x_{n+1} = x_n - \frac{f(x_n)}{f^\prime(x_n)} 
+\]
+\huge \[
+  x_{n+1} = x_n - \frac{f(x_n)}{f^\prime(x_n)}
+\]
+\end{LTXexample}
+\end{frame}
+
+\section{Variablen}
+\begin{frame}[fragile]{Variablen und Zahlen}
+	\begin{itemize}
+		\item Variablen werden kursiv gesetzt: |$a$|: $a$
+		\item Schriftart abhängig von der Dokumentenklasse!\\%
+		(Groteske, Serifen etc.)
+		\item Ziffern werden automatisch korrekt gesetzt: $12.2$ statt 12.2
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dezimaltrennzeichen}
+im amerikanischen Satz:
+\begin{LTXexample}[preset=\Large]
+$1,234.567$
+\end{LTXexample}\pause
+im deutschen Satz:
+\begin{LTXexample}[preset=\Large]
+$1.234,567$
+\end{LTXexample}
+\alert{⇒ falsche Spationierung!}
+\end{frame}
+
+\begin{frame}[fragile]{Dezimaltrennzeichen}
+\begin{block}{Einmalige Anpassung:}
+	|$1\mathpunct{.}234\mathpunct{.}567{,}89$|\\
+	$1\mathpunct{.}234\mathpunct{.}567{,}89$ (angepasst)\\
+	$1.234.567,89$ \normalsize (nicht angepasst)\\
+\end{block}
+%\pause
+%\begin{block}{Korrektur des Dezimaltrennzeichens}
+%|\DeclareMathSymbol{,}{\mathpunct}{letters}{"3B}|\\
+%|\DeclareMathSymbol{.}{\mathord}{letters}{"3A}|
+%\end{block}
+\pause
+\begin{block}{Automatische Anpassung}
+Paket |icomma| passt Dezimaltrennzeichen automatisch dokumentenweit an.\\
+Andere Möglichkeit: Paket |siunitx| → siehe Vorlesung Mathesatz II
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Hoch- und Tiefstellung}
+	\begin{itemize}
+		\item Zeichen mit besonderer Bedeutung: |^| und |_|
+		\item Hochstellung: |a^b|\hfill $a^b$
+		\item Tiefstellung: |a_b|\hfill $a_b$
+		\item Gruppierungen sind möglich: |a^{bc}|, |a_{bc}|\hfill $a_{bc}$
+		\item Kombination ist möglich: |a_b^c|\hfill $a_b^c$
+		\item Ohne vorhergehendes Zeichen: |^{235}U|\hfill $^{235}\mathrm U$
+		\item Schachtelung nur mit Gruppierung:\\%
+		|a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}| \hfill \Large $a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}$\normalsize
+		\item[] |a_b_c| produziert Fehler!
+	\end{itemize}
+\end{frame}
+
+\subsection{Operatoren}
+\begin{frame}[fragile]{Operatoren}
+Operatorennamen werden aufrecht gesetzt und sind vordefiniert
+	\begin{itemize}
+		\item richtig: $\sin(x)$\quad falsch: $sin(x)$
+	\end{itemize}
+\begin{LTXexample}[pos=b]
+$\sin(x) \cos(y) \tan(2\pi) \lim \arctan$
+\end{LTXexample}
+	\pause
+	\begin{itemize}
+		\item Paket amsopn bietet viele Vordefinitionen:
+	\end{itemize}
+\begin{lstlisting}
+\arccos \arcsin \arg \cos \cot \coth \deg \det
+\exp \gcd \inf \injlim \lg \lim \limsup \ln
+\max \min \projlim \sec \sinh \sup \tanh
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Operatoren}
+Sollten die vorgegebenen Definitionen nicht genügen:
+\begin{lstlisting}
+\usepackage{amsopn}
+\DeclareMathOperator{\Res}{Res}
+\end{lstlisting}
+in der Präambel.
+\end{frame}
+
+\begin{frame}[fragile]{Klammern}
+Klammerung von großen Ausdrücken kann Probleme bereiten:
+\begin{LTXexample}
+\[ (
+  \frac{\int^a x dx}{\sum_{n=1} x}
+) \]
+\end{LTXexample}
+Besser:
+\begin{LTXexample}
+\[ \left(
+  \frac{\int^a x dx}{\sum_{n=1} x}
+\right) \]
+\end{LTXexample}
+\end{frame}
+
+
+\begin{frame}[fragile]{Klammern}
+\begin{itemize}
+\item |\left| und |\right| vor allem, was dehnbar ist
+\item |\left( \right]| funktioniert auch
+\item |\left. \right)| liefert angepasste rechte Klammer
+\item Hoch- und Tiefstellung werden angepasst:
+\end{itemize}
+\begin{LTXexample}[pos=b]
+\begin{displaymath}
+  \left. \int_a^b f(x) \mathrm dx \right\vert_a^b
+  \qquad
+  \left\{ \int_a^b f(x) \mathrm dx \right]
+\end{displaymath}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Grenzen}
+\begin{itemize}
+\item Grenzen per |\limits| angeben
+\item Mehrzeilige Grenzen mit |\atop|
+\end{itemize}
+\begin{LTXexample}
+\[
+  \int_a^b
+  \int\limits_a^b
+  \sum_{n=1}^\infty
+  \prod_{n = 1 \atop m = 2}
+\]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Sonderzeichen}
+\begin{itemize}
+\item Viele Zeichen sind über ihren Namen ereichbar,
+\item genauso Griechische Groß- und Kleinbuchstaben
+\end{itemize}
+\begin{LTXexample}[preset=\vspace{-1em}]
+\begin{align*}
+  \nabla \square \\ 
+  \partial \infty \\
+  \pm \mp \\
+  \alpha \beta \gamma \\
+  \rho \varrho \\
+  \kappa \varkappa \\
+  \epsilon \varepsilon \\
+  \theta \vartheta \\
+   A B \Gamma 
+\end{align*}
+\end{LTXexample}
+\pause
+Wenn man ein Symbol sucht:\\
+\texttt{texdoc \href{http://mirrors.ctan.org/info/symbols/math/maths-symbols.pdf}{maths-symbols} \href{http://mirrors.ctan.org/info/symbols/comprehensive/symbols-a4.pdf}{symbols-a4}}
+oder \alert{\href{http://detexify.kirelabs.org/classify.html}{Detexify}}
+\end{frame}
+
+\begin{frame}[fragile]{Wurzeln}
+\begin{LTXexample}[preset=\Large]
+\[
+  \sqrt{a_{n_{m_p}}}
+  \quad
+  \sqrt[3]{a}\quad
+\]
+\end{LTXexample}
+\pause
+\begin{itemize}
+\item zu tiefe Unterlängen sind unschön \item[⇒] |\smash[|\meta{t, b}|]{|\meta{Formel}|}|
+\end{itemize}
+\begin{LTXexample}[preset=\Large]
+\[
+  \sqrt{a_{n_{m_p}}}
+  \quad
+  \sqrt{
+    \smash[b]{
+      a_{n_{m_p}}
+    }
+  }
+\]
+\end{LTXexample}
+\end{frame}
+
+\section{Vektoren, Matrizen, Tensoren}
+\begin{frame}[fragile,t]{Vektoren}
+Vektoren sind vielfältig darstellbar:
+\begin{itemize}
+\item Fettgedruckt  mit |\boldsymbol| oder |\mathbf|
+\item „falscher“ Fettdruck: |\pmb|
+\item Mit Pfeil drüber als |\vec|\\[-1.28em]
+\only<2>{
+\hspace*{-.76ex}\vspace*{-1.65ex}
+
+$\left.
+\begin{matrix}
+	\text{\quad}\\%[-.5ex]
+	\text{\hspace{12em}}
+\end{matrix}
+\right\rbrace\text{\parbox{9em}{Typografisch unschön, nur für Handschriften}}$
+\vspace*{-2.9ex}
+}
+\item Unterstrichen mit |\underbar|
+\end{itemize}
+\vfill
+\begin{LTXexample}[pos=b, preset=\centering]
+$ \boldsymbol a\ \mathbf a $ \\
+$ \pmb a\ a $ \\
+$ \vec a\ \underbar a $
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Matrizen}
+\begin{LTXexample}
+\[
+  \begin{matrix}
+    a_{11} & a_{12}\\
+    a_{21} & a_{22}
+  \end{matrix}
+\]
+\end{LTXexample}
+\pause
+\begin{LTXexample}
+\[
+  \left(
+    \begin{matrix}
+      a_{11} & a_{12}\\
+      a_{21} & a_{22}
+    \end{matrix}
+  \right)
+\]
+\end{LTXexample}
+\end{frame}
+
+
+\begin{frame}[fragile]{Matrizen}
+\AmS math definiert weitere Matrixumgebungen:\\[2em]
+\begin{minipage}{3cm}
+\[\begin{pmatrix}
+a & b \\ c & d
+\end{pmatrix}\]
+\centering pmatrix
+\end{minipage}
+\begin{minipage}{3cm}
+\[\begin{Vmatrix}
+a & b \\ c & d
+\end{Vmatrix}\]
+\centering Vmatrix
+\end{minipage}
+\begin{minipage}{3cm}
+\[\begin{vmatrix}
+a & b \\ c & d
+\end{vmatrix}\]
+\centering vmatrix
+\end{minipage}
+\\[2em]
+\begin{minipage}{3cm}
+\[\begin{Bmatrix}
+a & b \\ c & d
+\end{Bmatrix}\]
+\centering Bmatrix
+\end{minipage}
+\begin{minipage}{3cm}
+\[\begin{bmatrix}
+a & b \\ c & d
+\end{bmatrix}\]
+\centering bmatrix
+\end{minipage}
+\begin{minipage}{3cm}
+\[\begin{smallmatrix}
+a & b \\ c & d
+\end{smallmatrix}\]\\
+\centering smallmatrix
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Weiterführende Literatur}
+	\begin{thebibliography}{9}
+		\bibitem{voss} \textsc{Herbert Voss}:
+			\newblock{\href{http://mirrors.ctan.org/info/math/voss/mathmode/Mathmode.pdf}{„Math mode“}}, 
+			\newblock{\href{http://mirrors.ctan.org/info/math/voss/mathmode/Mathmode.pdf}{\texttt{texdoc mathmode}}}.
+		\bibitem{amsmath} \textsc{American Mathematical Society}:
+			\newblock{\href{http://mirrors.ctan.org/info/math/}{„User’s Guide for the \texttt{amsmath} Package“}}, 
+			\newblock{\href{http://mirrors.ctan.org/info/math/}{\texttt{texdoc amsmath}}}.
+	\end{thebibliography}
+\end{frame}
+
+
+% Was noch fehlt: Definition von Kommandos
+% Normen
+% Skalarprodukte
+
+\end{document}

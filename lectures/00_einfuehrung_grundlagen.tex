@@ -5,7 +5,7 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true,
+	vorläufig=false,
 	datum=2016-10-21,
 	titel={Einführung und grundlegende Bedienung},
 	web=true,
@@ -16,7 +16,7 @@
 
 \section{Organisatorisches}
 
-\begin{frame}[t]{Organisatorisches}%{Allgemeines}
+\begin{frame}[t]{Organisatorisches}{Allgemeines}
 	\begin{block}<1->{Anmeldung}
 		\begin{itemize}
 			\item	 Anmeldung im \href{https://www.mathi.uni-heidelberg.de/muesli/lecture/view/601}{MÜSLI} obligatorisch
@@ -30,7 +30,7 @@
 	\end{block}
 \end{frame}
 
-\begin{frame}[t]{Organisatorisches}%{Übungsbetrieb}
+\begin{frame}[t]{Organisatorisches}{Übungsbetrieb}
 	\begin{block}{Prüfungsmodalitäten}
 		\begin{itemize}
 			\item Bearbeiten der wöchentlichen Übungszettel
@@ -41,13 +41,14 @@
 	\end{block}
 \end{frame}
 
-\begin{frame}[fragile, t]{Organisatorisches}%{Übungen}
-	\begin{block}{Übungszettel}
+\begin{frame}[fragile, t]{Organisatorisches}{Übungen}
+%	\begin{block}{Übungszettel}
 		\begin{itemize}
 			\item Übungszettel auf \url{http://latexkurs.github.io/exercises/}
 			\item Ausgabe Freitag nach der Vorlesung
 		\end{itemize}
-	\end{block}
+%	\end{block}
+	\pause
 	\begin{block}{Abgabe}
 	Je nach Aufgabenstellung per E-Mail oder ausgedruckt
 		\begin{description}
@@ -58,7 +59,7 @@
 		\vspace{-1ex}
 		\begin{itemize}
 			\item Abgabe per E-Mail bis Freitag 14:00
-			\item Abgabe der Ausdrucke Freitag in der Vorlesung
+			\item Abgabe der Ausdrucke Freitag in der Vorlesung\\oder in Zettelkästen in INF\,205 (1.\,OG)
 			\item Abgabe in Dreiergruppen möglich (ausgenommen erstes Blatt)
 		\end{itemize}
 	\end{block}
@@ -123,7 +124,7 @@ schön aussieht!“ \\[1em] \pause
 		gelten lassen, da es aber bei Typografie in erster Linie um
 		Information geht, können Fehler nicht nur stören, sondern sogar
 		Schaden anrichten.
-		\quoted{HPW, FF}
+		\quoted{HPW, FF} % In: „Erste Hilfe Typografie“, Verlag Herrmann Schmidt, Mainz.
 	\end{fancyquote}
 \end{frame}
 
@@ -325,8 +326,8 @@ Hallo Welt!
 \begin{lstlisting}
 \documentclass{article}
 \usepackage{
-	amsmath,
-	hyperref,
+  amsmath,
+  hyperref,
 }
 \usepackage[left=2cm]{geometry}
 \end{lstlisting}
@@ -410,6 +411,11 @@ Hallo Welt!
 \end{itemize}
 \end{frame}
 
-\frame{\centering \Huge Happy \TeX ing}
+\nocite{installationshinweise, l2kurz, dante:einfuehrung}
+\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\printbibliography
+\end{frame}
+
+\AtEndDocument{\frame{\centering \Huge Happy \TeX ing}}
 
 \end{document}

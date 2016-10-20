@@ -1,0 +1,45 @@
+% !TEX program = xelatex
+% !TEX root = 01_schriften_kodierungen.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+
+\begin{enumerate}[label=\alph*)]
+		\item Unter \hologo{pdfLaTeX} kann man Schriften durch Laden der entsprechenden Pakete nutzen:
+
+\begin{lstlisting}
+\documentclass{minimal}
+
+\usepackage[ngerman]{babel}
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\blindtext
+
+\end{document}
+\end{lstlisting}
+
+
+		\item Mit \hologo{XeLaTeX} oder \hologo{LuaLaTeX} sollte fontspec verwendet werden: 
+
+\begin{lstlisting}
+\documentclass{scrartcl}
+\usepackage{polyglossia, xltxtra} % bzw. fontspec für LuaLaTeX
+\setmainlanguage{german}
+
+\setmainfont{Linux Libertine O}
+\setsansfont{Linux Biolinum O}
+\begin{document}
+  \section{Serifenlose eignen sich gut für Überschriften}
+  Serifen sollen das Lesen erleichtern, indem Sie den Augen als Linie dienen. Deshalb eignen sich Serifenschriften besonders gut als Brotschrift.
+\end{document}
+\end{lstlisting}
+
+\end{enumerate}
+
+
