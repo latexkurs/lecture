@@ -65,7 +65,7 @@
 \newcommand\molekuel[3][H]{Das Molekül #1$_#2$#3}
 \end{lstlisting}
 \begin{itemize}
-\item Argumente werden mit |[3]| definiert
+\item Argumente werden mit |[|\meta{Anzahl}|]| definiert
 \item Optionales Argument in eckigen Klammern
 \item Zugriff in der Definition möglich mit |#1|
 \item In der Verwendung meist mit geschweiften Klammern |{Co}|
@@ -144,7 +144,7 @@ ${a + b + c}$
 		abgesetzte Formel ohne Nummerierung
 		\item |\[|\meta{Formel}|\]|\\
 		Abkürzung für |displaymath|
-		\item |\begin{equation|\meta{Formel}|\end{equation}|\\
+		\item |\begin{equation}|\meta{Formel}|\end{equation}|\\
 		abgesetzte Formel mit Nummerierung
 		\item<2> \sout{\texttt{\$\$}\meta{Formel}\texttt{\$\$}}\\\pause
 		\TeX-Syntax führt in \LaTeX{} zu unerwarteten und unerwünschten Ergebnissen\\\alert{⇒ unbedingt vermeiden!}
@@ -446,7 +446,7 @@ $\left.
 	\text{\quad}\\%[-.5ex]
 	\text{\hspace{12em}}
 \end{matrix}
-\right\rbrace\text{\parbox{9em}{Typografisch unschön, nur für Handschriften}}$
+\right\rbrace\text{\parbox{9em}{\raggedright Typografisch unschön, nur für Handschriften}}$
 \vspace*{-2.9ex}
 }
 \item Unterstrichen mit |\underbar|
@@ -523,17 +523,10 @@ a & b \\ c & d
 \end{minipage}
 \end{frame}
 
-\begin{frame}{Weiterführende Literatur}
-	\begin{thebibliography}{9}
-		\bibitem{voss} \textsc{Herbert Voss}:
-			\newblock{\href{http://mirrors.ctan.org/info/math/voss/mathmode/Mathmode.pdf}{„Math mode“}}, 
-			\newblock{\href{http://mirrors.ctan.org/info/math/voss/mathmode/Mathmode.pdf}{\texttt{texdoc mathmode}}}.
-		\bibitem{amsmath} \textsc{American Mathematical Society}:
-			\newblock{\href{http://mirrors.ctan.org/info/math/}{„User’s Guide for the \texttt{amsmath} Package“}}, 
-			\newblock{\href{http://mirrors.ctan.org/info/math/}{\texttt{texdoc amsmath}}}.
-	\end{thebibliography}
+\nocite{mathmode, dante:mathe, amsmath}
+\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\printbibliography
 \end{frame}
-
 
 % Was noch fehlt: Definition von Kommandos
 % Normen

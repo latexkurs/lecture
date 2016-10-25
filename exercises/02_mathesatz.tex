@@ -1,0 +1,76 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true, 
+	blattnr=2,
+	ausgabe=2016-11-04,
+	abgabe=2016-11-11,
+%	lösung,
+	shortverb,
+]{../tex/latexkurs-exercise}
+
+\usepackage{mathtools}
+
+
+
+\begin{document}
+
+
+\begin{aufgabe}[6]{Maxwell-Gleichungen}
+	Jeder Physiker sollte einmal im Leben die Maxwell-Gleichungen \TeX{}en, und auch für Studis anderer Fächer bieten diese Formeln eine gute Möglichkeit, den Mathesatz zu testen. Die vier Gleichungen lauten:                                                                                                           
+                                                                                                                                                                                                                                                                                                                               
+        \[\textstyle \nabla \times \vec E = -\frac{\partial \vec B}{\partial t}\quad \nabla \times \vec B = \vec j + \frac{\partial \vec E}{\partial t}\quad \nabla \cdot \vec E = \rho\quad                                                                                                                                   
+        \nabla \cdot \vec B = 0\]                                                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                                                                               
+   \noindent Überlegen Sie sich eine passende Formatierung und eine gute, übersichtliche Darstellung.\footnote{Die hier gezeigte Darstellung ist nicht optimal; sie sollen sich also explizit eine bessere überlegen.} Korrigieren Sie Abstände, falls nötig, wählen Sie eine gute und passende Schrift, überlegen Sie sich mögliche Auszeichnungsformen vektorieller Größen etc.                                                                                                                                                                                                                                                                       
+                                                                                                                                                                                                                                                                                                                               
+   Die nötigen Zeichen für diese Aufgabe finden Sie in der Datei |symbols-a4|\footnote{\texttt{texdoc symbols-a4}} oder mit dem \href{http://detexify.kirelabs.org/classify.html}{Detexify-Tool}.\footnote{\url{http://detexify.kirelabs.org/classify.html}}                                                              
+                                                                                                                                                                                                                                                                                                                               
+   \abgabe{Den Quelltext per Mail und als Ausdruck.}
+\end{aufgabe}
+
+\lösung{02_loesung_maxwell}
+
+\begin{aufgabe}[3]{Integrale}
+   Ein befreundeter Mathematiker hat eine eine großartige neue Theorie aufgestellt, die mit folgendem Integral-Konstrukt notiert wird:                                                                                                                                                                                    
+   \begin{center}                                                                                                                                                                                                                                                                                                         
+        \includegraphics{02_komischeintegrale} % Das habt Ihr Euch wohl so gedacht ;-)                                                                                                                                                                                                                                  
+   \end{center}                                                                                                                                                                                                                                                                                                           
+   Helfen Sie Ihrem Mathematiker-Freund beim Setzen seiner Theorie und bauen Sie das seltsame Integral aus vorhandenen Integralsymbolen in \hologo{pdfLaTeX} nach.                                                                                                                                                        
+   
+	\tipp{Suchen Sie in |symbols-a4| nach |txfonts/pxfonts| und benutzen Sie den \texttt{\textbackslash kern}-Befehl um horizontale Abstände zu verändern.}
+   \abgabe{Den Quelltext per Mail, das fertige PDF als Ausdruck.} 
+\end{aufgabe}
+
+\lösung{02_loesung_integrale}
+
+\begin{aufgabe}[3]{Fallunterscheidung mit Cases}
+	Die Umgebung |cases| ermöglicht den Satz von Fallunterscheidungen:                                                                                                                                                                                                                                                     	\begin{lstlisting}                                                                                                                                                                                                                                                                                                             
+\[ a =                                                                                                                                                                                                                                                                                                                         
+  \begin{cases}                                                                                                                                                                                                                                                                                                                
+    b & b > 0 \\                                                                                                                                                                                                                                                                                                         
+    -b & b < 0\\                                                                                                                                                                                                                                                                                                               
+    0 & b = 0                                                                                                                                                                                                                                                                                                                  
+  \end{cases}                                                                                                                                                                                                                                                                                                                  
+\]                                                                                                                                                                                                                                                                                                                             
+\end{lstlisting} 
+   Das \emph{muss} zwar im Mathesatz passieren, kann aber auch für Textinhalte (im Mathemodus mit \texttt{\textbackslash text\{\meta{normaler Text}\}} zu setzen) nützlich sein. Alternativ kann man auch eine |matrix|-Umgebung verwenden und die nötige Klammer von Hand (z.\,B. \texttt{\textbackslash left(}) setzen. Verwenden Sie nun letzteres, um zwei Formeln aus dem tractatus philosophicus in folgender Form zu setzen:                                                                                                                                                                                                                            
+     \begin{displaymath}                                                                                                                                                                                                                                                                                                    
+     \text{tractatus philosophicus, Satz 6.}                                                                                                                                                                                                                                                                        		\begin{cases}                                                                                                                                                                                                                                                                                                  
+        03:\hspace*{0.65em} [o,\xi, \xi +1]\\                                                                                                                                                                                                                                                                  
+     		231:\ 1+1+1+1 = (1+1) + (1+1)                                                                                                                                                                                                                                                                          
+     	\end{cases}                                                                                                                                                                                                                                                                                                    
+   \end{displaymath}                                                                                                                                                                                                                                                                                                      
+	\abgabe{Den Quelltext per Mail, das fertige PDF als Ausdruck.}
+\end{aufgabe}
+
+\lösung{02_loesung_fallunterscheidung}
+
+
+
+\end{document}

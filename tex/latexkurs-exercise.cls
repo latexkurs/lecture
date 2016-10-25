@@ -92,8 +92,9 @@
 	identifierstyle=,
 	keywordstyle=,
 	language=[LaTeX]TeX,
-	numbers=left,
-	pos=r,
+	numbers=none,
+	stepnumber=0,
+	pos=l,
 	rframe={single},
 }
 
@@ -124,6 +125,10 @@
 \ProvideDocumentCommand\abgabe{+m}{
 	\settowidth{\abgabelength}{{\textbf{Abgabe:}}\ }
 	\par\hangindent\abgabelength\hangafter1\noindent{\textbf{Abgabe:}}\ #1\par
+}
+\ProvideDocumentCommand\tipp{+m}{
+	\settowidth{\abgabelength}{{\textbf{Tipp:}}\ }
+	\par\hangindent\abgabelength\hangafter1\noindent{\textbf{Tipp:}}\ #1\par
 }
 \DeclareDocumentCommand\lösung{m}{\ifltxkurs@lösung\subsection*{\ltxkurs@solutionname\ \ltxkurs@blattnr.\arabic{ltxkursexercisecounter}} \input{#1}\fi}
 

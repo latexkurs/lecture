@@ -124,7 +124,7 @@
 \fi
 
 %% Bibliography
-\usepackage[backend=biber, style=numeric, doi=false, url=false, isbn=false, block=par]{biblatex}
+\usepackage[backend=biber, style=numeric, sorting=none, doi=false, url=false, isbn=false, block=par]{biblatex}
 \setbeamertemplate{bibliography item}{%
   \ifboolexpr{ test {\ifentrytype{book}} or test {\ifentrytype{mvbook}}
     or test {\ifentrytype{collection}} or test {\ifentrytype{mvcollection}}

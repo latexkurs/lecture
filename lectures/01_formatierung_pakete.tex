@@ -48,6 +48,8 @@
 \end{frame}
 
 \section{Makrotypografie}
+\frame{\centering\alert{Teil II}\\\huge Makrotypografie}
+
 \begin{frame}{Makrotypografie}
 	\begin{itemize}
 		\item Satzspiegel
@@ -476,6 +478,7 @@ Wer \emph{genau weiß}, was er will: |\fontsize{|\meta{Größe}|}{|\meta{Durchsc
 \end{frame}
 
 \section{Mikrotypografie}
+\frame{\centering\alert{Teil III}\\\huge Mikrotypografie}
 \begin{frame}[t]{Mikrotypografie}
 	Mikrotypografie bezeichnet die Gestaltung von Feinheiten auf Buchstabenebene:
 	\begin{columns}
@@ -534,6 +537,7 @@ In der Regel reicht die Voreinstellung:
 \end{frame}
 
 \section{Sprachen}
+\frame{\centering\alert{Teil IV}\\\huge Sprachen, Dokumentation \& Fehlermeldungen}
 \begin{frame}[fragile]{Sprachen}
 Dokument muss je nach Eingabesprache lokalisiert werden.
 \begin{itemize}
@@ -648,21 +652,25 @@ l.60
 ⇒ Irgendwo nach itemize ein |}| oder ein |\end{}| vergessen.
 \end{frame}
 
-\begin{frame}{Weiterführende Literatur}
-\begin{thebibliography}{9}
-\bibitem{kohm} \textsc{Markus Kohm}:
-	\newblock{\href{http://www.dante.de/tex/Dokumente/KohmSatzspiegel.pdf}{„Satzspiegelkonstruktionen im Vergleich“}}, 
-	\newblock{\url{http://www.dante.de/tex/Dokumente/KohmSatzspiegel.pdf}.}
-	
-\bibitem{schlicht} \textsc{Robert Schlicht}:
-	\newblock{\href{http://mirrors.ctan.org/macros/latex/contrib/microtype/microtype.pdf}{„The \texttt{microtype} package\\Subliminal refinements towards typographical perfection“}}
-	\newblock{\href{http://mirrors.ctan.org/macros/latex/contrib/microtype/microtype.pdf}{\texttt{texdoc microtype}}.}
-	
-\beamertemplatebookbibitems
-\bibitem{bringhurst} \textsc{Robert Bringhurst}:
-	\newblock{{„The Elements of Typographic Style“}}, 
-	\newblock{Hartley \& Marks, Vancouver, 1992.}
-\end{thebibliography}
+\begin{frame}{Vollständiges Minimalbeispiel}
+Bei Hilfestellung in Webforen/Usenet wird in der Regel ein \emph{vollständiges Minimalbeispiel} (MWE) verlangt.
+\vskip1ex
+\begin{enumerate}
+\item solange Code aus dem Dokument löschen, bis der Fehler gerade noch auftritt
+\item alle überflüssigen Pakete entfernen
+\item falls Dokumentenklasse keine Rolle spielt, \pkg{minimal} verwenden
+\item wenn Fehler nur bei viel Text auftritt, \pkg{blindtext} verwenden
+\end{enumerate}
+
+\vskip1ex
+
+Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
 \end{frame}
+
+\nocite{kohm:satzspiegel, microtype, detailtypo, bringhurst}
+\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\printbibliography
+\end{frame}
+
 
 \end{document}
