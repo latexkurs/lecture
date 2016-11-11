@@ -6,7 +6,7 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true,
+	vorläufig=false,
 	datum=2016-11-11,
 	titel={Gleitumgebungen und Tabellen},
 	web=false,
@@ -58,7 +58,9 @@
 	\tableofcontents
 \end{frame}
 
-\section[Gleitumgebungen]{Allgemeine Gleitumgebungen}
+\section{Gleitobjekte}
+\frame{\centering\alert{Teil I}\\\huge Gleitobjekte in \LaTeX}
+\subsection{allgemeine Gleitumgebungen}
 \begin{frame}{Was sind Gleitobjekte?}
 \begin{itemize}
 \item Objekte, die frei im Dokument „gleiten“ können
@@ -94,6 +96,7 @@ Eine Gleitumgebung besteht aus verschiedenen Teilen:
 \end{itemize}
 \end{frame}
 
+\subsection{Positionierung}
 \begin{frame}[fragile]{Gleitumgebungen}
 \begin{block}{Positionierungsparameter für Gleitumgebungen:} 
 \verb|\begin{table}[|\meta{Parameter}\verb|]|
@@ -147,6 +150,7 @@ a & b & c
 \end{table}
 \end{frame}
 
+\subsection{fake-Gleitobjekte}
 \begin{frame}[fragile]{Nichtgleitende Gleitumgebungen}
 nichtgleitende Umgebungen als Gleitumgebungen ausgeben:\\
 Paket \pkg{caption}
@@ -161,6 +165,7 @@ Eine kleine Abbildung in einem Text, die eigentlich gar keine ist:
 In der \verb/minipage/ kann jeder beliebige Inhalt stehen \dots
 \end{LTXexample}
 \end{frame}
+
 
 \begin{frame}[fragile]{caption}
 \pkg{caption} bietet auch vielfältige Einstellungen für Legenden:
@@ -203,18 +208,18 @@ In der \verb/minipage/ kann jeder beliebige Inhalt stehen \dots
 \end{lstlisting}
 \end{frame}
 
-\part{Tabellen}
-
+\section{Tabellen}
+\frame{\centering\alert{Teil II}\\\huge Tabellen}
 \begin{frame}{Tabellen und \LaTeX}
 \begin{itemize}
 \item[$\pmb-$] Tabellensatz mit \LaTeX\ ist aufwändig!
 \item[$\pmb-$] WYSIWYG-Editoren bieten leichtere, da sichtbare Formatierung von Tabellen.
 \item[$\pmb+$] Ergebnis sieht in \LaTeX\ meist besser aus.
-\item[$\pmb+$] Erscheinungsbild ist frei anpassbar, mit beliebig hohem Aufwand.
+\item[$\pmb+$] Erscheinungsbild ist frei anpassbar (mit beliebig hohem Aufwand).
 \end{itemize}
 \end{frame}
 
-\section[tabular]{Standardumgebungen – \texttt{tabular}, \texttt{tabular*}}
+\subsection[tabular]{Standardumgebungen – \texttt{tabular}, \texttt{tabular*}}
 \begin{frame}[fragile]{\LaTeX{}s Standardumgebungen}
 \begin{itemize}
 \item \verb/tabular/, \verb/tabular*/
@@ -232,6 +237,8 @@ automatische Spaltenbreite & ja & nein\\
 Schachtelung & ja & nein
 \end{tabular}
 \end{frame}
+
+\subsection{tabbing}
 
 \begin{frame}[fragile,t]{tabbing}
 Grundbefehle: \verb|\=, \>|
@@ -265,6 +272,7 @@ Weitere Befehle: \verb|\kill, \`|
 \end{description}
 \end{frame}
 
+\subsection{tabular}
 \begin{frame}[fragile]{tabular}
 \begin{LTXexample}[pos=b,preset={\small}]
 \begin{tabular}{l|c||r|p{2cm}@{\ding{53}}c|}
@@ -288,7 +296,7 @@ Weitere Befehle: \verb|\kill, \`|
 \end{description}
 \end{frame}
 
-\section[booktabs]{Schöne Tabellen – \texttt{booktabs}}
+\subsection[booktabs]{Schöne Tabellen – \texttt{booktabs}}
 
 \begin{frame}[fragile]{Fragwürdiges Layout}
 \begin{itemize}
@@ -336,7 +344,7 @@ then repeat the value. \quoted{booktabs-Dokumentation}
 \end{LTXexample}
 \end{frame}
 
-\section[array]{Erweiterungen – \texttt{array}}
+\subsection[array]{Erweiterungen – \texttt{array}}
 \begin{frame}[fragile]{array}
 \begin{itemize}
 \item Paket \pkg{array} erweitert die Möglichkeiten von \verb/tabular/
@@ -382,7 +390,7 @@ links & rechts
 \end{LTXexample}
 \end{frame}
 
-\section[tabularx, tabulary]{Automatische Breite – \texttt{tabularx}, \texttt{tabulary}}
+\subsection[tabularx, tabulary]{Automatische Breite – \texttt{tabularx}, \texttt{tabulary}}
 \begin{frame}[fragile]{tabular*}
 \begin{itemize}
 \item \verb/tabular*/ ändert \emph{Abstand} der Spalten
@@ -449,7 +457,7 @@ Mögliche Spaltentypen:\\[1em]
 \end{itemize}
 \end{frame}
 
-\section[supertabular, longtable]{Mehrseitige Tabellen – \texttt{supertabular}, \texttt{longtable}}
+\subsection[supertabular, longtable]{Mehrseitige Tabellen – \texttt{supertabular}, \texttt{longtable}}
 \begin{frame}[fragile]{lange Tabellen}
 Lösung: \pkg{supertabular} oder \pkg{longtable}\\[1em]
 \begin{description}
@@ -555,7 +563,7 @@ Paket \pkg{multirow} bietet Unterstützung für Zellen über mehrere Zeilen.
 \end{lstlisting}
 \end{frame}
 
-\section[weiteres]{weitere nützliche Pakete}
+\subsection[weiteres]{weitere nützliche Pakete}
 \begin{frame}[fragile]{weitere nützliche Pakete}
 \begin{description}
 \item[\pkg{colortbl}] farbige Linien
@@ -569,16 +577,10 @@ Paket \pkg{multirow} bietet Unterstützung für Zellen über mehrere Zeilen.
 \end{description}
 \end{frame}
 
-
-\begin{frame}{Weiterführende Literatur}
-	\begin{thebibliography}{9}
-		\bibitem{booktabs} \textsc{Simon Fear}:
-			\newblock{\href{http://mirrors.ctan.org/macros/latex/contrib/booktabs/booktabs.pdf}{„Publication quality tables in \LaTeX“}}, 
-			\newblock{\href{http://mirrors.ctan.org/macros/latex/contrib/booktabs/booktabs.pdf}{\texttt{texdoc booktabs}}}.
-		\setbeamertemplatebibitembook
-		\bibitem{voss} \textsc{Herbert Voss}:
-			\newblock{„Tabellen mit LateX“},
-			\newblock{Lehmanns Media, 2010}.
-	\end{thebibliography}
+\nocite{booktabs,dante:tabellen}
+\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\printbibliography
 \end{frame}
+
+
 \end{document}

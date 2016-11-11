@@ -1,0 +1,85 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=false, 
+	blattnr=3,
+	ausgabe=2016-11-11,
+	abgabe=2016-11-18,
+	lösung=false,
+	shortverb=false,
+]{../tex/latexkurs-exercise}
+
+\usepackage{
+	booktabs,
+	colortbl,
+	hhline,
+}
+
+
+
+\begin{document}
+
+
+\begin{aufgabe}[6]{Schöne Tabelle}
+	Mithilfe des Pakets \verb|booktabs| ist es möglich, typografisch anspruchsvolle Tabellen zu setzen. Die Dokumentation\footnote{\texttt{texdoc booktabs}} liefert viele Gestaltungshinweise und Best-Practice-Beispiele. Die folgende Tabelle hält sich leider nicht so richtig an diese Empfehlungen.
+
+	\noindent
+	\begin{minipage}{\textwidth}
+		\centering
+		\begin{tabular}{|p{2.1cm}||p{2.5cm}|cl|lr|}
+			\hhline{=-----}
+			Produkt & Herkunft & Saisonbeginn & Saisonende & Handelsklasse & verfügbar\\\hhline{======}
+			Auberginen & Frankreich & Juli & September & I & – \\\hline
+			Esskastanien & Frankreich & September & September & I & – \\\hline
+			Feldsalat & Deutschland & Oktober & Februar & II & ja \\\hline
+			Kürbis & Deutschland & August & Dezember & I & ja\\\hline
+			Rote Beete & Italien & September & Februar & I  & ja\\\hline
+			Zucchini & Spanien & Juni & Oktober & II &  –\\\hline
+			Zwiebeln & Deutschland & Mai & Oktober & – & –\\\hhline{======}
+		\end{tabular}
+	\end{minipage}
+	
+	\begin{enumerate}[label=\alph*)]
+		\item Korrigieren Sie dieses Manko und setzen Sie die Tabelle nach allen Regeln der Kunst in ein \LaTeX-Dokument. Denken Sie dabei auch über die in der Vorlesung vorgestellten Möglichkeiten des \verb|multirow|-Paktets und des \texttt{\textbackslash multicolumn}-Befehls nach.
+		\item Setzen Sie die Tabelle außerdem in eine geeignete Gleitumgebung und versehen Sie sie mit einem vielsagenden Titel.
+		\item Geben Sie \emph{handschriftlich} einen kurzen Kommentar zu den von Ihnen vorgenommenen Änderungen an. (Grund für die Änderungen, Probleme, Alternativlösungen, …)
+	\end{enumerate}
+	\abgabe{Den Quelltext per Mail, Quellcode und fertiges Dokument als Ausdruck. Handschriftlicher Kommentar auf dem Ausdruck.}
+\end{aufgabe}
+
+%\newpage
+\lösung{03_loesung_schoen}
+%\clearpage
+
+\begin{aufgabe}[6]{Bunte Tabelle}
+Bisher waren alle Übungsaufgaben in klassischem schwarz/weiß gehalten. An dieser Stelle soll aber gezeigt werden, dass \LaTeX\ sehr wohl auch mit Farben umgehen kann – und zwar am Beispiel einer Tabelle.
+
+	Farben können in \LaTeX\ mit dem Paket \verb|color| verwendet werden, das den Befehl \texttt{\textbackslash color\{\}} zur Verfügung stellt. \texttt{\textbackslash color\{\}} nimmt als Argument eine bekannte Farbe und stellt auf diese um, z.\,B. \texttt{\textbackslash color\{blue\}}. Angaben in rgb-Code o.\,ä. sind auch möglich, z.\,B. \texttt{\textbackslash color[gray]\{0.8\}}. Das Paket \verb|xcolor| erweitert die Möglichkeiten des \texttt{\textbackslash color}-Befehls noch enorm. (Unter anderem ist die Angabe einer Wellenlänge statt Farbe möglich.)
+
+	Studieren Sie die Dokumentation des Paketes \verb|colortbl| und produzieren Sie mithilfe dieses Paketes ein Minimalbeispiel, das eine Tabelle enthalten soll, die wie die folgende aussieht: % der Code ist natürlich keine Vorlage, sondern soll die geforderte Lösung mit anderer Implementierung visualisieren
+
+\begingroup
+	\centering
+	\begin{tabular}{l!{\hspace*{-4.3mm}}l}
+		\colorbox{gray}{\textcolor{black}{Wochentag}} & \colorbox{gray}{\textcolor{black}{Buchstaben\vphantom{Wg}}}\\
+		\colorbox{blue}{\textcolor{white}{Montag\hspace*{.8em}}} & 6 \\
+		\colorbox{blue}{\textcolor{white}{Dienstag\hspace*{.34em}}} & 8\\
+		\colorbox{blue}{\textcolor{white}{Mittwoch}} &  8\\
+		\vdots & \vdots \\
+	\end{tabular}
+	\captionof{table}{Eine wichtige Tabelle hat immer eine vielsagende Beschriftung!}
+\endgroup
+
+	\abgabe{Den Quelltext per Mail und als Ausdruck.}
+\end{aufgabe}
+
+\lösung{03_loesung_bunt}
+
+
+
+\end{document}
