@@ -1,0 +1,55 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=false, 
+	blattnr=4,
+	ausgabe=2016-11-18,
+	abgabe=2016-11-25,
+%	lösung,
+	shortverb,
+]{../tex/latexkurs-exercise}
+
+\usepackage{mathtools, siunitx, booktabs}
+\newcommand\zeit[2]{#1\textsuperscript{#2}}
+
+
+\begin{document}
+
+
+\begin{aufgabe}[12]{Adventskalorien}
+		Da die Adventszeit kurz bevorsteht, in der sich Weihnachtsfeiern und Plätzchen-Essen und Glühwein-Umtrunke häufen, sollten Sie sich frühzeitig einen Diätplan zurecht legen, um nicht mit Ihrer Kalorienaufnahme durcheinander zu kommen. Erstellen Sie eine Tabelle, die eine Übersicht über Ihre geplante (fiktive) Nachrungsaufnahme an einem typischen Adventstag gibt. Gehen Sie dabei folgendermaßen vor:
+	\begin{enumerate}[label=\alph*)]
+		\item Wichtig ist es, genau zu planen, zu welcher Zeit Sie was konsumieren werden. Definieren sie daher ein Makro \texttt{\textbackslash zeit}, das eine Uhrzeit schön formatiert ausgibt. Erinnern sie sich an die Befehle zur Makro-Definition (\texttt{\textbackslash newcommand}, etc.) und definieren Sie das \texttt{\textbackslash zeit}-Makro so, dass es zwei Argumente annimmt (Stunden und Minuten) und in der von Ihnen bevorzugten Art ausgibt.
+		\item Erstellen Sie nun eine schöne Tabelle, in deren erster Spalte die Uhrzeit und zweiter Spalte die konsumierte Speise steht. Da Sie mindestens drei Mahlzeiten zu sich nehmen sollten, sollte diese Tabelle logischerweise mindestens drei Zeilen enthalten.
+		\item Fügen Sie nun eine dritte Spalte hinzu, die die Kalorien der Speise in Joule enthält. Verwenden Sie dazu die Fähigkeiten des \pkg{siunitx}-Paketes. Sie könnten damit jede Zeile einzeln eingeben. Das ist aber mühselig und vor allem bei langen Tabellen überflüssig, denn das Paket bietet eine hervorragende Tabellenformatierungsmöglichkeit.
+
+Konsultieren Sie dazu die Paketdokumentation auf Seite 7 (Suche nach |tabular| |material|) unter |Aligning numbers|. Dort ist ein ausführliches Beispiel; die dort angegebene Formatierung ist genau die richtige. Geben Sie aber die Einheit (|J| oder |kJ|) im Tabellenkopf an – mit der korrekten Formatierung mittels des \pkg{siunitx}-Paketes.
+	\end{enumerate}
+	Die Tabelle sollte also folgenden Kopf haben:
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{lll}
+			\toprule
+			Uhrzeit & Speise & Brennwert $[\mathrm{kJ}]$\\
+			\midrule
+		\end{tabular}
+	\end{table}
+	\begin{enumerate}[resume, label=\alph*)]
+		\item \label{mint} Falls Sie Naturwissenschafler*in sind, geben Sie bitte einen (realistischen) Fehler zu den Werten in der letzten Spalte an. Mittels des |siunitx|-Paketes ist das eine sehr einfache und schnelle Angabe: z.\,B. |50(3)|.
+		\item Alternativaufgabe für Nicht-Naturwissenschaftler*innen: Machen Sie statt Aufgabe \ref{mint} zu jeder Speise eine Zusatzangabe in Form einer Fußnote (\texttt{Lebkuchen\textbackslash footnote\{lecker\}}). Die Fußnote soll einen kurzen Kommentar zum Nährwert enthalten („gesund, ungesund, eiweißreich, …“).
+		
+		Wenn sie den\texttt{\textbackslash footnote}-Befehl innerhalb einer Gleitumgebung verwenden, \emph{verschwinden} die Fußnoten, weil \TeX{} nicht weiß auf welcher Seite die Gleitumgebung am Ende landen wird. Es gibt verschiedene Wege und Pakete mit diesem Problem umzugehen. Recherchieren Sie, wie Sie trotz Gleitumgebung Fußnoten verwenden können und entscheiden Sie sich für die aus Ihrer Sicht eleganteste Methode.
+	\end{enumerate}
+	\abgabe{Quellcode per Mail{,} Quellcode und fertiges Dokument (schwarz-weiß) ausgedruckt.}
+\end{aufgabe}
+
+\lösung{04_loesung_tabelle}
+
+
+
+\end{document}

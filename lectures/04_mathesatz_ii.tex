@@ -1,0 +1,667 @@
+% !TEX program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=false,
+	datum=2016-11-18,
+	titel={Mathematiksatz II},
+	web=false,
+%	noshortverb=true,
+]{../tex/latexkurs-slides}
+
+\usepackage{
+	mathtools,
+	12many,
+	amsthm,
+	relsize,
+%	breqn,
+	cases,
+	esvect,
+	gnuplottex,
+	soul,
+	ulem,
+	dsfont,
+	siunitx,
+	xfrac,
+}
+\normalem
+
+\begin{document}
+
+
+\begin{frame}{Übersicht}
+	\tableofcontents
+\end{frame}
+
+
+
+\section{Mathe}
+\subsection{Relationen}
+\begin{frame}[fragile]{Relationen}
+\begin{LTXexample}
+$= \equiv \approx \asymp \bowtie \cong \dashv \doteq \sim \simeq \propto \smile$
+\end{LTXexample}
+\pause Negierung mit |\not|
+
+\begin{LTXexample} 
+$\not = \neq \not\equiv
+\not \approx \not A
+\not\kern-.2em\int \not\kern-.2em\partial \not \smile$
+\end{LTXexample}
+\pause Stapeln von Symbolen
+
+\begin{LTXexample}
+$\stackrel{oben}{unten}$
+$\stackrel{\text e}{\text a} = $ ä
+$\stackrel . = \neq \doteq$
+\end{LTXexample}
+\hfill$\stackrel !=$
+\end{frame}
+
+
+\subsection{Mengen}
+\begin{frame}[fragile]{12many}
+\begin{itemize}
+\item Paket \pkg{12many} bietet Vereinfachung und Anpassung zum Mengensatz:\\%
+$\{1, \dots, m\}$
+\item Befehle:\\
+|\nto{n}{m}|, |\ito{m}|, |\oto{m}|
+\item Stil ändern mit |\setOTMstyle[]{|\meta{style}|}|
+\end{itemize}
+\begin{LTXexample}[width=.6\textwidth]
+$ \nto{i}{k},
+  \ito{m},
+  \oto{\alpha_i} $
+\end{LTXexample}
+\end{frame}
+
+
+\subsection{Integrale}
+\begin{frame}[fragile]{Integrale}
+\AmS{}math bietet weitere Integrale:
+\begin{LTXexample}[width=.45\textwidth]
+\[ \iint \iiint \iiiint \]
+\[ \oint \idotsint \]
+\[ \int \int \]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Integrale}
+\begin{columns}
+\begin{column}{.4\textwidth}
+Zusätzliche Integraldarstellungen bieten:
+\begin{itemize}
+\item \pkg{wasysym}
+\item \pkg{txfonts}
+\item \pkg{esint}
+\item \pkg{MnSymbol}
+\item \pkg{mathdesign}
+\end{itemize}
+\end{column}
+\begin{column}{.5\textwidth}
+\alert{Auf Kompatibilität achten}\\
+Verschiedene Matheschriften zusammen können Probleme bereiten.
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\subsection{Komplexe Matrizen}
+\begin{frame}[fragile]{Satz komplexer Matrizen}
+\begin{LTXexample}[width=.4\textwidth]
+\[\begin{pmatrix}
+a & b     & \dots & z\\
+b & \dots & \dots & z\\
+\vdots & \ddots& \reflectbox{$\ddots$} & \vdots\\
+\hdotsfor{4}\\
+z & b & \dots &
+\begin{pmatrix}a & b \\ c & d
+\end{pmatrix}
+\end{pmatrix}\]
+
+\end{LTXexample}
+\end{frame}
+
+
+\subsection{Typische Mathe-Umgebungen}
+\begin{frame}[fragile]{Typische Mathe-Umgebungen}%{Definition, Satz, Beweis, Lemma, …}
+Mit dem \AmS-Paket \pkg{amsthm} lassen sich typische Mathe-Umgebungen wie „Satz“ und „Beweis“ erstellen:
+\begin{itemize}
+\item Anlegen einer Umgebungen mit |\newtheorem{|\meta{Kürzel}|}{|\meta{Name}|}[|\meta{Nummerierungsebene}|]|
+\end{itemize}
+\begin{lstlisting}
+\newtheorem{def}{Definition}[section]
+\newtheorem{thm}{Satz}[section]
+\newtheorem*{lemma}{Lemma}
+\end{lstlisting}
+\newtheorem{thm}{Satz}[section]
+\begin{LTXexample}
+\begin{thm}[Brinkmann]
+  Sei $a=b$ und $b=c$. Dann ist $a=c$.
+\end{thm}
+\begin{proof}
+  Trivial.
+\end{proof}
+\end{LTXexample}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Physik}
+\subsection{SI-Einheiten}
+\begin{frame}[fragile]{Setzen von Einheiten}
+Paket \pkg{siunitx} (Joseph Wright)
+\begin{LTXexample}[preset={\obeylines},pos=r]
+\SI[separate-uncertainty]{23.448(5)e23}{g.cm^3}
+\si[per-mode=fraction]{\joule\per\eV}
+\si{\joule\per\eV}
+\num[round-precision=2]{4.4583 x 3.2 e21}
+\num[mode=text]{4.58}
+\num[exponent-product=\cdot]{1e10}
+\ang[]{45}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Setzen von Einheiten}
+Ändern der Voreinstellungen mittels |\sisetup|
+\begin{LTXexample}
+\sisetup{negative-color}
+$\num{-3}, \num{3},
+\num[negative-color=blue]{-5x5},
+\num{2}\cdot\num 2$\\
+
+\def\a{5.1}
+$\SI{\a x 5.3}{\milli\meter}$\\
+$\num{\a x 5.3}\si{\square\milli
+\meter}$\\
+$\num{\a x 5.3}\si{\milli\meter
+\squared}$
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Gradangaben}
+\begin{LTXexample}
+\ang{10}
+\ang{12.3}
+\ang{4,5}
+\\ Heidelberg:
+\ang{49;25;}N, \ang{8;43;}O, \ang{49;25;}N, \ang{8;43;}O
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Einheiten}
+\begin{LTXexample}[preset=\large]
+\SI{5.54}{ms^{-2}}\\
+\SI{5.54}{m s^{-2}}\\
+\SI{5.54}{m.s^{-2}}\\
+\SI{5.54}{\meter\per\second\squared}\\
+\SI{5.54}{\meter\per\square\second}\\
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Einheiten}
+\begin{LTXexample}[width=.4\textwidth]
+\sisetup{per-mode=fraction}
+\SI{1.23}{\joule\per\mole\per\kelvin}
+\\ \sisetup{per-mode=symbol}
+\SI{1.23}{\joule\per\mole\per\kelvin}
+\\ \sisetup{per-mode=fraction,fraction-function=\sfrac}
+\SI{1.23}{\joule\per\mole\per\kelvin}
+\end{LTXexample}
+\end{frame}
+
+
+\subsection{Mehr Vektoren}
+\begin{frame}[fragile]{Mehr Vektoren}
+\begin{itemize}
+\item manchmal hat man spezielle Anforderungen an die Vektorpfeile
+\item Paket \pkg{esvect} bietet Anpassungen der Pfeilform
+\item korrekter Satz bei Subskripten wird beachtet
+\end{itemize}
+\begin{LTXexample}[preset={\obeylines}]
+$\vv a$
+$\vec a$
+\end{LTXexample}
+\begin{itemize}
+\item Pfeiltyp über Paketoption |[a]| bis |[h]| einstellbar
+\item mögliche Pfeile: siehe Dokumentation
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Mehr Vektoren}{Subskripte}
+\begin{itemize}
+\item Sternversion |\vv*{}{}| sorgt für passende Subskripte:
+\end{itemize}
+\begin{LTXexample}[preset={\obeylines}]
+$\vec{ab}_{\Delta}$\\[-2ex]
+$\vv {{ab}_{\Delta}}$\\[-2ex]
+$\vv*{ab}{\Delta}$
+\end{LTXexample}
+\end{frame}
+
+
+\subsection{Feynman-Graphen}
+\iffalse
+\section{Feynman-Graphen}
+\begin{frame}[fragile]{Feynman-Graphen}
+\begin{itemize}
+\item verschiedene Möglichkeiten für Feynman-Graphen:
+\item Paket |feynmf|
+\item Paket |feyn|
+\item Graphiksoftware
+\item Metafont
+\item TikZ/PS-Tricks
+\item …
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{feyn}
+\begin{itemize}
+\item kleines, leicht bedienbares Paket
+\item bietet eine Matheschrift, mit der Feynman-Graphen gesetzt werden können
+\item (halb)intuitive Bedienung
+\item |\feyn|: Mathemodus
+\item |\Feyn|: Textmodus
+\item |\Diagram|: Komplexe Diagramme
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{feyn}
+\begin{LTXexample}
+\[\feyn{f+g}\]
+\[\feyn{fA} \feyn{gV}\]
+\end{LTXexample}
+\begin{LTXexample}
+\[\Diagram{\vertexlabel^a \\
+  fd \\
+    & g\vertexlabel_{\mu,c} \\
+  \vertexlabel^b fu\\
+}
+= ig\gamma_\mu (T^c)_{ab}\]
+\end{LTXexample}
+\pause
+⇒ siehe (sehr gute) Dokumentation von |feyn|
+\end{frame}
+\fi
+
+
+\subsection{Quantenmechanik}
+\begin{frame}[fragile]{bra ket}
+\begin{itemize}
+\item abstrakte Darstellung von Zuständen in der Quantenmechanik
+\item Unabhängigkeit von Koordinaten
+\item Ket: $\langle a\rvert$, Bra: $\lvert b \rangle$
+\item Skalarprodukt: Bra(c)ket: $\langle a \vert b\rangle$
+\item Matrixelement: $\langle a\vert \hat O \vert b \rangle$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Satz von bra und ket}
+Paket \pkg{braket}
+\begin{lstlisting}
+\bra a \ket b
+\braket{a|\frac A B|a}
+\Braket{a|\frac A B|a}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Akzente}
+Für Operatoren benötigt man das „Dach“:
+\begin{LTXexample}[width=.4\textwidth]
+$\hat A \hat{\mathrm{A}} \bar h \check a \dot a\\
+\ddot a \dddot a \ddddot a\\
+\underbrace{E = mc^2}_\text{nach Einstein}\overbrace{\int_\infty}^{\text{Hinweis}}$
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Pfeile}
+Für Spinzustände oft verwendete Notation mittels Pfeilen:
+\begin{LTXexample}[width=.4\textwidth]
+$\uparrow \downarrow \Uparrow \Downarrow
+\Rightarrow \leftrightarrow\\
+\longrightarrow \mapsto \to \rightarrow
+\leftharpoondown \rightharpoonup \rightleftharpoons
+\Rsh$
+\end{LTXexample}
+\end{frame}
+
+\MakeShortVerb|
+\begin{frame}[fragile]{mehr Pfeile}
+Über- und Unterschreibungen von Pfeilen\\ (Beschriftung von Reaktionsgleichungen etc.)
+\begin{LTXexample}
+$\xleftarrow[unten]{oben}
+ \xrightarrow[unten]{}$
+\end{LTXexample}
+\begin{LTXexample}
+$\overleftarrow a
+\overleftrightarrow b
+\stackrel\leftrightarrow T$
+\end{LTXexample}
+\end{frame}
+
+
+\subsection{Plotten in \LaTeX}
+%TODO: verweis auf Diagramme am 27.11.
+\begin{frame}[fragile]{Plotten in \LaTeX}
+\begin{itemize}
+	\item $\exists$ \pkg{gnuplottex}
+	\item \pkg{PGFplots} ist besser → eigene Vorlesung
+\end{itemize}
+\end{frame}
+
+\begin{frame}{gnuplot}{was ist das?}
+\begin{itemize}
+\item kommandozeilenorientiertes Plotprogramm
+\item klein, schnell
+\item unintuitive Bedienung
+\item optimal für Ausführung aus Skripten
+\item[⇒] passt zur Arbeitsweise mit \TeX
+\item nützlich für schnelle Testplots
+\item auch professionelle Qualität möglich
+\end{itemize}
+\end{frame}
+
+\begin{frame}{gnuplot}{Plotten in \LaTeX}
+\begin{itemize}
+\item {Vorteile}: Plotbefehle direkt im Dokument\\%
+  Schriften von \LaTeX\ verwaltet ⇒  passend!
+\item {Nachteile}: Portabilität leidet\\%
+  Plot wird bei jedem Durchlauf neu erstellt\\%
+  umständlich unter Windows
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{gnuplot}{Verwendung}
+\begin{itemize}
+\item Start aus Kommandozeile (unter Windows GUI verfügbar)
+\item Grundbefehl: |plot|
+\item Abkürzungen aller Befehle möglich: |plot| = |pl| = |p|
+\item |p sin(x)|, |p "Datensatz" using 1:3|
+\item |set style data lines|, |rep|
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{gnuplot}{Ausgabe}
+\begin{itemize}
+\item gnuplot bietet riesige Vielzahl an Ausgabeformaten
+\item u.\,a. ps, jpeg, mf, mp, hp500c, gif
+\item direkte Anzeige: wxt (windows), X11 (Unix)
+\item viele \TeX-Formate (pstex, pslatex, texdraw, eepic, emtex, \dots)
+\item \emph{kein} pdf
+\item aus \LaTeX: unabhängig vom Treiber
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{gnuplot}{gnuplottex}
+\begin{LTXexample}
+\begin{gnuplot}[scale=0.4]
+p sin(x)
+\end{gnuplot}
+\begin{gnuplot}[scale=0.4]
+set style data linespoints
+p "04plotdata.gpt"
+\end{gnuplot}
+\end{LTXexample}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Finetuning}
+\subsection{Schriften}
+\begin{frame}[fragile]{Matheschriften}
+\begin{itemize}
+\item Matheschrift muss am Anfang des Dokumentes festgesetzt werden
+\item Kann nicht im Dokument geändert werden
+\item Pakete freier Schriften
+\item \pkg{mathpazo}
+\item \pkg{cmbright}
+\item \pkg{mathpazo}
+\item \pkg{eulervm}
+\end{itemize}
+Eine Reihe nichtfreier Schriften ist in speziellen Paketen verfügbar.
+\end{frame}
+
+\begin{frame}[fragile]{Matheschriften}
+Hervorhebungen/besondere Buchstaben:
+\begin{itemize}
+\item Kalligraphische Buchstaben |\mathcal|
+\item Serifenlose
+\item Fraktur |\Re \Im|: \hfill $\Re, \Im$
+\item Aufrechte Buchstaben
+%\item Fettdruck (für Griechisch: Paket |\bm|)
+\item „blackboard bold“ |\mathbb{R}|:\hfill $\mathbb R$
+\item mit Paket \pkg{dsfont} |\matds{R}|: \hfill$\mathds{R}$
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{Matheschriften}
+\begin{itemize}
+\item Paket \pkg{unicode-math} (Will Robertson) bietet experimentellen Zugriff auf otf-Matheschriften
+\item freie Matheschriften selten
+\item Unterstützung noch sehr rudimentär
+\item zukünftige Entwicklung vielversprechend
+\item in \LaTeX3 evtl. stabil verfügbar \dots
+\item geplant für lua\TeX
+\end{itemize}
+\end{frame}
+
+
+\subsection{Spaces}
+\begin{frame}[fragile]{Änderung der Platzverteilung}
+\begin{itemize}
+\item Kerning
+\item v/hspace: |\hspace{1cm},\hspace*{1cm}|
+\item Achtung bei |\vspace|: Nur im vertikalen Modus möglich
+\item Phantome
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Phantome}
+\begin{LTXexample}[width=.4\textwidth]
+$a_x = b$\\
+$\hphantom{a_x} = b$\\
+$\underline{a_x} = \underline{b\vphantom{a_x}} c \underline{a_x} \underline b$
+\end{LTXexample}
+\begin{LTXexample}
+\begin{align*}
+a &= b\\
+c &= d\\
+\int a &= b
+\end{align*}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Phantome}
+\begin{LTXexample}[width=.4\textwidth]
+$a_x = b$\\
+$\hphantom{a_x} = b$\\
+$\underline{a_x} = \underline{b\vphantom{a_x}}\underline b$
+\end{LTXexample}
+\begin{LTXexample}
+\begin{align*}
+a &= b\\
+\vphantom{\int} c &= d\\
+\int a &= b
+\end{align*}
+\end{LTXexample}
+\end{frame}
+
+
+\subsection{Smashing}
+\begin{frame}{mathtools}
+\begin{itemize}
+\item Paket \pkg{mathtools} bietet:
+\item Erweiterungen/Ergänzungen/Bugfixes zu \pkg{amsmath}
+\item fine-tuning des Mathesatzes
+\item Sammlung von Tricks von Michael J. Downes
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{mathtools}{fine-tuning: smashing}
+\begin{LTXexample}[pos=t]
+\[X = \sum_{1\le i\le j\le n} X_{ij}
+X = \sum_{\mathclap{1\le i\le j\le n}} X_{ij}
+X = \sum_{\mathclap{1\le i\le j\le n}}^{a+b+c+d} X_{ij}
+X = \smashoperator[r]{\sum_{1\le i\le j\le n}^{a+b+c+d}} X_{ij}
+\]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{mathtools}{tags}
+\begin{itemize}
+\item Standardform der tags ist nicht immer schön: (4)
+\item Änderung mittels \pkg{amsmath}\\%
+„[is] not very user friendly (it involves a macro with three @’s in its name)“
+\item \pkg{mathtools}’ Weg:
+\end{itemize} 
+\begin{LTXexample}[width=.3\textwidth]
+\newtagform{brackets}{[}{]}
+\usetagform{brackets}
+\begin{equation}E \neq mc^3\end{equation}
+\newtagform{bfbrackets}[\textbf]{[}{]}
+\usetagform{bfbrackets}
+\begin{equation}E \neq mc^4\end{equation}
+\end{LTXexample}
+\end{frame}
+
+
+\subsection{Umbrüche}
+\begin{frame}{Umbruch von Formeln}
+\begin{itemize}
+\item nicht nur Text, sondern auch lange Formeln müssen umbrochen werden
+\item sinnerhaltender Umbruch schwer
+\item Umbruch nur im Inline-Mode
+\item Umbruch nur bei binären Operatoren
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Umbruch von Formeln}
+\begin{itemize}
+\item Paket \pkg{breqn} ermöglicht Umbruch in Display-Formeln
+\item eigene Umgebungen: |dmath(*)| (wie |\[ \]|)
+\item |dseries| 
+\item |dgroup| (wie |align|)
+\item |darray| (wie |eqnarray|)
+\item |dsuspend| (unterbricht)
+\item Befehl |\condition| für Bedingungen
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Probleme}
+\begin{itemize}
+\item \pkg{breqn} lädt \pkg{flexisym}
+\item \pkg{flexisym} definiert eigene Mathezeichen
+\item[⇒] Inkompatibilität mit Schriftpaketen
+\item speziell \alert{inkompatibel} zu \pkg{fontspec} (nicht mehr?)
+\end{itemize}
+\end{frame}
+
+
+\subsection{Nummerierung}
+\begin{frame}[fragile]{Nummerierung von Fallunterscheidungen}
+\begin{itemize}
+\item Paket \pkg{cases} bietet Nummerierung von case-Konstrukten:
+\end{itemize} 
+\begin{LTXexample}[pos=b]
+\begin{numcases}{E = mc^2}
+m \neq 0 & Masselose Teilchen\\
+m < 0 & Antiteilchen (?)\\
+m > 0 & normale Teilchen
+\end{numcases}
+\end{LTXexample}
+\end{frame}
+
+
+\subsection{Größenänderungen}
+\begin{frame}[fragile]{Relative Größenangabe}
+\begin{itemize}
+\item Wenn normale Schriftgrößen nicht ausreichen:\\%
+|\displaystyle, \textstyle, \scriptstyle, \scripscriptstyle|
+\item Paket \pkg{relsize}
+\item Grundbefehle |\relsize{n}|, |n| gibt Schrittweite an
+\item |\larger = \relsize{1}|
+\item |\smaller = \relsize{-1}|
+\item |\relscale{0.75}| – Skalierung auf den angegebenen Faktor
+\item |\mathsmaller|, |\mathlarger| – Änderung der Matheschriftgröße
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Relative Größenangabe}
+\begin{LTXexample}[pos=b]
+\[\Delta \varphi = 2
+\int\limits_{r_{\min}}^{r_{\max}} \frac{ \dfrac{M}{r^2} dr} 
+{\sqrt{2m (E-U) - \dfrac{M^2}{r^2}}}
+\]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Relative Größenangabe}
+\begin{LTXexample}[pos=b]
+\newcommand\largeint{\mathlarger{\mathlarger{\mathlarger{\int}}}}
+\[\Delta \varphi = 2
+\largeint\limits_{r_{\min}}^{r_{\max}} \frac{ \dfrac{M}{r^2} dr} 
+{\sqrt{2m (E-U) - \dfrac{M^2}{r^2}}}
+\]
+\end{LTXexample}
+\end{frame}
+
+\nocite{amsthm, siunitx, gnuplottex, mathmode}
+\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\printbibliography
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+\section{ulem, soul}
+\begin{frame}{Streichen}{durch, unter, quer, …}
+\begin{itemize}
+\item Pakete \pkg{ulem} und \pkg{soul} bieten verschiedene Hervorhebungsmakros\pause
+\item \pkg{ulem}: \emph{underline-emphasize}
+\item \pkg{soul}: \emph{space out, underline}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{ulem}
+\begin{itemize}
+\item Hauptzweck: Ändern von |\emph| zu |\underline|
+\item falls nicht gewünscht: |\normalem| oder Option |normalem|
+\item andere Befehle:
+\end{itemize}
+\begin{LTXexample}
+\uline{test}
+\uuline{test}
+\uwave{test}
+\sout{test}
+\xout{test}
+\useunder{\uwave}{\bfseries}{\textbf}
+\textbf{test}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{soul}
+\begin{LTXexample} 
+\so{letterspacing}
+\caps{CAPITALS, Small Caps}
+\ul{underline}
+\st{strikeout}
+\hl{highlight}
+\sethlcolor{blue}
+\setulcolor{red}
+\setulcolor{green}
+\hl{highlight}
+\end{LTXexample}
+\end{frame}
+
+
+
+
+
+\end{document}
