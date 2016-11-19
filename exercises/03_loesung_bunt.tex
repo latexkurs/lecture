@@ -1,0 +1,30 @@
+% !TEX program = xelatex
+% !TEX root = 03_tabellen.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\begin{lstlisting}
+\documentclass{scrartcl}
+\usepackage{colortbl}
+\setlength{\tabcolsep}{.3em}
+
+\begin{document}
+  \begin{table}
+    \centering
+    \begin{tabular}{>{\color{white}\columncolor{blue}}l l}
+      \rowcolor[gray]{.5} \color{black} Wochentag & Buchstaben\\
+      Montag & 6 \\
+      Dienstag & 8 \\
+      Mittwoch & 8 \\
+      Donnerstag & 10 \\
+      Freitag & 7 \\
+      Samstag & 7 \\
+      Sonntag & 7 \\
+    \end{tabular}
+  \caption{Hier kommt die vielsagende Beschriftung}
+  \end{table}
+\end{document}
+\end{lstlisting}

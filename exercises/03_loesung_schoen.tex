@@ -1,0 +1,31 @@
+% !TEX program = xelatex
+% !TEX root = 03_tabellen.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+Eine Möglichkeit die Tabelle zu setzen wäre zum Beispiel:
+
+\begin{LTXexample}[pos=b]
+\begin{table}
+  \centering
+  \begin{tabular}{llcccl}
+    \toprule
+    && \multicolumn{2}{c}{\textbf{Saison}} \\
+    \cmidrule{3-4}
+    \textbf{Produkt} & \textbf{Herkunft} & \textbf{Beginn} & \textbf{Ende} & \textbf{Handelskl.} & \textbf{Verfügbarkeit}\\
+    \midrule
+    Auberginen & Frankreich & Juli & September & I &  \\
+    Esskastanien & Frankreich & \multicolumn{2}{c}{September} & I &  \\
+    Feldsalat & Deutschland & Oktober & Februar & II & ja \\
+    Kürbis & Deutschland & August & Dezember & I & ja\\
+    Rote Beete & Italien & September & Februar & I  & ja\\
+    Zucchini & Spanien & Juni & Oktober & II &  \\
+    Zwiebeln & Deutschland & Mai & Oktober &  & \\
+    \bottomrule
+  \end{tabular}
+  \caption{Unser saisonales Gemüseangebot}
+\end{table}
+\end{LTXexample}

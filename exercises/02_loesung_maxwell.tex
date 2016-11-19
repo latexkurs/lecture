@@ -1,0 +1,18 @@
+% !TEX TS-program = xelatex
+% !TeX root = ./02_mathesatz.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% !TeX
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+Eine Möglichkeit der Auszeichnung von Vektoren wäre der Fettdruck mittels |\pmb| aus dem |amsmath|-Paket. Eine Schöne Dartsellung der vier Formeln kann man mit der |align|-Umgebung erreichen:                                                                                                                                
+\begin{LTXexample}                                                                                                                                                                                                                                                                                                             
+\begin{align*}                                                                                                                                                                                                                                                                                                                 
+  \nabla \times \pmb E &= -\frac{\partial \pmb B}{\partial t} &                                                                                                                                                                                                                                                                
+  \nabla \times \pmb B &= \pmb j + \frac{\partial \pmb E}{\partial t}\\                                                                                                                                                                                                                                                        
+  \nabla \cdot \pmb E &= \rho &                                                                                                                                                                                                                                                                                                
+  \nabla \cdot \pmb B &= 0                                                                                                                                                                                                                                                                                                     
+\end{align*}
+\end{LTXexample}

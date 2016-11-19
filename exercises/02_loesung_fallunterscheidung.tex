@@ -1,0 +1,21 @@
+% !TEX TS-program = xelatex
+% !TeX root = ./02_mathesatz.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% !TeX
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+Man muss |\left\{| und |\right.| verwenden um die |cases|-Umgebung zu emulieren. Die Umgebung |matrix*| aus dem |mathtools|-Paket erlaubt es, durch Angabe des optionalen Parameters |[l]|, den Inhalt der Matrix linksbündig zu setzen.                                                                                       
+\begin{lstlisting}                                                                                                                                                                                                                                                                                                             
+\begin{displaymath}                                                                                                                                                                                                                                                                                                            
+  \text{tractatus philosophicus, Satz 6.}                                                                                                                                                                                                                                                                                      
+  \left\{                                                                                                                                                                                                                                                                                                                      
+  \begin{matrix*}[l]                                                                                                                                                                                                                                                                                                           
+    03:\hspace*{0.65em} [o,\xi, \xi +1]\\                                                                                                                                                                                                                                                                                      
+    231:\ 1+1+1+1 = (1+1) + (1+1)                                                                                                                                                                                                                                                                                              
+  \end{matrix*}                                                                                                                                                                                                                                                                                                                
+  \right.                                                                                                                                                                                                                                                                                                                      
+\end{displaymath}                                                                                                                                                                                                                                                                                                              
+\end{lstlisting}  
