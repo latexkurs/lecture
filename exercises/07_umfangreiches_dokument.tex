@@ -1,0 +1,53 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true, 
+	blattnr=7,
+	ausgabe=2016-12-09,
+	abgabe=2016-12-16,
+%	lösung,
+	shortverb,
+]{../tex/latexkurs-exercise}
+
+\usepackage{mathtools, siunitx, booktabs, pgfplots}
+
+
+\begin{document}
+
+
+\begin{aufgabe}[6]{Struktur eines umfangreichen Dokuments}
+	Laden Sie sich die Datei \href{http://latexkurs.github.io/exercises/07_projekt.zip}{\texttt{07\_projekt.zip}} von der Vorlseungsseite herunter. Es handelt sich dabei um vier |.tex|-Dateien, die zu einem (noch unfertigen) größeres \LaTeX-Projekt gehören. Stellen Sie sich vor, es handele sich zum Beispiel um Ihre Bachelor- oder Masterarbeit.
+	
+	Ordnen Sie die Dateien in einer sinnvollen Ordnerstruktur und kompilieren Sie das Dokument. Korrigieren Sie alles, was in diesem Dokument falsch gemacht wurde. Dabei zählt hier als \emph{falsch} auch mangelnde Orthographie, undurchdachte Namensgebung von Labels, ungeschickte Platzierungen von Inhalten etc. Mit dem so korrigierten Dokument können Sie in Aufgabe 2 weiterarbeiten.
+
+	Falls Sie den \TeX works-Editor verwenden, können Sie auch die Fähigkeit von |TEX root| testen.
+	
+	\abgabe{Ordner mit Quelldateien als zip-Archiv per Mail, handschriftliche Skizze Ihrer Ordnerstruktur.}
+\end{aufgabe}
+
+\lösung{07_loesung_ordnerstruktur}
+
+\begin{aufgabe}[6]<6>{Erweiterung des Dokuments}
+Dem Projekt in Aufgabe 1 fehlen noch wesentliche Elemente, die Sie hier ergänzen sollen:
+\begin{enumerate}[label=\alph*)]
+\item Verwenden Sie den |\maketitle|-Mechanismus und die dazugehörigen Befehle der  KOMA-Klassen um eine Titelei anzulegen. Geben Sie dem Dokument einen Schmutztitel, eine Titelseite und außerdem ein Inhaltsverzeichnis. Berücksichtigen Sie dabei die Vorgaben Ihres Faches an die Gestaltung von Abschlussarbeiten und erstellen Sie sich so selbst eine Vorlage für Ihre eigene Arbeit.
+
+Wenn Sie wider besseren Wissens (z.\,B. von Ihrem Institut) dazu gezwungen werden fragwürdige Gestaltungselemente zu verwenden, geben Sie das bitte als Kommentar an. Finden Sie einen vernünftigen Kompromiss zwischen formalen Vorgaben und typografischem Anspruch. Legen Sie Ihre Überlegungen gegebenenfalls als Kommentar dar.
+\item Erstellen Sie einen Anhang (Schalter |\appendix|) der ein Abbildungs- und ein Tabellenverzeichnis enthält.
+\end{enumerate}
+Die Folgenden Aufgabenteile sind freiwillig und werden mit bis zu 6 Bonuspunkten belohnt.
+\begin{enumerate}[resume,label=\alph*)]
+\item Erstellen Sie im Anhang außerdem einen Index, der mindestens drei Begriffe enthält, die jeweils mindestens auf drei verschiedenen Seiten vorkommen. Überlegen Sie sich, ob Sie lieber mit \pkg{makeidx}, \pkg{xeindex} oder \pkg{multind} arbeiten wollen.
+\item Ergänzen Sie das Dokument um einige Listings von Codeschnipseln in der Programmiersprache mit der Sie am häufigsten Arbeiten. Nutzen Sie – falls verfügbar – eine automatische Syntaxhervorhebung für diese Sprache. Fügen Sie im Anhang ein Code-Verzeichnis (List of Listings) ein.
+\item Fügen sie weitere Elemente Ihrer Wahl hinzu! Erinnern Sie sich, was in der Vorlesung besprochen wurde, oder überlegen Sie sich, was sie in Ihrer eigenen Abschlussarbeit benötigen könnten.
+\end{enumerate}
+	\abgabe{Ordner mit Quelldateien als zip-Archiv per Mail, fertiges PDF per Mail, Ausdruck von Inhaltsverzeichnis, erster Textseite und ggf. dem Anhang (als representative Seiten Ihres Dokuments).\\ Wenn Sie Aufgabe 1 und 2 bearbeitet haben, geben Sie bitte eine gemeinsame Lösung ab!}
+\end{aufgabe}
+
+
+\end{document}

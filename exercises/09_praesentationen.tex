@@ -1,0 +1,69 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true, 
+	blattnr=9,
+	ausgabe=2017-01-20,
+	abgabe=2017-01-27,
+%	lösung,
+	shortverb,
+]{../tex/latexkurs-exercise}
+
+
+\begin{document}
+
+
+\begin{aufgabe}[12]<1>{Präsentation mit beamer}
+	Erstellen Sie mit der Dokumentenklasse \pkg{beamer} eine Bildschirmpräsentation, die ein paar Beispiele 
+	zum Umgang mit \LaTeX\ zeigt. Gehen Sie dabei folgendermaßen vor:
+	\begin{enumerate}[label=\alph*)]
+		\item Erstellen Sie zunächst eine Präsentation über die Arbeit mit \LaTeX, die mindestens drei Folien 
+		enthält. Jede Folie \emph{soll} einen Titel und \emph{kann} einen Untertitel haben. Der genaue Inhalt 
+		der Folien ist dabei unerheblich.
+		\item Verwenden Sie auf der \emph{dritten} Folie die |verbatim|-Umgebung. In dieser soll ein kurzer 
+		Beispielcode für einen \LaTeX-Befehl gezeigt werden (etwas wie |\textsf|, |\color|,
+		|\includegraphics| o.\,ä.).
+	
+		Schreiben Sie mindestens drei Codezeilen in diesem Beispiel. Falls noch Zeit bleibt, geben Sie auf der 		gleichen Folie ein paar erklärende Stichworte zum Code.
+
+		Bedenken Sie Eigenheiten der |beamer|-Klasse beim Umgang mit |verbatim|!
+		\item Ersetzen Sie nun den Inhalt der \emph{ersten beiden} Folien durch eine Aufzählung bzw. eine 
+		Nummerierung. (|itemize|, |enumerate|) Arbeiten Sie dann mit dynamischen Einblendeffekten Ihrer Wahl, 
+		d.\,h. lassen Sie Punkte nacheinander erscheinen, bleiben, verschwinden etc. Die Punkte sollten eine 
+		Vorbereitung auf die dritte Folie beinhalten, also z.\,B. kurze Erläuterungen, was \LaTeX\ ist und wie 
+		man es verwendet, was der Befehl auf der dritten Folie bezwecken soll etc. Verwenden sie jeweils 
+		mindestens 3 Punkte auf beiden Folien.
+		\item Bei drei Folien ist eine Strukturierung des Dokumentes überflüssig, dennoch kann diese hier 
+		geübt werden: Fügen Sie vor jeder Folie eine |\textbackslash section| mit (sinnvollem) Namen ein und 
+		erstellen Sie eine zusätzliche Folie (vor der ersten) mit einem Inhaltsverzeichnis. Erstellen Sie 
+		weiterhin eine Folie ganz am Anfang, die eine Titelseite zeigt. Bedenken Sie, dass dazu der Autor und 
+		der Titel der Präsentation festgelegt werden müssen.
+		\item Ändern Sie das Aussehen Ihrer Präsentation unter Verwendung beliebiger |theme|s, |inner| und 
+		|outer| |theme|s sowie |colortheme|s. Konsultieren Sie hierzu die |beamer|-Dokumentation, die einige 
+		Beispiele zeigt. Bedenken Sie dabei, was für alle Präsentationen gilt: Weniger ist mehr! 
+
+		Geben Sie handschriftlich einen kurzen Kommentar, warum Sie sich für welches Aussehen entschieden 
+		haben.
+	\end{enumerate}
+	\emph{Bonusaufgabe:}
+	Verwendet man für \LaTeX-Codebeispiele einfach die |verbatim|-Umgebung, ist die Ausgabe des Codes nicht 
+	sichtbar. Gerade für \LaTeX-Code ist es aber sehr hilfreich, Eingabe und fertige Ausgabe nebeneinander 
+	vergleichen zu können. Genau für diesen Zweck ist das Paket \pkg{showexpl} geeignet.
+	\begin{enumerate}[label=\alph*), resume]
+		\item Verwenden Sie in Ihrer Präsentation also anstelle der |verbatim|-Umgebung die entsprechende 
+		Version aus dem \pkg{showexpl}-Paket. Konsultieren Sie dazu dessen Dokumentation.
+	\end{enumerate}
+	\abgabe{Quellcode ausgedruckt, Quellcode und fertiges Dokument per Mail.}
+\end{aufgabe}
+
+\lösung{09_loesung_beamer}
+
+
+
+
+\end{document}

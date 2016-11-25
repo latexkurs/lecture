@@ -1,0 +1,88 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true, 
+	blattnr=W,
+	ausgabe=2016-12-16,
+	abgabe=2017-01-13,
+	lösung,
+	shortverb,
+]{../tex/latexkurs-exercise}
+
+\chead{\textbf{Weihnachtslatt}}
+
+\begin{document}
+
+\begin{abstract}
+	\noindent Die folgenden Aufgaben haben alle mehr oder weniger viel mit der Vorlesung zu tun … Sie sollen 
+	Ihnen aber die Gelegenheit bieten, sich – falls Ihnen über die Weihnachtstage langweilig werden sollte – 
+	ein wenig mehr mit Ihrem neuen Lieblings\/text\/satz\/system, zu beschäftigen. 
+	
+	Alle Aufgaben sind Bonusaufgaben – dafür sind sie teilweise recht anspruchsvoll. Punkte werden vor allem 
+	für besonders kreative Lösungen und Ansätze vergeben. Sollten Sie über Weihnachten lieber Zeit mit Ihrer 
+	Familie oder Ihrem Kater verbringen, verpassen Sie auch nichts, wenn Sie die Aufgaben nicht bearbeiten.
+\end{abstract}
+
+\begin{aufgabe}*<4>{\TeX nische Weihnachtsdekoration}
+	\begin{enumerate}[label=\alph*)]
+		\item Zeigen Sie Ihre Zeichenkünste und erstellen Sie ein – möglichst schönes und \TeX nisch 
+		anspruchsvolles – weihnachtliches Motiv mit \TikZ. Ihrer Kreativität sind keine Grenzen gesetzt.
+		\item Wenn Sie glauben Ihr Bild könnte es mit denen auf
+		\href{http://www.texample.net/tikz/examples/nontech/christmas/}{\TeX ample.net}
+		aufnehmen, schicken Sie den Sourcecode ruhig an den Betreiber, Stefan Kottwitz, mit dem Vorschlag, 
+		auch Ihr Beispiel zu übernehmen.
+		\item Alternativ können Sie versuchen, Ihrem Bild Leben einzuhauchen: Mit dem Paket \pkg{animate} 
+		lassen sich sich einfache Animationen aus einzelnen Frames erstellen.\footnote{Leider werden diese 
+		Animationen nicht in jedem PDF-Viewer korrekt angezeigt.}
+		
+		 Falls sich Ihr Motiv dazu eignet, erstellen Sie mehrere Versionen, die sich leicht unterscheiden und 
+		 fügen diese später zu einer Animation zusammen.\footnote{Ein PDF mit den genau den Dimensionen des 
+		 Inhalts (also ohne Papierformat und ohne Rand) können Sie mit der Dokumentenklasse |standalone| 
+		 erstellen.}
+	\end{enumerate}
+	\abgabe{Quellcode und fertiges Dokument ausgedruckt, Quellcode per Mail.}
+\end{aufgabe}
+
+
+
+\begin{aufgabe}*<4>{Weihnachts-Rätselheft}
+	Ein beliebter Ferienspaß ist das Lösen von Kreuzworträtseln, Sudokus und sonstigen Spielchen. Überraschen 
+	Sie Ihre Lieben doch mal mit einem selbst ge\TeX ten Rätselheft. 
+	
+	Verschaffen Sie sich einen Überblick, welche Pakete es auf \href{http://ctan.org/topic/games}{CTAN} gibt, 	die für den Satz solcher Rätsel geeignet sind und erstellen Sie damit ein kleines Rätselheft, das einem 
+	eine Weile die Zeit vertreiben kann.
+	\abgabe{Quellcode und fertiges Dokument ausgedruckt, Quellcode per Mail.}
+\end{aufgabe}
+
+
+
+\begin{aufgabe}*<4>{\TeX-Adventskalender}
+	Erstellen Sie einen Adventskalender – also Dokument, das, je nach dem an welchem Datum es kompiliert 
+	wird, etwas anderes beinhaltet. Um zu unterscheiden welcher Tag ist können Sie zum Beispiel 
+	\hologo{LuaLaTeX} verwenden und mit |\directlua{|\meta{lua-Code}|}| beliebigen lua-Code ausführen, oder 
+	das Paket \pkg{ifthen} zu Hilfe nehmen, mit dem man if-Statements in \LaTeX\ erzeugen kann.
+	\abgabe{Quellcode ausgedruckt und per Mail.}
+\end{aufgabe}
+
+\lösung{w_loesung_adventskalender}
+
+
+\begin{aufgabe}*<6>{Quine}
+	Eine besondere Freude für die Programmiererin und den Programmierer sind Programme, die ihren eigenen 
+	Code ausgeben, ohne dabei eine Eingabe zu benötigen. – sogenannte Quines. Probieren Sie mit \TeX\ 
+	einen Quine zu erzeugen! Die \TeX-Datei soll also im pdf genau den Code ausgeben, mit dem sie selbst 
+	geschrieben ist. Es sollen keine zusätzlichen Befehle im Quellcode stehen, die nicht im pdf als 
+	Ausgabe erscheinen!
+	
+	Da \TeX die Möglichkeit hat, auf seinen eigenen Sourcecode zuzugreifen lässt sich diese Aufgabe genaugenommen relativ einfach lösen. Als richtiger Quine zählt aber nur, was ohne diese Funktion auskommt.
+	\abgabe{Quellcode\,/\,fertiges Dokument ausgedruckt, Quellcode per Mail.}
+\end{aufgabe}
+
+\lösung{w_loesung_quine}
+
+\end{document}

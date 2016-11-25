@@ -1,0 +1,73 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true, 
+	blattnr=8,
+	ausgabe=2017-01-13,
+	abgabe=2017-01-20,
+%	lösung,
+	shortverb,
+]{../tex/latexkurs-exercise}
+
+
+\begin{document}
+
+
+\begin{aufgabe}[6]<2>{Bibliografien mit biblatex}
+	In dieser Aufgabe sollen Sie ein Dokument (beliebigen Inhalts) erstellen, in das Sie eine Bibliografie 
+	einfügen. Die Bibliografie soll mit dem Backend \pkg{biber}\footnote{Falls Sie \TeX works nutzen ist 
+	|biber| nicht automatisch in der Programmauswahl enthalten. Sie können diesen Eintrag ergänzen, indem Sie 
+	in den Einstellungen im Reiter \emph{Typeseting} ein weiteres Processing Tool hinzufügen.
+	(Programmname |biber|, Argument |\$basename|)} 
+	erstellt werden. 
+	\begin{enumerate}[label=\alph*)]
+		\item Legen Sie zunächst eine |.bib|-Datei an, in der sie mindestens drei Veröffentlichungen aus Ihrem 
+		Fachgebiet\,/\,Studienfach einfügen. Sie können dafür gerne ein Literaturverwaltungsprogramm wie zum 
+		Beispiel JabRef verwenden. Um sich möglichst wenig Arbeit zu machen, müssen Sie nicht alle Felder von 
+		Hand füllen, sondern können einen fertigen BibTeX-Eintrag aus einer Internet-Datenbank verwenden.
+		\item Wählen Sie nun einen – in Ihrem Fach üblichen – Zitierstil und laden Sie in einem |.tex|-
+		Dokument das Paket \pkg{biblatex} mit den entsprechenden Optionen, die diesen Zitierstil aktivieren. 
+		Konsultieren Sie gegebenenfalls die Paketdokumentation.
+		\item Schreiben Sie nun einen kurzen Text in Ihr Dokument, in dem Sie die in der |.bib|-Datei 
+		gesammelten Werke referenzieren. Spielen Sie ruhig ein wenig mit den verschiedenen Arten den |\cite|-
+		Befehl aufzurufen herum.
+		\item Sorgen Sie nun dafür, dass das Literaturverzeichnis in Ihrem Dokument auftaucht, indem Sie die 	
+		entsprechenden Befehle aufrufen und die Referenzen von |biber| erstellen lassen.
+		\item \emph{Bonusaufgabe:} Manchmal ist es notwendig, in einem Dokument mehrere getrennte 
+		Bibliographien auszugeben, z.\,B. eine für Primär- und eine für Sekundärquellen. Erweitern Sie Ihr 
+		Dokument so, dass zwei Bibliographien erstellt werden und \pkg{biblatex} Referenzen automatisch in 
+		die richtige einordnet.
+		\footnote{Wie Sie die unterschiedlichen Quellen markieren, sodass \pkg{biblatex} sie unterscheiden 
+		kann, ist dabei Ihnen überlassen.}
+	\end{enumerate}
+	\abgabe{Fertiges Dokument ausgedruckt, Quellcode und |.bib|-Datei per Mail.}
+\end{aufgabe}
+
+\lösung{08_loesung_biblatex}
+
+\begin{aufgabe}[6]{Mehrsprachiger Satz}
+	\begin{enumerate}[label=\alph*)]
+		\item Verfassen Sie einen Text, in dem Sie die Vor- und Nachteile des Sprachsupports in \LaTeX\ 
+		darstellen. Würden Sie etwa einer befreundeten Linguistin oder einem befreundeten 
+		Sprachwissenschaftler den Einsatz von \LaTeX\ für mehrsprachige Dokumente empfehlen?
+		\item Verwenden Sie in Ihrem Dokument mindestens drei verschiedene Sprachen. Nutzen Sie dabei jeweils 
+		die verschiedenen Funktionen zur Sprach-Umschaltung von \pkg{babel} oder \pkg{polyglossia}. Wenn Sie 
+		eine Sprache studieren, dann sollte diese Sprache auf jeden Fall im Dokument vorkommen. 
+		\item Falls Sie eine Sprache sprechen, die ein anderes als das lateinische Alphabet nutzt, probieren 
+		Sie sie in Ihr Dokument einzufügen! Sorgen Sie dabei für eine korrekte Ausgabekodierung
+		\footnote{Entweder durch den richtigen Einsatz des \pkg{fontenc}-Pakets, oder durch die Verwendung von 
+		\hologo{XeLaTeX} oder \hologo{LuaLaTeX}} damit der eingegebene Text im PDF auch tatsächlich angezeigt 
+		werden kann.
+	\end{enumerate}
+	\abgabe{Quellcode und fertiges Dokument ausgedruckt, Quellcode per Mail.}
+\end{aufgabe}
+
+\lösung{08_loesung_polyglossia}
+
+
+\end{document}
