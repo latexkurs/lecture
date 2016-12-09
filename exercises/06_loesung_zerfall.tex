@@ -1,0 +1,67 @@
+% !TEX program = xelatex
+% !TEX root = 06_diagramme.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+Daten aus externen Dateien lassen sich in \pkg{pgfplots} mit dem |table|-Befehl einbinden. Eine Mögliche Darstellung wäre die folgende:
+
+\begin{LTXexample}[pos=b,rframe={},preset=\centering]
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel={$t [\si{s}]$},
+    ylabel={Anzahl Zerfälle},
+    xmin=-10,
+    xmax=610,
+    legend cell align=left,
+  ] 
+    \addplot [
+      blue,
+      only marks,
+      mark=.,
+      error bars/.cd,
+      y dir=both,
+      y fixed relative=.1,
+    ] table [
+      x=zeit,
+      y=zerfaelle,
+    ] {06_messwerte.dat};
+  \end{axis}
+\end{tikzpicture}
+\end{LTXexample}
+
+Für exponentielle Zusammenhänge eignet sich besonders eine logarithmische Darstellung, die man mit |semilogyaxis| anstatt |axis| erhält:
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{semilogyaxis}[
+    xlabel={$t [\si{s}]$},
+    ylabel={Anzahl Zerfälle},
+    xmin=-10,
+    xmax=610,
+    legend cell align=left,
+  ] 
+    \addplot [
+      blue,
+      only marks,
+      mark=.,
+%      mark size=.5pt,
+      error bars/.cd,
+      y dir=both,
+      y fixed relative=.1,
+    ] table [
+      x=zeit,
+      y=zerfaelle,
+    ] {06_messwerte.dat};
+  \end{semilogyaxis}
+\end{tikzpicture}
+\end{center}
+
+Mithilfe des Pakets \pkg{pgfplots-table} lassen sich aus den Tabellendaten leicht weitere Spalten errechnen. So kann man eine automatisch berechnete Ausgleichsgerade hinzufügen:
+
+\begin{lstlisting}
+\addplot table [y={create col/linear regression={y=zerfaelle}}, mark=none]
+  {06_messwerte.dat};
+\end{lstlisting}

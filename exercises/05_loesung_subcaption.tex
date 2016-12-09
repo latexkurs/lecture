@@ -1,0 +1,75 @@
+% !TEX program = xelatex
+% !TEX root = 05_abbildungen_tikz.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\begin{enumerate}[label=\alph*)]
+	\item Für diese Aufgabe wird das Paket \pkg{graphicx}/\href{http://ctan.org/pkg/graphics}{\texttt{s}} benötigt.
+		
+		Bilder sollten als Gleitobjekte verwendet werden und dementsprechen in einer \verb+figure+-Umgebung gesetzt werden. Der Befehl um Bilder einzubinden lautet:\\|\includegraphics[|\meta{Optionen}|]{|\meta{relativer Pfad zum Bild}|}|.\\ Mithilfe optionaler Argumente kann man festlegen, wie das Bild gesetzt werden soll, z.\,B. wie es skaliert wird, welche Breite man verwendet, Rotation uvm. Natürlich sollten auch Bilder beschriftet werden, damit der Leser weiß, was er sich gerade ansieht. Wenn man später im Dokument auf das Bild verweisen will sollte man ebenfalls ein \emph{Label} verwenden.
+\begin{lstlisting}
+\begin{figure}
+  \centering
+  \includegraphics[
+    width=0.5\textwidth,
+    keepaspectratio=true,
+    angle=180
+  ]{teddy1}
+  \caption{Auf den Kopf gedrehter Teddy-Bär}
+  \label{fig:teddy}
+\end{figure}
+\end{lstlisting}
+	{
+	\centering
+	\fbox{Teddybär}
+	\captionof{figure}{Auf den Kopf gedrehter Teddy-Bär}
+	\label{fig:teddy}
+	}
+	
+	\item Um Abbildungen aufzuteilen gibt es zwei Möglichkeiten. Man verwendet eines der Pakete \verb+subcaption+ oder \verb+subfloat+.
+		
+		Das Paket \pkg{subfloat} fasst mehrere |figure|-Umgebungen zu einer Einheit zusammen und nummeriert diese einheitlich. Dabei kann durchaus Text zwischen den Gleitumgebungen stehen.
+\begin{lstlisting}
+\begin{subfigures}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.1\textwidth]{teddy2}
+    \caption{Vorderansicht}
+    \label{fig:teddyfront}
+  \end{figure}
+  Hier kann Text kommen
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.1\textwidth]{teddy3}
+    \caption{Hinterseite}
+    \label{fig:teddyback}
+  \end{figure}
+
+\end{subfigures}
+\end{lstlisting}
+
+%  \caption{Verschiedene Ansichten des Teddybären mit
+%    \texttt{subfigures}-Umgebung}
+%  \label{fig:cameraviewssubfig}
+
+	Das \pkg{subcaption}-Paket löst das Problem genau anders herum: Es definiert |subfigure|-Umgebungen innerhalb der |figure|-Umgebung. Dies erlaubt insbesondere eine gemeinsame Bildunterschrift.
+	
+\begin{lstlisting}
+\begin{figure}
+	\centering
+  \begin{subfigure}{.5\textwidth}
+	  \includegraphics[width=0.1\textwidth]{teddy3}
+    \caption{Vorderansicht}
+  \end{subfigure}
+  \begin{subfigure}
+    \includegraphics[width=0.1\textwidth]{teddy3}
+    \caption{Hinterseite}
+    \label{fig:teddyback}
+  \end{subfigure}
+  \caption{Teddy von vorne und hinten}
+\end{figure}
+\end{lstlisting}
+\end{enumerate}
