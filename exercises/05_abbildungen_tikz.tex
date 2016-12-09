@@ -6,7 +6,7 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true, 
+	vorläufig=false, 
 	blattnr=5,
 	ausgabe=2016-11-25,
 	abgabe=2016-12-02,
@@ -32,16 +32,16 @@ Parameter an.
 		\item Binden Sie nun ein weiteres Bild ein und verwenden Sie eines der „sub“-Pakete (\pkg{subcaption}, \pkg{subfloat}), damit beide Abbildungen eine einheitliche Numerierung bekommen (Abbildung 1a, Abbildung 1b o.\,ä.). Beide Bilder sollen sich dabei in einer Gleitumgebung beﬁnden.
 	
 		Verwenden Sie zwei beliebige Bilder, jedes Bild soll dabei eine eigene Unterschrift bekommen; falls nötig, setzen Sie noch eine Gesamtbeschriftung für beide Bilder.
-		\item Erweitern Sie Ihr Dokument abschließend um Text, den Sie mittels des |\blindtext|-Befehls aus dem \pkg{blindtext}-Paket eingeben. Denken Sie an das Laden von \pkg{babel}\,/\,\pkg{polyglossia} und eine Sprachangabe!
+		\item Erweitern Sie Ihr Dokument abschließend um Text, den Sie mittels des |\blindtext|-Befehls aus dem \pkg{blindtext}-Paket eingeben. Denken Sie an das Laden von \pkg{babel} oder \pkg{polyglossia} und eine Sprachangabe!
 		\item Schreiben Sie vor und hinter die Abbildungen Text und testen Sie die Endausgabe, wenn Sie Parameter an die figure -Umgebungen anhängen (|[h]|, |[b]| oder |[t]|). Welche Effekte beobachten Sie? Notieren Sie dies handschriftlich auf Ihrer Abgabe.
 	\end{enumerate}
 	\abgabe{Quellcode per Mail, Quellcode und fertiges Dokument ausgedruckt.}
 \end{aufgabe}
 
 \lösung{05_loesung_subcaption}
+\clearpage
 
-
-\begin{aufgabe}[6+6]{Baum mit \TikZ }
+\begin{aufgabe}[6]<6>{Baum mit \TikZ }
 	Das Makropaket \pkg{PGF} bietet mit dem Frontend \pkg{TikZ} eine hervorragende Möglichkeit, qualitativ hochwertige Grafiken mit \TeX\ zu erstellen. In dieser Aufgabe sollen Sie sich ein wenig mit \TikZ befassen. Aufgrund der Vielseitigkeit und des Umfangs von \TikZ beschränken wir uns darauf einen Baum mit \TikZ zu malen. Bäume eignen sich, um hierarchische Daten darzustellen und kommen zum Beispiel in der Informatik häufig zum Einsatz.
 
 	\begin{enumerate}[label=\alph*)]

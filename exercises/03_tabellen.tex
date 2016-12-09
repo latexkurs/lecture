@@ -10,7 +10,7 @@
 	blattnr=3,
 	ausgabe=2016-11-11,
 	abgabe=2016-11-18,
-	lösung=false,
+	lösung=true,
 	shortverb=false,
 ]{../tex/latexkurs-exercise}
 
@@ -52,9 +52,9 @@
 	\abgabe{Den Quelltext per Mail, Quellcode und fertiges Dokument als Ausdruck. Handschriftlicher Kommentar auf dem Ausdruck.}
 \end{aufgabe}
 
-%\newpage
+\newpage
 \lösung{03_loesung_schoen}
-%\clearpage
+\clearpage
 
 \begin{aufgabe}[6]{Bunte Tabelle}
 Bisher waren alle Übungsaufgaben in klassischem schwarz/weiß gehalten. An dieser Stelle soll aber gezeigt werden, dass \LaTeX\ sehr wohl auch mit Farben umgehen kann – und zwar am Beispiel einer Tabelle.
@@ -63,8 +63,8 @@ Bisher waren alle Übungsaufgaben in klassischem schwarz/weiß gehalten. An dies
 
 	Studieren Sie die Dokumentation des Paketes \verb|colortbl| und produzieren Sie mithilfe dieses Paketes ein Minimalbeispiel, das eine Tabelle enthalten soll, die wie die folgende aussieht: % der Code ist natürlich keine Vorlage, sondern soll die geforderte Lösung mit anderer Implementierung visualisieren
 
-\begingroup
-	\centering
+\begin{center}
+	\captionof{table}{Eine wichtige Tabelle hat immer eine vielsagende Beschriftung!}
 	\begin{tabular}{l!{\hspace*{-4.3mm}}l}
 		\colorbox{gray}{\textcolor{black}{Wochentag}} & \colorbox{gray}{\textcolor{black}{Buchstaben\vphantom{Wg}}}\\
 		\colorbox{blue}{\textcolor{white}{Montag\hspace*{.8em}}} & 6 \\
@@ -72,8 +72,7 @@ Bisher waren alle Übungsaufgaben in klassischem schwarz/weiß gehalten. An dies
 		\colorbox{blue}{\textcolor{white}{Mittwoch}} &  8\\
 		\vdots & \vdots \\
 	\end{tabular}
-	\captionof{table}{Eine wichtige Tabelle hat immer eine vielsagende Beschriftung!}
-\endgroup
+\end{center}
 
 	\abgabe{Den Quelltext per Mail und als Ausdruck.}
 \end{aufgabe}

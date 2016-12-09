@@ -6,11 +6,11 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true, 
+	vorläufig=false, 
 	blattnr=W,
 	ausgabe=2016-12-16,
 	abgabe=2017-01-13,
-	lösung,
+%	lösung,
 	shortverb,
 ]{../tex/latexkurs-exercise}
 
@@ -62,10 +62,12 @@
 
 
 \begin{aufgabe}*<4>{\TeX-Adventskalender}
-	Erstellen Sie einen Adventskalender – also Dokument, das, je nach dem an welchem Datum es kompiliert 
+	Erstellen Sie einen Adventskalender – also ein Dokument, das, je nach dem an welchem Datum es kompiliert 
 	wird, etwas anderes beinhaltet. Um zu unterscheiden welcher Tag ist können Sie zum Beispiel 
 	\hologo{LuaLaTeX} verwenden und mit |\directlua{|\meta{lua-Code}|}| beliebigen lua-Code ausführen, oder 
 	das Paket \pkg{ifthen} zu Hilfe nehmen, mit dem man if-Statements in \LaTeX\ erzeugen kann.
+	
+	Alternativ bietet sich auch das etwas modernere Paket \pkg{etoolbox} an, das if-Statements zur Verfügung stellt.\footnote{Suchen Sie hierzu in der Dokumentation nach „toggle“ bzw. „tests“.}
 	\abgabe{Quellcode ausgedruckt und per Mail.}
 \end{aufgabe}
 
@@ -79,7 +81,7 @@
 	geschrieben ist. Es sollen keine zusätzlichen Befehle im Quellcode stehen, die nicht im pdf als 
 	Ausgabe erscheinen!
 	
-	Da \TeX die Möglichkeit hat, auf seinen eigenen Sourcecode zuzugreifen lässt sich diese Aufgabe genaugenommen relativ einfach lösen. Als richtiger Quine zählt aber nur, was ohne diese Funktion auskommt.
+	Da \TeX\ die Möglichkeit hat, auf seinen eigenen Sourcecode zuzugreifen lässt sich diese Aufgabe genaugenommen relativ einfach lösen. eine solche Lösung stellt zwar auch eine gute Übung dar, als richtiger Quine zählt aber nur, was ohne diese Funktion auskommt.
 	\abgabe{Quellcode\,/\,fertiges Dokument ausgedruckt, Quellcode per Mail.}
 \end{aufgabe}
 

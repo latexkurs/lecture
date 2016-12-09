@@ -6,7 +6,7 @@
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
 \ProvidesClass{latexkurs-slides}[2016/06/03 v0.1 beamer slides for LaTeX Course]
 
-\LoadClass[aspectratio=43]{beamer}
+\LoadClassWithOptions{beamer}
 
 %% Language
 \RequirePackage{polyglossia}
