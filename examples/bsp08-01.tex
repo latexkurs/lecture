@@ -1,0 +1,66 @@
+% !TEX program = lualatex,
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+
+\documentclass{scrartcl}
+
+\usepackage{polyglossia}
+\setmainlanguage{german}
+\setotherlanguages{english, french, russian, greek}
+
+\usepackage{fontspec}
+\setsansfont{Linux Biolinum O}
+\setromanfont{Linux Libertine O}
+\setmonofont{Anonymous Pro}
+
+\usepackage[style=numeric]{biblatex}
+\addbibresource{TeX-Literatur.bib}
+
+\usepackage{
+	blindtext,
+	csquotes,
+	hyperref,
+}
+
+
+\begin{document}
+
+\section{Literatur-Referenzen}
+		
+	\blindtext\cite{Voss2013}
+	\blindtext\cite{Willberg2010,Forssman2014}
+
+	\blindtext\cite{Kohm2014,Dinter2010}
+	
+	\blindtext\cite{Kohm2014}
+	\blindtext\cite{Kohm2014}
+	
+	\blindtext\cite{Mittelbach2007}
+	
+	\blindtext\cite{Knuth1984}
+	
+	\printbibliography
+	
+\section{Mehrsprachigkeit}
+	\begin{english}
+		\blindtext
+	\end{english}
+	
+	\blindtext \textrussian{\today}
+	
+	\begin{russian}
+		Важно заметить, что ни один из макропакетов для \TeX’а не может расширить возмож\-ностей \TeX (всё, что можно сделать в LaTeX’е, можно сделать и в Plain \TeX’е), но, благодаря различным упрощениям, использование макропакетов зачастую позволяет избежать весьма изощрённого программирования.
+
+		Пакет позволяет автоматизировать многие задачи набора текста и подготовки статей, включая набор текста на нескольких языках, нумерацию разделов и формул, перекрёстные ссылки, размещение иллюстраций и таблиц на странице, ведение библиографии и др. Кроме базового набора существует множество пакетов расширения \LaTeX. Первая версия была выпущена Лесли Лэмпортом в 1984 году; текущая версия, \LaTeXe, после создания в 1994 году испытывала некоторый период нестабильности, окончившийся к концу 1990-х годов, а в настоящее время стабилизировалась (хотя раз в год выходит новая версия).
+	\end{russian}
+	
+	\begin{french}
+		\blindtext
+	\end{french}
+
+	\begin{greek}
+		To \LaTeX (προφέρεται 'λάτεχ') είναι μια γλώσσα δημιουργίας εγγράφων συνδεδεμένο με το σύστημα αυτόματης στοιχειοθεσίας TeX. Ο όρος LaTeX αναφέρεται μόνο στη γλώσσα στην οποία είναι γραμμένα τα έγγραφα, όχι στον επεξεργαστή κειμένου που χρησιμοποιείται για να γραφούν τα έγγραφα αυτά. Το αρχείο πρέπει να έχει επέκταση .tex όταν δημιουργηθεί χρησιμοποιώντας οποιοδήποτε επεξεργαστή κειμένου. Βέβαια σήμερα υπάρχουν επεξεργαστές κειμένου που έχουν φτιαχθεί αποκλειστικά για εγγραφή σε κώδικα \LaTeX. To μεγάλο πλεονέκτημα του \LaTeX είναι ότι ο συγγραφέας χρειάζεται να επικεντρώθεί μόνο στη συγγραφή του κειμένου χωρίς να ανησυχεί για τη μορφή του αφού η μορφοποίηση γίνεται αυτόματα.
+	\end{greek}
+
+
+\end{document}
