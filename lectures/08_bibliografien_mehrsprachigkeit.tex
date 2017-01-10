@@ -1,0 +1,386 @@
+% !TEX program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=false,
+	datum=2017-01-13,
+	titel={Bibliografien und mehrsprachiger Satz},
+	web=false,
+%	noshortverb=true,
+]{../tex/latexkurs-slides}
+
+\setmonofont[Scale=0.9]{Anonymous Pro}
+
+\usepackage{
+	booktabs,
+	biblatex,
+}
+
+\begin{document}
+
+\begin{frame}{Übersicht}
+	\tableofcontents
+\end{frame}
+
+\section{Bibliografie}
+\begin{frame}[fragile]{Bibliografie}
+\begin{itemize}
+	\item Bibliografie enthält Liste verwendeter Quellen und ggf. weiterführende Literatur.
+	\item je nach Fachbereich unterschiedliche Zitierstile
+	\item (grobes) Aussehen der Bibliografie wird von Dokumentenklasse bestimmt.
+	\item bestimmte Syntax zum Setzen der Bibliografie:
+	\begin{itemize}
+		\item Umbegung |\begin{thebibliography}{|\meta{Anzahl}|}|
+		\item Aufzählung der Werke mittels |\bibitem{|\meta{Key}|}| \meta{Text}
+		\item Zitieren eines Werks mit |\cite{|\meta{Key(s)}|}| oder |\cite[|\meta{Seite}|]{|\meta{Key}|}|
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile,t]{Bibliografie}
+\begin{lstlisting}
+\begin{thebibliography}{9}
+  \bibitem{frankfurt05} Harry G. Frankfurt:
+    \textit{On Bullshit}, Princeton University Press,
+    Princeton, New Jersey, 2005.
+\end{thebibliography}
+\end{lstlisting}
+\vfill
+\pause
+\begin{itemize}
+	\item manuelles Erstellen (und Sortieren) der Bibliografie ist sehr umständlich
+	\item Einträge nicht sinnvoll wiederverwendbar
+	\pause
+	\item[⇒] Programm \BibTeX\ übernimmt Sortierung und Verwaltung der Einträge
+\end{itemize}
+\end{frame}
+
+\subsection{\BibTeX}
+\begin{frame}[fragile]{\BibTeX-Idee}
+	\begin{itemize}
+		\item Einträge liegen als Textdatei (|.bib|) in vorgegbener Syntax vor
+		\item Referenz im Dokument mit |\cite{mittelbach2004}|\pdfmarginpar{Wenn man will, dass nicht zitierte Referenzen in der Bibliografie auftauchen kann man diese mit nocite{} hinzufügen. nocite{*} fügt alle Items in der .bib-Datei ein.}
+		\item Programm \BibTeX\ fügt referenzierte Quelle automatisch in Bibliografie ein
+		\item Aussehen der Referenz und Bibliografieeinträge vielfältig einstellbar
+		\item Zugriff auf große Menge an verfügbaren Referenzen
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\BibTeX}
+	\begin{itemize}
+		\item Verwendung unintuitiv
+		\item graphische Oberflächen erleichtern das Leben
+		\item z.\,B. JabRef, Citavi, etc.
+		\item direkte online-Suche z.\,B. bei \url{https://scholar.google.de}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Pakete}
+	Gestaltung der Bibliographie mittels Paketen:
+	\begin{description}
+		\item[\pkg{natbib}] numerische [13] oder Author-Year (Tolkien, 1954) Zitierstile (und Varianten)
+		\item[\pkg{jurabib}] Zitierstile für Jura (und Humanities)
+		\item[\pkg{inlinebib}] für Zitate in Fußnoten
+		\item …\pause
+		\item[\pkg{biblatex}] vielfältigste Gestaltungsmöglichkeiten (empfohlen)
+\end{description}\vfill
+Programm \pkg{biber} als Nachfolger von \BibTeX\ für \pkg{biblatex}
+\end{frame}
+
+\subsection{natbib}
+\begin{frame}[fragile,shrink]{Erstellung der Bibliografie}{|natbib|}
+\begin{block}{im Dokument}
+\begin{lstlisting}
+\usepackage[optionen]{natbib}
+\begin{document}
+  \bibliographystyle{plainnat} % oder andere ...
+  Text ... \cite{Tolkien54} ... text.
+  \bibliography{Bib-Datei}
+\end{document}
+\end{lstlisting}
+\end{block}
+\begin{block}{in der .bib-Datei}
+\begin{lstlisting}
+@book{Tolkien54,
+  author    ={Tolkien, John R. R.},
+  title     ={The Lord of the Rings},
+  publisher ={Allen & Unwin},
+  address   ={London},
+  year      ={1954},
+}
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Elemente der |.bib|-Datei}
+Unterschiedliche Bib-Items für unterschiedliche Dokumenttypen:
+\begin{columns}
+\begin{column}{.3\textwidth}
+	\begin{itemize}
+		\item |@article|
+		\item |@book|
+		\item |@mvbook|
+		\item |@inbook|
+		\item |@suppbook|
+	\end{itemize}
+\end{column}
+\begin{column}{.3\textwidth}
+	\begin{itemize}
+		\item |@collection|
+		\item |@manual|
+		\item |@online|
+		\item |@patent|
+		\item |@periodical|
+	\end{itemize}
+\end{column}
+\begin{column}{.4\textwidth}
+	\begin{itemize}
+		\item |@proceedings|
+		\item |@thesis|
+		\item |@unpublished|
+		\item …
+		\item[]
+\end{itemize}
+\end{column}
+\end{columns}
+\vfill
+Jedes Item hat verschiedene mandatorische und optionale Felder.
+\vfill
+\begin{block}{Syntax eines Eintrags}
+|@|\meta{Item-Typ}|{|\meta{Ref-Key}|,|\\
+|    |\meta{Feld}|    = {|\meta{Wert}|},|\\
+|    |\meta{Feld}|    = {|\meta{Wert}|},|\\
+|}|
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Setzten der Bibliografie}{\BibTeX}
+\begin{block}{in der Konsole}
+|$ xelatex dokument.tex|\\
+|$ bibtex dokument.aux|\\
+|$ xelatex dokument.tex|
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile, shrink]{Zitierbefehle}{|natbib|}
+\small\hspace*{-1cm}
+\begin{tabular}{lp{3.5cm}l}
+\bf Befehl & \bf Ausgabe Author-Year & \bf Ausbgabe num. \\ \midrule
+|\citet{jon90}|	&	Jones et al. (1990)	&	Jones et al. [21]	\\
+|\citet[chap.~2]{jon90}|	&	Jones et al. (1990, chap. 2)	&	Jones et al. [21, chap. 2]	\\\\
+|\citep{jon90}|	&	(Jones et al., 1990)	&	[21]	\\
+|\citep[chap.~2]{jon90}|	&	(Jones et al., 1990, chap. 2)	&	[21, chap. 2]	\\
+|\citep[see][]{jon90}|	&	(see Jones et al., 1990)	&	[see 21]	\\
+|\citep[see][chap.~2]{jon90}|	&	(see Jones et al., 1990, chap. 2)	&	[see 21, chap. 2]	\\\\
+|\citet*{jon90}|	&	Jones, Baker, and Williams (1990)	&		\\
+|\citep*{jon90}|	&	(Jones, Baker, and Williams, 1990)	&		\\\\
+|\citep{jon90a,jon90b}|	&	(Jones et al., 1990a,b)	&	[21, 32]
+\end{tabular}
+\end{frame}
+
+\subsection{biblatex}
+\begin{frame}{Bibliografien mit biblatex}%{|biblatex|}
+\begin{itemize}
+\item sämtliche Layouteinstellungen über reine \LaTeX-Makros definiert
+\item andere Syntax als die „alten“ Pakete (verwenden \BibTeX-Code)
+\item Einstellungen über Paketoptionen\\(siehe \pkg{biblatex}-Dokumentation, Abschn. 3: User Guide)
+\item Möglichkeit zur Erstellung mehrerer Bibliografien\\(z.\,B. je Kapitel, oder automatisch nach bestimmten Kriterien)
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{Erstellung der Bibliografie}{|biblatex|}
+\begin{block}{im Dokument}
+\begin{lstlisting}
+\usepackage[style=authoryear]{biblatex}
+\addbibresource{bibfile.bib}
+\begin{document}
+  Text  ... \cite{Tolkien54} ... text.
+  \printbibliography
+\end{document}
+\end{lstlisting}
+\end{block}
+\begin{block}{in der Konsole}
+|$ xelatex dokument.tex|\\
+|$ biber dokument.bcf|\\
+|$ xelatex dokument.tex|
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile, shrink]{Zitier- und Bibliografiestile}{|biblatex|}
+\begin{itemize}
+\item \pkg{biblatex} unterstützt viele vordefinierte Stile:
+\item |\usepackage[style=|\meta{Stil}|]{biblatex}|
+\end{itemize}
+\begin{description}
+\item[|numeric|] Standard-Stil \hfill [1, 2, 4, 3, 7]
+\item[|numeric-comp|] Kompakte Version von |numeric| \hfill [1-4, 7]
+\item[|alphabetic|] Abkürzungen von Autor und Jahr \hfill [Jon95] [JW86] 
+\item[|authoryear|] Autor-Jahr-Stil \hfill Jones 1995 
+\item[|authoryear-ibid|] Mehrfachnennungen auf einer Seite werden mit \emph{ebd.} abgekürzt
+\end{description}
+\begin{itemize}
+\item Bibliografiestil wird dem Zitierstil angepasst
+\item kann mit |citestyle=| und |bibstyle=| verändert werden
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\section{Geschicktes Kompilieren}
+\subsection{Makefiles}
+\begin{frame}[fragile, shrink]{Makefiles}
+\begin{itemize}
+\item  Ständiges Wechsel des Kompilers (|xelatex|, |biber|, |xelatex|) ist nervig
+\pause
+\item Mögliche Lösung: Makefiles (Programm |make|)
+\end{itemize}
+\begin{block}{im Makefile}
+\begin{lstlisting}
+latex: @xelatex dokument.tex
+biber: @biber dokument
+clean: @rm -v *.aux *.log *.synctex.gz
+       @rm -v *.nav *.snm *.out *.toc
+       ...
+all: latex biber latex
+\end{lstlisting}
+\end{block}
+\begin{block}{in der Konsole}
+|$ make latex|\\
+|$ make all|
+\end{block}
+\end{frame}
+
+\subsection{latexmk}
+\begin{frame}[fragile]{|latexmk|}
+\begin{itemize}
+\item Programm |latexmk| versucht benötigte Programme automatisch aufzurufen
+\item kann mittels Datei |latexmkrc| konfiguriert werden
+\end{itemize}
+\begin{block}{in der Konsole}
+|$ latexmk -latex="xelatex --shell-escape %S" \|\\
+|  dokument.tex|\\
+|$ latexmk -c dokument.tex|
+\end{block}
+\begin{itemize}
+\item genauere Infos: \href{http://man.cx/latexmk}{|man latexmk|} oder \href{http://mirrors.ctan.org/support/latexmk/latexmk.pdf}{|texdoc latexmk|}
+\end{itemize}
+\end{frame}
+
+
+\section{Mehrsprachige Dokumente}
+\subsection{babel}
+\begin{frame}[fragile]{Mehrsprachigkeit mit |babel|}{Sprachen laden}
+\pkg{babel} kann mit mehreren Sprachen als Paketoption geladen werden, letzte Sprache ist Hauptsprache:
+\begin{lstlisting}
+\usepackage[dutch,ngerman]{babel}
+\end{lstlisting}
+Alternativ: Angabe mit |main=|\meta{Srache}
+\begin{lstlisting}
+\usepackage[main=ngerman,dutch]{babel}
+\end{lstlisting}
+\end{frame}
+
+
+\makeatletter
+\def\@xobeysp{ }
+\makeatother
+
+\begin{frame}[fragile]{Mehrsprachigkeit mit |babel|}{Sprache umschalten}
+Befehl |\selectlanguage{|\meta{Sprache}|}| schaltet Sprache um\\
+Umgebung |\begin{otherlanguage}{|\meta{Sprache}|}| nur lokal\\
+Befehl |\foreignlanguage{|\meta{Sprache}|}{|\meta{Text}|}| für einzelne Wörter
+\vfill\pause
+\begin{lstlisting}
+% in der Präambel:
+\usepackage[main=german,dutch,greek,russian]{babel}
+
+% im Dokument:
+Deutscher Text
+\selectlanguage{dutch}
+Deze tekst is in het Nederlands maar met enkele Duitse \foreingnlanguage{german}{Wörter}
+
+\begin{foreignlanguage}{russian}
+, сегодня, является \today
+\end{foreignlanguage}
+\end{lstlisting}
+\end{frame}
+
+\subsection{polyglossia}
+\begin{frame}[fragile]{Mehrsprachigkeit mit |polyglossia|}{Sprachen laden}
+	|\setmainlanguage[|\meta{Optionen}|]{|\meta{Sprache}|}|
+	|\setotherlanguage[|\meta{Optionen}|]{|\meta{Sprache}|}|
+	|\setotherlanguages{|\meta{Sprachen}|}|\\[1em]\pause
+	\begin{center}
+		\scriptsize
+		\begin{tabular}{*{5}{l}}
+			\multicolumn{5}{l}{\normalsize Vefügbare Sprachen:}\\
+			\toprule
+			albanian & danish & icelandic & nko & slovenian\\
+			amharic & divehi & interlingua & norsk & spanish\\
+			arabic & dutch & irish & nynorsk & swedish\\
+			armenian & english & italian & occitan & syriac\\
+			asturian & esperanto & kannada & piedmontese & tamil\\
+			bahasai & estonian & khmer & polish & telugu\\
+			bahasam & farsi & korean & portuges & thai\\
+			basque & finnish & lao & romanian & tibetan\\
+			bengali & french & latin & romansh & turkish\\
+			brazil[ian] & friulan & latvian & russian & turkmen\\
+			breton & galician & lithuanian & samin & ukrainian\\
+			bulgarian & german & lsorbian & sanskrit & urdu\\
+			catalan & greek & magyar & scottish & usorbian\\
+			coptic & hebrew & malayalam & serbian & vietnamese\\
+			croatian & hindi & marathi & slovak & welsh\\
+			czech \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Mehrsprachigkeit mit |polyglossia|}{Sprache umschalten}
+Befehl |\text|\meta{Sprache}|{|\meta{Text}|}| für einzelne Wörter\\
+Umgebung |\begin{|\meta{Sprache}|}| für längere Passagen
+\vfill\pause
+\begin{lstlisting}
+% in der Präambel:
+\setmainlanguage{english}
+\setotherlanguage{french, greek}
+
+% im Dokument:
+The document body is in English, but single words can be in \textgreek{ ελληνικά} or \textfrench{français}.
+
+\begin{french}
+  Il est également possible d'écrire des phrases entières en français.
+\end{french}
+\end{lstlisting}
+\end{frame}
+
+\subsection{bidi}
+\begin{frame}[fragile]{Unterschiedliche Textrichtungen}
+\hologo{XeTeX} unterstützt wechselnde Textrichtungen innerhalb eines Dokuments mit dem Paket \pkg{bibi} (wird von \pkg{polyglossia} automatisch geladen)
+\begin{lstlisting}
+\usepackage{polyglossia}
+\setmainlanguage{german}
+\setotherlanguage{arabic}
+\begin{document}
+  Ein Satz auf Deutsch.
+  \begin{Arabic}
+
+  \end{Arabic}
+\end{document}
+\end{lstlisting}
+\end{frame}
+
+
+\nocite{biblatex, dante:bibliografien, babel, polyglossia, bidi}
+\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\printbibliography
+\end{frame}
+
+\end{document}
