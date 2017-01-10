@@ -1,0 +1,25 @@
+% !TEX program = xelatex
+% !TEX root = 08_bibliographie_merhsprachigkeit.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+
+
+In der Präambel:
+\begin{lstlisting}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguage{french, spanish}
+\end{lstlisting}
+Im Dokument:
+\begin{lstlisting}
+The document body is in English, but single words can be in \textspanish{español}
+or \textfrench{français}.
+
+\begin{french}
+  Il est également possible d'écrire des phrases entières en français.
+\end{french}
+\end{lstlisting}

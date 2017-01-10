@@ -1,0 +1,46 @@
+% !TEX program = xelatex
+% !TEX root = 07_umfangreiches_dokument.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+
+Bei der Aufteilung eines Umfangreichen Dokuments sollte man die folgenden Punkte beachten:
+\begin{itemize}
+	\item Es empfiehlt sich den Header (und ggf. eigene Definitionen) in eine eigene Datei auszulagern. Diese 
+	sollte mit |\imput| eingebunden werden, da sie bei jedem \LaTeX-Durchlauf, unabhängig von 
+	|include|-Einstellungen benötigt wird.
+	\item Jedes Kapitel sollte in eine \emph{eigene} Datei, die dann mit dem |\include|-Befehl eingebunden wird.
+\end{itemize}
+
+Eine mögliche Gestaltung der Ordnerstruktur wurde in der Vorlesung gezeigt:
+
+\begin{center}
+\begin{tikzpicture}[
+	every node/.style={draw=black,thick,anchor=west},
+	grow via three points={one child at (0.5,-0.7) and two children at (0.5,-0.7) and (0.5,-1.4)},
+ 	edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
+ 	\ttfamily
+	\node [fill=blue!30] {main/}
+		child {node {main.tex}}
+		child {node {header.tex}}
+%		child {node {defs}}
+		child {node [fill=blue!30] {bilder/}
+			child {node {bild1.png}}
+			child {node {bild2.jpg}}
+		}
+		child [missing] {}
+		child [missing] {}
+		child {node [fill=blue!30] {inhalte/}
+			child {node {chapter1.tex}}
+			child {node {chapter2.tex}}
+			child {node {chapter3.tex}}
+			child {node {chapter4.tex}}
+		}
+	;
+\end{tikzpicture}
+\end{center}
+
+\clearpage
