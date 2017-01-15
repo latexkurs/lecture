@@ -1,0 +1,399 @@
+% !TEX program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true,
+	datum=2017-01-20,
+	titel={Präsentationen mit beamer},
+	web=false,
+%	noshortverb=true,
+]{../tex/latexkurs-slides}
+
+\setmonofont[Scale=0.9]{Anonymous Pro}
+
+\usepackage{
+	siunitx,
+}
+
+\begin{document}
+
+\begin{frame}{Übersicht}
+	\tableofcontents
+\end{frame}
+
+
+\begin{frame}{Vorbemerkungen}
+	\begin{itemize}
+		\item \LaTeX\ ist \emph{nicht} für Präsentationen gedacht
+		\item spezielle Programme häufig besser geeignet
+		\item Wahl des Programms vom Inhalt abhängig
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Präsentationen in \LaTeX}
+	Standardklasse |slides| für die Erstellung von (Overhead-)Folien\pause
+	\vfill
+	
+	\LaTeX\ Bietet eine Menge spezialisierter Klassen und Pakete zum Satz von Präsentationen:
+	\begin{itemize}
+		\item \pkg{beamer} % größte und wichtigste klasse
+		\item \pkg{powerdot} % weiteste verbreitung zusammen mit beamer, allerdings für latex (DVI)
+		\item \pkg{prosper} % frühe Klasse, die den speziellen Präprozessor verwendet
+		\item \pkg{lecturer} % Einfache Präsentationen, freie positionierung von Objekten
+		\item \pkg{elpres} 
+		\item …
+	\end{itemize}
+\end{frame}
+
+
+
+\section{Präsentationen mit beamer}
+\frame{\centering\alert{Teil I}\\\huge Präsentationen mit \texttt{beamer}}
+
+\begin{frame}{Präsentationen mit beamer}
+	\begin{itemize}
+		\item Erstellen von bildschirmfüllenden „Folien“
+		\item ansprechende Farbgebung
+		\item strukturierte Darstellung des Inhaltes
+		\item dynamische Effekte
+		\item multimediale Unterstützung
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Präsentationen mit beamer}
+	\begin{block}{Das beamer-Prinzip}
+		Seitengröße wird auf \SI{128}{mm}\,×\,\SI{96}{mm} gesetzt.\\So kann man mit \emph{normalen} Schriftgrößen arbeiten, die im Fullscreen-Modus riesig aussehen.
+		
+		⇒ automatischer Schutz vor zu vollen Folien
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Präsentationen mit beamer}
+	\begin{itemize}
+		\item alle Pakete, Befehle, Umgebungen (fast) wie normal zu verwenden
+		\begin{itemize}
+			\item |\tableofcontents| erzeugt Inhaltsverzeichnis
+			\item |\begin{tabular}| setzt Tabelle
+			\item …
+		\end{itemize}
+		\item spezielle Umgebung enthält den Inhalt einzelner Folien\\
+		|\begin{frame}|%\\	(powerdot: |slide|)
+		%\item spezielle Befehle für Overlays (Nach-und-nach-Einblenden von Elementen)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{frames}
+%|\frame{|\meta{Inhalt}|}|\\[1ex]
+|\begin{frame}[|\meta{Optionen}|]{|\meta{Titel}|}{|\meta{ggf. Untertitel}|}|
+\vspace{1em}
+	\begin{itemize}
+		\item Umgebung |frame| erzeugt eine „Folie“
+		\item erstes Argument: Titel, zweites: Untertitel
+		\item optionales Argument |[fragile]| nötig für |\verb| u.\,ä.
+		\item Jede pdf-Seite ist ein statisches Objekt
+		\item[⇒] Überblendeffekte benötigen mehrere Seiten (innerhalb einer Folie)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Ein erstes beamer-Dokument}
+\begin{olcol}
+\begin{lstlisting}
+\documentclass{beamer}
+
+\begin{document}
+
+  \title{Doller Vortrag}
+  \author{Hans Wurst}
+  
+  \frame{\titlepage}
+
+  \begin{frame}{Erste Folie}
+    Inhalt der ersten Folie
+  \end{frame}
+
+\end{document}
+\end{lstlisting}
+\end{olcol}
+\overleaf{tex1101}
+\end{frame}
+
+
+\begin{frame}[fragile,t]{vertikale Ausrichtung}
+\overleaf{tex1101}%
+vertikale Ausrichtung mittels optionalem Argument |[t,b,c]|, auch als Dokumentklassenoption
+\vspace{2ex}
+
+|\begin{frame}[t]{|\meta{Titel}|}{|\meta{Untertitel}|}|\\
+|  |\meta{Folieninhalt}\\
+|\end{frame}|
+\end{frame}
+
+\begin{frame}{Überblendeffekte}
+\overleaf{tex1101}
+\begin{itemize}
+    \item für dynamische Effekte: |<|\meta{Kürzel}|>|
+    \item<+-> |<+->|\phantom{\texttt{5}} lässt Objekt erscheinen und bleiben
+    \item<+> |<+>|\phantom{\texttt{-5}} lässt Objekt erscheinen und wieder verschwinden
+    \item<4> |<4>|\phantom{\texttt{-5}} Objekt erscheint auf Folie 4
+    \item<4-5> |<4-5>| Objekt erscheint auf Folien 4 bis 5  
+    \item<5> |<0>| Objekt erscheint gar nicht
+\end{itemize}
+\end{frame}
+    
+\begin{frame}[fragile]{Überblendeffekte}
+z.\,B. bei |itemize|:
+
+\begin{lstlisting}
+\begin{itemize}[<+->]  % Angabe gilt für alle \items
+  \item<+-> Punkt 1
+  \item<4> Punkt 2
+  \item<+-> Punkt 3
+\end{itemize}
+\end{lstlisting}
+Auch bei |\includegraphics<|\meta{Kürzel}|>| u.\,a.
+\end{frame}
+
+\begin{frame}[fragile]{Überblendeffekte}{Pause}
+\begin{itemize}
+    \item {|\pause|} stoppt den Inhalt an beliebiger Stelle
+    \item erste Seite wird bis |\pause| gesetzt
+    \pause
+    \item zweite Seite enthält den gesamten Inhalt (bis zum nächsten |\pause|)
+\end{itemize}
+\[a =\pause b_{c\pause \cdot d}\]
+\end{frame}
+
+\begin{frame}[fragile]{Überblendeffekte}{only}
+\begin{itemize}
+    \item |\only<|\meta{Kürzel}|>{|\meta{Inhalt}|}| setzt den \meta{Inhalt} nur in den angegeben Seiten
+    \item Platz für den \meta{Inhalt} wird \emph{nicht} freigehalten
+    \item |\only<4>{|\meta{Inhalt}|}| setzt nur in der vierten Seite
+    \item |\only<3->{|\meta{Inhalt}|}| setzt ab der dritten Seite
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Überblendeffekte}{uncover}
+\begin{itemize}
+    \item|\uncover<|\meta{Kürzel}|>{|\meta{Inhalt}|}| setzt den \meta{Inhalt} nur in den angegeben Seiten
+    \item Platz für den \meta{Inahlt} \emph{wird} freigehalten
+    \item |\uncover<4>{|\meta{Inhalt}|}| setzt nur in der vierten Seite
+    \item |\uncover<3->{|\meta{Inhalt}|}| setzt ab der dritten Seite
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Strukturelemente}{block}
+\begin{LTXexample}[rframe={}]
+\begin{block}{Titel}
+  Inhalt eines schön gefärbten Blocks.
+\end{block}
+\begin{block}<2>{Zwei}
+  Und noch einer.
+\end{block}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Strukturelemente}{theorem}
+\begin{LTXexample}[rframe={}]
+\begin{theorem}[Trautmann et al.]
+  1 + 2 = 3
+\end{theorem}
+\begin{proof}
+  2 = 1+1\\
+  1+1+1 = 3
+\end{proof}
+\begin{example}
+  2+1 = 3
+\end{example}
+\end{LTXexample}
+Konflikt mit |theorem| aus \pkg{amsmath}!\\
+Umgebungen können nummeriert werden mit Dokumentenoption |[envcountsec]|
+\end{frame}
+
+\begin{frame}[fragile]{themes}{allgemeine}
+\begin{itemize}
+    \item themes sind Stilvorlagen, die das gesamte Layout beeinflussen
+    \item Einbinden mittels |\usetheme| im Header
+    \item benannt nach Tagungsorten
+    \item siehe \pkg{beamer}-Dokumentation oder \url{http://hartwork.org/beamer-theme-matrix/}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{themes}{inner}
+\begin{itemize}
+    \item beeinflussen das Aussehen von Elementen in der Folie
+    \item Aufzählungen, Abbildungsbeschriftung, Boxen etc.
+    \item |\useinnertheme|
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{themes}{outer}
+\begin{itemize}
+    \item beeinflussen das Aussehen der äußeren Element
+    \item Kopfzeile, Fußzeile, Navigation etc.
+    \item |\useoutertheme|
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{themes}{color}
+\begin{itemize}
+    \item wie der Name sagt …
+    \item je nach Theme werden verschiedene Elemente coloriert
+    \item Farben für jedes Element anpassbar:\\
+\begin{lstlisting}
+\setbeamercolor{footnote}{fg=red}
+\end{lstlisting}
+    \item |fg| für |foreground|, |bg| für |background|
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{themes}{font}
+\begin{itemize}
+    \item ändert Auswahl der Schriftarten
+    \item |default| (Serifenlose), |serif|, |structurebold|, |structuresmallcapserif|, …\\
+    |professionalfont| (für professionelle (gekaufte) Schriften)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Navigationselemente}
+	\begin{center}
+	\scalebox{2}{
+		\insertslidenavigationsymbol \insertframenavigationsymbol \insertsubsectionnavigationsymbol \insertsectionnavigationsymbol \insertdocnavigationsymbol \insertbackfindforwardnavigationsymbol}
+	\end{center}
+	\begin{itemize}
+		\item Erlauben Springen zwischen Folien, Frames, (Sub-)Sections, …
+		\item normalerweise in der rechten unteren Ecke
+		\item Ausblenden mit |\beamertemplatenavigationsymbolsempty|
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Gliederung}
+\begin{itemize}
+    \item normale Gliederungselemente vorhanden
+    \item |\section, \subsection, \chapter, ...|
+    \item Angabe von |\section| bewirkt zunächst nichts!\\%
+(Absatzüberschriften werden \emph{nicht} ausgegeben)
+    \item Einfluss nur in Inhaltsverzeichnissen und Headern
+\end{itemize}
+\end{frame}
+
+
+\section{Multimedia}
+\begin{frame}[fragile]{Gleitumgebungen}
+\begin{itemize}
+    \item Einfügen von Abbildungen, Tabellen u.\,ä. wie gewohnt
+    \item Gleitumgebungen werden nicht nummeriert
+    \item Positionsangaben (h,t,b) werden ignoriert
+    \item |\logo| fügt ein Logo global in die Präsentation ein (z.\,B. oben links)
+    \item Bilder einfügen mittels |\includegraphics| oder:
+\end{itemize}
+\begin{lstlisting}
+\pgfdeclareimage[height=0.5cm]{logo}{tu-logo}
+\logo{\pgfuseimage{logo}}
+\logo{\includegraphics[height=0.5cm]{logo}{tu-logo}}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Filme}
+\begin{itemize}
+    \item Paket |multimedia| (gehört zu beamer) laden
+    \item unter Verwendung von pdf\LaTeX\ und geeignetem Viewer: Einbinden von Videos möglich
+\end{itemize}
+\end{frame}
+
+\iftrue
+\begin{frame}[fragile]{Modi}
+\begin{itemize}
+	\item \pkg{beamer} kann mit verschiedenen Modi umgehen
+	\item |presentation| (Standard), |handout|, |article|, …
+	\item |handout| entfernt alle overlays
+	\item |\only<|\meta{Modus}|>{|\meta{Inhalt}|}|
+\end{itemize}
+\begin{lstlisting}
+\begin{frame}<handout:0> %versteckt ganze Folie
+  \only<4|article:3>{Bla}
+  ...
+\end{lstlisting}
+\end{frame}
+\fi
+
+% modi: \begin{frame}<0| handout:0>; handout entfernt overlays
+% shrink, plain, allowframebreak
+% \beamertemplatenavigationsymbolsempty
+% Literatur: beamer (besonders abschnitt 5)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{PDF-Viewer}
+\frame{\centering\alert{Teil II}\\\huge PDF-Viewer}
+
+\begin{frame}{Präsentationssoftware}
+	Kriterien für eine gute Präsentationssoftware
+	\begin{itemize}
+		\item fullscreen-Modus
+		\item Bedienung mit Tastatur und Maus möglich
+		\item schwärzen\,/\,weißen des Schirms
+		\item schnelle Navigation zwischen Folien
+		\item Implementierung aller pdf-Features
+		\item Kennzeichnungen\,/\,Hervorhebungen während der Präsentation
+		\item eigene Überblendmechanismen
+		\item kein Blockieren des pdfs!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\TeX works}
+	\begin{itemize}
+		\item frei verfügbar (= offener Quellcode)
+		\item hervorragender Editor mit eingebautem Viewer
+		\item nötige Änderungen in der Präsentation können on-the-fly vorgenommen werden
+		\item sync\TeX\ bereitet mit beamer große Probleme!
+		\item nicht alle pdf-features vorhanden
+		\item nicht besonders für Präsentationen geeignet
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Adobe Acrobat Reader}
+	\begin{itemize}
+		\item kostenlose Software
+		\item nicht \emph{frei} (im Sinne von Open Content)
+		\item für Windows, Mac, (Linux) verfügbar
+		\item implementiert sämtliche pdf-Features (z.\,B. Videos möglich)
+		\item bietet einige Präsentationsfeatures (Bildschirm schwarz\,/\,weiß etc.)
+		\item blockiert das pdf!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{okular}
+	\begin{itemize}
+		\item vielfältiger Viewer
+		\item implementiert (scheinbar) alle pdf-features\\%
+(kann Videos abspielen, Transitions etc.)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{impressive!}
+	\begin{itemize}
+		\item speziell für Präsentationen erstellt
+		\item freie Software (⇒ für alle Platformen verfügbar)
+		\item Start aus Kommandozeile
+		\item Effekte nur über Kommandozeilenargumente steuerbar!
+		\item ermöglicht nützliche Präsentationseffekte: Schirm schwärzen, Spotlight, helle Rahmen ziehen, schnelle Navigation …
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Bonuscontent}{Wie Donald Knuth Vorträge hält …}
+	 \centering
+	\url{https://www.youtube.com/watch?v=eKaI78K_rgA} \\
+	Großartiger Vortrag von Knuth zum 32. (2\textasciicircum 5) Jubiläum von \TeX.
+\end{frame}
+
+
+\nocite{beamer, dante:praesentationen, presentationzen}
+\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\printbibliography
+\end{frame}
+
+\end{document}
