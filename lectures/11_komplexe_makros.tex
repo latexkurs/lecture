@@ -1,0 +1,304 @@
+% !TEX program = lualatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=false,
+	datum=2017-02-03,
+	titel={Komplexe Makros und Befehle},
+	web=false,
+%	noshortverb=true,
+]{../tex/latexkurs-slides}
+
+
+
+\begin{document}
+
+\begin{frame}{Übersicht}
+	\tableofcontents
+\end{frame}
+
+
+\section{Verschiedenes}
+\frame{\centering\alert{Teil I}\\\huge Verschiedenes}
+\subsection{Poster}
+\begin{frame}{Poster}
+\overleaf{tex1201}%
+∃ diverse Klassen für Satz von (wissenschaftlichen) Postern: \pkg{a0poster}, \pkg{sciposter}, \pkg{tikzposter}\\[1ex]\pause
+
+Empfehlung: \pkg{tikzposter}\\[1ex]
+
+Nutzt	 \TikZ\ um Objekte (Blocks, etc.) auf Poster zu platzieren. Bedienung vergleichar mit \pkg{beamer}.
+\end{frame}
+
+\subsection{Vorlesungsmitschriften}
+
+\begin{frame}{Mitschreiben}
+\begin{itemize}
+	\item in Vorlesungen oder Übungen mit\TeX{}en manchmal nützlich
+	\item entweder extrem hohe Tippgeschwindigkeit nötig
+	\item oder durchdachte Befehlsdefinitionen
+	\item \emph{wichtig:} alle strukturelle Information muss vorhanden sein!\\%
+(auch, wenn es nicht gut aussieht)
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{Mitschreiben}
+\begin{itemize}
+	\item häufig nur stichpunktartiges Aufschreiben
+	\item[⇒] |\obeylines|
+	\item Aufzählungen abkürzen, z.\,B. mittels |\let|\textbullet|\item| % damit ist „•“ gemeint
+	\item …
+\end{itemize}
+\end{frame}
+
+
+\section{Makros in \LaTeXe}
+\frame{\centering\alert{Teil II}\\\huge \LaTeXe}
+\subsection{newcommand, newenvironment \& Co}
+\begin{frame}[fragile]{Makros in \LaTeX}
+Zur Definition eigener Befehle in \LaTeX\ verfügbar:\\
+|\newcommand|, |\renewcommand|, |\newenvironment|\\[2ex]
+\pause
+|\|(|re|)|newcommand{|\meta{Befehlsname}|}|\\
+|  [|\meta{Anzahl der Argumente}|]|\\
+|  [|\meta{Default für erstes (optionales) Argument}|]|\\
+|  {|\meta{Befehlsdefinition}|}|\\[2ex]
+|\newenvironment{|\meta{Umgebungsname}|}|\\
+|  [|\meta{Anzahl der Argumente}|]|\\
+|  [|\meta{Default für erstes (optionales) Argument}|]|\\
+|  {|\meta{Definition Code \emph{vor} Umgebung}|}|\\
+|  {|\meta{Definition Code \emph{nach} Umgebung}|}|\\[2ex]
+
+\pause
+Varianten mit Stern: |\newcommand*| für zusätzliche Fehler-Checks, falls Argumente \emph{keine} Umbrüche/Leerzeilen enthalten dürfen
+\end{frame}
+
+\subsection{def und let}
+\begin{frame}[fragile]{Makros in \TeX}
+\TeX\ bietet die Primitiven |\def| und |\let|\\[2ex]\pause
+
+|\def|\meta{Befehlsname}\meta{Argument(e)}|{|\meta{Befehlsdefinition}|}|\\
+\begin{lstlisting}
+\def\mymakro#1#2{Makro mit zwei Argumenten #1 und #2}
+\end{lstlisting}\pause
+\vspace*{2ex}
+
+|\let|\meta{neuer Befehlsname}\meta{alter Befehlsname}\\
+\begin{lstlisting}
+\let\newmakro\oldmakro
+\end{lstlisting}
+\begin{itemize}
+\item generiert |\newmakro| mit exakt den selben Eigenschaften wie |\oldmakro|
+\item wenn sich |\oldmakro| ändert, bleibt |\newmakro| erhalten
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Makros in \TeX}
+\begin{itemize}
+\item |\def| und |\let| auch in \LaTeX\ verfügbar
+\item High-Level Befehle wie |\newcommand| sind meist vorzuziehen
+\item |\let| manchmal praktisch
+\item  nur benutzen, wenn man weiß was man tut
+\end{itemize}
+\end{frame}
+
+
+\subsection{Naming Conventions}
+\begin{frame}[fragile]{Naming Conventions}
+\begin{description}
+\item[|lowercase|] Endnutzer-Befehle auf Dokumenten-Level\\(braucht man ständig)
+\item[|MixedCase|] Befehle für spezielle Funktionen in Paketen oder Klassen\\(braucht man selten)
+\item[|with@sign|] interne Befehle in Paketen oder im \LaTeX-Kernel\\(braucht man \emph{nie})
+\end{description}
+\vfill\pause
+\begin{block}{spezieller Schutzmechanismus}
+@-Zeichen hat anderen \textenglish{category code} als normale Buchstaben, Befehle mit @ werden daher ignoriert.\\
+Ausschalten: |\makeatletter|\\
+wieder Einschalten: |\makeatother|
+\end{block}
+\vfill\pause
+\TeX-Primitiven sind – aus historischen Gründen – auch lowercase
+\end{frame}
+
+
+\section{\LaTeX3}
+\frame{\centering\alert{Teil III}\\\huge \LaTeX3}
+\begin{frame}{Makros in \LaTeX3}
+	\begin{columns}\hspace{-2.5em}
+		\begin{column}{.7\textwidth}
+			\begin{itemize}
+				\item Mit \LaTeX3 wird alles besser:
+				\begin{itemize}
+					\item Konsequente Unterscheidung zwischen Nutzer-, Design- und Programmierebene
+					\item Namespaces für Pakete
+					\item sehr bequeme und flexible Befehlsdefinitionen
+				\end{itemize}
+				\item \LaTeX3-Syntax schon jetzt nutzbar:
+				\begin{itemize}
+					\item Paket \pkg{expl3} für Entwickler
+					\item Paket \pkg{xparse} für Endnutzer
+				\end{itemize}
+			\end{itemize}
+		\end{column}
+		\begin{column}{.2\textwidth}
+			\vspace{-2cm}
+			\includegraphics[width=1.5\textwidth]{11_expl3}
+			\overleaf{tex130}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+\subsection{Makros in \LaTeX3}
+\begin{frame}[fragile]{Makros in \LaTeX3}%{xparse}
+
+Mit Paket \pkg{xparse} verfügbar:\\
+|\NewDocumentCommand|, |\RenewDocumentCommand|, |\NewDocumentEnvironment|, …
+\vfill
+
+|\NewDocumentCommand{|\meta{Befehlsname}|}|\\|  {|\meta{Argumentstruktur}|}|\\|  {|\meta{Definition}|}|
+\vfill
+
+ \meta{Argumentstruktur} beschreibt wie viele und welche Argumente\\der Befehl annimmt (sozusagen die Signatur)
+\end{frame}
+
+
+\begin{frame}[fragile]{Argumentstruktur}
+\begin{block}<1>{mandatorische Argumente}
+\begin{description}
+\item[|m|] klassisches mandatorisches Argument \hfill |{|\meta{...}|}|
+\item[|l|] liest alles vor der nächsten Klammer \hfill \meta{...}|{|
+\item[|r|\meta{t1}\meta{t2}] alles zwischen \meta{t1} und \meta{t2}\quad
+	z.\,B. |r<>| \hfill |<|\meta{...}|>|
+%\item[|R|\meta{token1} und \meta{token2}|{|\meta{Default}|}|] wie |r| nur mit default-Wert
+\item[|u\{|\meta{t}|\}|] liest alles bis \meta{t}\quad
+	z.\,B. |u{§&}| \hfill \meta{...}|§&|
+\item[|v|] Verbatim-Input \hfill \texttt{\textbar\meta{...}\textbar}\\
+	Eingabe wird nicht interpretiert \hfill \texttt{\{\meta{...}\}}\\
+\end{description}
+\end{block}
+\vfill
+\begin{lstlisting}
+\NewDocumentCommand{\mycommand}{ m l m r^° }
+  {(#1,#2,#3,#4)}
+\mycommand{eins}zwei{drei}^vier°
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Argumentstruktur}
+\begin{block}{optionale Argumente}
+\begin{description}
+\item[|o|] klassisches optionales Argument \hfill |[|\meta{...}|]|
+\item[|O\{|\meta{df}|\}|] wie |o| mit Default-Wert \quad z.\,B. |O{default}| \hfill |[|\meta{...}|]|
+\item[|d|\meta{t1}\meta{t2}] alles zwischen \meta{t1} und \meta{t2}\quad
+	z.\,B. |d:+| \hfill |:|\meta{...}|+|
+\item[|D|\meta{t1}\meta{t2}|\{|\meta{df}|\}|] wie |d| mit Default-Wert \quad
+	z.\,B. |d(){bla}| \hfill |(|\meta{...}|)|
+\item[|s|] Stern, setzt |\BooleanTrue|, falls vorhanden \hfill |*|
+\end{description}
+\end{block}
+\vfill
+\begin{lstlisting}
+\NewDocumentCommand{\mycommand}
+  { d<| O{zwei} s D|>{vier} }
+  { (#1,#2,#4) \IfBooleanT{#3}{:-)} }
+\mycommand<eins|[2]*
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Argumentstruktur}
+\begin{block}{Argument-Modifier}
+\begin{description}
+\item[|+|\meta{Arg-Kürzel}] erlaubt Eingabe von Umbrüchen innerhalb eines Arguments \\
+	z.\,B. |+m|
+\item[|>\{|\meta{Prozessor}|\}|] Argumente vor dem Auslesen bearbeiten \\
+	z.\,B. |> {\ReverseBoolean} m|\\|> {\TrimSpaces} o|
+\end{description}
+\end{block}
+\hfill
+\begin{lstlisting}
+\NewDocumentCommand{\mycommand}
+  { >{\ReverseBoolean} s o +m }
+  { \IfBooleanTF{#1}{kein stern}{stern} #2 #3 }
+\mycommand*{Text mit\\Umbruch}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Umgebungen}
+|\NewDocumentEnvironment{|\meta{Umgebungsname}|}|\\
+|  {|\meta{Argumentstruktur}|}|\\
+|  {|\meta{Definition Code \emph{vor} Umgebung}|}|\\
+|  {|\meta{Definition Code \emph{nach} Umgebung}|}|\vfill
+
+\begin{lstlisting}
+\newDocumentEnvironment{myquote}{ o }
+  {\begin{quote}\sffamily\itshape}
+  {\end{quote}\IfNoValueF{#1}{Quelle:#1}}
+  
+\begin{myquote}[Internet]
+  Bla bla, Chemtrails, Lügenpresse …
+\end{myquote}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{expl3}
+Erweiterte \LaTeX3-Funktionalität für Entwickler mit \pkg{expl3} verfügbar\\[1ex]
+
+|\ExplSyntaxOn|\\
+|  |\meta{Code}\\
+|\ExplSyntaxOff|\\[1ex]
+
+Schaltet neue Syntax ein und aus
+\end{frame}
+
+\section{\hologo{LuaLaTeX}}
+\frame{\centering\alert{Teil IV}\\\huge \hologo{LuaLaTeX}}
+\begin{frame}[fragile]{Nutzung von Lua mit \hologo{LuaLaTeX}}
+Innerhalb von \TeX\ Lua-Code eingeben:\\
+|\directlua{|\meta{Lua-Code}|}|\\[1ex]
+
+Innerhalb von Lua-Code etwas an \TeX\ ausgeben:\\
+|tex.print(|\meta{TeX-Ausgabe}|)|\\[3ex]
+\pause
+
+\begin{LTXexample}
+$\pi = \directlua{
+  tex.sprint(math.pi)
+}$
+\end{LTXexample}
+
+\overleaf{tex1303}
+\end{frame}
+
+\begin{frame}[fragile]{Nutzung von Lua mit \hologo{LuaLaTeX}}
+\begin{itemize}
+	\item |\directlua| macht manchmal Probleme
+	\begin{itemize}
+		\item bei Umbrüchen
+		\item bei Lua-Kommentaren |---|
+		\item bei Sonderzeichen |_^&${}%|
+	\end{itemize}
+	\item Paket \pkg{luacode} behebt viele dieser Probleme.:\\[1ex]
+|\begin{luacode*}|\\
+|  |\meta{Lua-Code}\\
+|\end{luacode*}|
+
+	\item in Variante mit Stern sind keine \TeX-Befehle möglich
+	\item in Variante ohne Stern werden \TeX-Makros expandiert
+\end{itemize}
+
+\overleaf{tex1303}
+\end{frame}
+
+\nocite{xparse, interface3, expl3, lualatex-doc-de, luacode}
+\begin{frame}[shrink]{Weiterführende Literatur}
+\printbibliography
+\end{frame}
+
+\end{document}

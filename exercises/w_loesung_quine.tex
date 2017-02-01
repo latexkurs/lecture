@@ -1,0 +1,57 @@
+% !TEX program = xelatex
+% !TEX root = weihnachtsblatt.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+Auch wenn \TeX\ theoretisch auf den eigenen Quellcode zugreifen könnte um diesen einfach als verbatim-input einzulesen, wäre das genau genommen kein echter Quine.  Um einen Quine zu erstellen müssen wir Makros definieren, die den gewünschten Code enthalten und die wir sowohl zum Ausführen des Codes als auch für die Ausgabe desselben aufrufen können.\footnote{Eine relativ detaillierte Beschreibung von Quines (und etwas theoretischen Hintergrund) findet man auf der Seite. \url{http://www.madore.org/~david/computers/quine.html}}
+
+In plain\TeX\ könnte ein Quine beispielsweise so aussehen:\footnote{Quelle: \url{http://tex.stackexchange.com/a/93930}}
+
+\begin{lstlisting}
+\tt\obeylines
+\nopagenumbers\let~\string
+\def\a{~\tt~\obeylines
+~\nopagenumbers~\let~~~\string
+~\def~\a~{\b~}
+~\def~\b~{~{~\def~~~{~\string~~~\string~}~\def~\b~{~\string~\b~}~\a~}~}
+~\a~\b~ye}
+\def\b{{\def~{\string~\string}\def\b{\string\b}\a}}
+\a\bye
+\end{lstlisting}
+
+\pagebreak
+\noindent Eine in \LaTeX\ implementierte Alternative wäre zum Beispiel:\footnotemark[\value{footnote}]
+
+\begin{lstlisting}
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\begin{document}
+\obeylines\thispagestyle{empty}
+\let~\textbackslash
+\newcommand{\asciitilde}{\raisebox{-.5\height}{\textasciitilde}}
+\newcommand{\mymyself}{{\let~\asciitilde
+\renewcommand{\{}{\textbackslash\textbraceleft}
+\renewcommand{\}}{\textbackslash\textbraceright}
+\renewcommand{\asciitilde}{\textbackslash asciitilde}
+\renewcommand{\mymyself}{\textbackslash mymyself}\myself}}
+\newcommand{\myself}{
+~documentclass\{article\}
+~usepackage[T1]\{fontenc\}
+~begin\{document\}
+~obeylines~thispagestyle\{empty\}
+~let\asciitilde~textbackslash
+~newcommand\{~asciitilde\}\{~raisebox\{-.5~height\}\{~textasciitilde\}\}
+~newcommand\{~mymyself\}\{\{~let\asciitilde~asciitilde
+~renewcommand\{~\{\}\{~textbackslash~textbraceleft\}
+~renewcommand\{~\}\}\{~textbackslash~textbraceright\}
+~renewcommand\{~asciitilde\}\{~textbackslash asciitilde\}
+~renewcommand\{~mymyself\}\{~textbackslash mymyself\}~myself\}\}
+~newcommand\{~myself\}\{\mymyself\}
+~myself
+~end\{document\}}
+\myself
+\end{document}
+\end{lstlisting}
