@@ -1,0 +1,261 @@
+% !TEX program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=false,
+	datum=2017-02-10,
+	titel={Eigene Klassen und Pakete schreiben},
+	web=false,
+%	noshortverb=true,
+]{../tex/latexkurs-slides}
+
+
+
+\begin{document}
+
+\begin{frame}{Übersicht}
+	\tableofcontents
+\end{frame}
+
+
+\section{Paket schreiben}
+\subsection{Identifizierung}
+\begin{frame}[fragile]{Begrüßung}
+|\NeedsTeXFormat{|\meta{Format}|}[|\meta{Datum}|]|\\
+|\ProvidesPackage{|\meta{Name}|}[|\meta{Datum}| |\meta{weitere Infos}|]|\\
+|\ProvidesClass{|\meta{Name}|}[|\meta{Datum}| |\meta{weitere Infos}|]|
+\begin{lstlisting}
+\NeedsTeXFormat{LaTeX2e}[1996/12/01]
+\ProvidesPackage{meinpaket}[2015/02/05 v0.1 Dolles Paket]
+\end{lstlisting}
+
+\end{frame}
+
+\subsection{Laden von Paketen}
+\begin{frame}[fragile]{Pakete Laden}
+|\RequirePackage[|\meta{Paketoptionen}|]{|\meta{Paket}|}[|\meta{Datum}|]|\\
+|\LoadClass[|\meta{Klassenoptionen}|]{|\meta{Klasse}|}[|\meta{Datum}|]|
+
+\vfill
+\pause
+
+\begin{block}{Eigene Optionen an geladenes Paket weitergeben:}
+|\RequirePackageWithOptions{|\meta{Paket}|}[|\meta{Datum}|]|\\
+|\LoadClassWithOptions{|\meta{Klasse}|}[|\meta{Datum}|]|\\[1ex]
+\end{block}
+
+\vfill
+Eine Klasse kann nur (einmal) von einer Klasse geladen werden
+\vfill
+
+\begin{lstlisting}
+\RequirePackage[hmargin=3cm]{geometry}
+\end{lstlisting}
+
+\end{frame}
+
+\subsection[fragile]{Paketoptionen}
+\begin{frame}[fragile]{Optionen}
+\begin{itemize}
+\item Option definieren:\\
+|\DeclareOption{|\meta{Option}|}{|\meta{Code}|}|
+\item nicht definierte Optionen verwenden:\\
+|\DeclareOption*{|\meta{Code}|}|
+\item Optionen verarbeiten:\\
+|\ProcessOptions|
+\item innerhalb von |\DeclareOprtion*|:\\
+|\CurrentOption|\\
+|\OptionNotUsed|
+\end{itemize}
+\vfill
+
+\begin{lstlisting}
+\DeclareOption{a4paper}{%
+  \setlength{\paperheight}{297mm}%
+  \setlength{\paperwidth}{210mm}%
+}
+\DeclareOption*{\OptionNotUsed}
+\ProcessOptions
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{|key=value|-Optionen}
+Klassen/Paketoptionen mit Key-Value-Syntax lassen sich zum Beispiel mit \pkg{kvoptions} realisieren.
+\vfill	
+\begin{lstlisting}
+\SetupKeyvalOptions{
+  family=meinpaket,
+  prefix=mypkg@
+}
+\DeclareStringOption[default]{mystring}
+\DeclareBoolOption{mybool}
+\ProcessKeyvalOptions{mypkg}
+\end{lstlisting}
+\end{frame}
+
+
+\subsection{Befehle}
+\begin{frame}[fragile]{Makros Definieren}
+\begin{itemize}
+\item Befehl definieren:\\
+|\newcommand{|\meta{Befehl}|}[|\meta{Anzahl}|][|\meta{Default}|]{|\meta{Definition}|}|
+\item Befehl umdefinieren:\\
+|\renewcommand{|\meta{Befehl}|}[|\meta{Anzahl}|][|\meta{Default}|]{|\meta{Definition}|}|
+\item Befehl nur definieren, falls er nicht existiert:\\
+|\providecommand{|\meta{Befehl}|}[|\meta{Anzahl}|][|\meta{Default}|]{|\meta{Definition}|}|
+\item Testen ob ein Befehl (genau so) definiert ist:\\
+|\CheckCommand{|\meta{Befehl}|}[|\meta{Anzahl}|][|\meta{Default}|]{|\meta{Definition}|}|
+\end{itemize}
+\vfill\pause
+Oder mit \hologo{LaTeX3}-Syntax (\pkg{expl3}, siehe letzte Vorlesung)
+\end{frame}
+
+\begin{frame}[fragile]{Nützliche Befehle}
+\begin{block}{Code zu verschiedenen Zeitpunkten ausführen}
+|\AtBeginDocument{|\meta{Code}|}|\\
+|\AtEndDocument{|\meta{Code}|}|\\[1ex]
+|\AtEndOfPackage{|\meta{Code}|}|\\
+|\AtEndOfClass{|\meta{Code}|}|
+\end{block}
+\end{frame}
+
+\subsection{Errors, Warnings, Infos}
+\begin{frame}[fragile]{Mit dem Nutzer sprechen}
+|\typeout{|\meta{Nachricht}|}|\\
+|\PackageInfo{|\meta{Paket}|}{|\meta{Nachricht}|}|\\
+|\PackageWarning{|\meta{Paket}|}{|\meta{Nachricht}|}|\\
+|\PackageWarningNoLine{|\meta{Paket}|}{|\meta{Nachricht}|}|\\
+|\PackageError{|\meta{Paket}|}{|\meta{Nachricht}|}{|\meta{Hilfetext}|}|
+\vfill
+
+\begin{lstlisting}
+\PackageInfo{meinpaket}{Dies ist eine Info.}
+\PackageError{meinpaket}{Dies ist eine Warnung.}
+\PackageError{meinpaket}{Dies ist ein Fehler.}{Fehler lässt sich nicht beheben.}
+\end{lstlisting}
+\end{frame}
+
+
+\section{Paket benutzen}
+\subsection{\TeX-Directory-Structure}
+\begin{frame}[fragile]{Paket einbinden}
+Im Dokument: |\usepackage{meinpaket}|
+
+|meinpaket.sty| muss im selben Ordner liegen
+\vfill\pause
+
+Alternative: \TeX\ durchsucht alle Ordner des TDS-Baums\\
+Lokale Pakete können in |$TEXMFHOME| abgelegt werdern
+
+\end{frame}
+
+
+
+\section{Paket verpacken}
+\subsection{Doc und DocStrip}
+\begin{frame}[fragile]{Pakete ausliefern}
+
+Programm \pkg{DocStrip} kann aus einer Datei verschiedene Ausgabe-Dokumente erstellen.
+
+\begin{enumerate}
+\item Lösche alle Zeilen, die mit |%| anfangen \hfill → |sty| oder |cls|
+\item Lösche alle |%| die am Anfang der Zeile stehen \hfill → |pdf|
+\end{enumerate}
+\vfill
+\overleaf{tex1400}
+\end{frame}
+
+
+\begin{frame}[fragile,t]{Beispiel dtx\quad\small 1/4}
+\begin{lstlisting}
+% \iffalse meta-comment
+% Copyright (C) 2015 by Lieschen Müller
+% \fi \iffalse
+%<driver>\ProvidesFile{meinpaket.dtx}
+%<package>\NeedsTeXFormat{LaTeX2e}[2007/07/20]
+%<package>\ProvidesPackage{meinpaket}[2015/02/05 v0.1 Dolles Paket]
+%<*batchfile>
+\begingroup
+\input{docstrip.tex}
+\preamble
+Copyright (C) 2015 by Lieschen Müller
+\endpreamble
+\askforoverwritefalse
+\generate{\file{meinpaket.sty}{\from{meinpaket.dtx}{package}}}
+\endgroup
+%</batchfile>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile,t,]{Beispiel dtx\quad\small 2/4}
+\begin{lstlisting}
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[ngerman,english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\DocInput{meinpaket.dtx}
+\end{document}
+%</driver>
+% \fi
+% \CheckSum{0}
+% 
+% \changes{v0.1}{2015/02/05}{Initial version}
+% 
+% \GetFileInfo{meinpaket.dtx}
+% 
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile,t]{Beispiel dtx\quad\small 3/4}
+\begin{lstlisting}
+% \title{Mein Paket\thanks{Diese Anleitung bezieht sich auf Version \fileversion}}
+% \author{Lieschen Müller}
+% \date{\filedate}
+% \maketitle
+% 
+% \begin{abstract}
+%   \noindent Dieses tolle Paket tut tolle Dinge.
+% \end{abstract}
+% 
+% \tableofcontents
+% 
+% \section{Anleitung}
+% So funktioniert mein tolles Paket ...
+% 
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile,t]{Beispiel dtx\quad\small 4/4}
+\begin{lstlisting}
+% \section{Implementierung}
+% So habe ich mein Paket implementiert:
+% 
+% \iffalse
+%<*package> 
+% \fi
+%    \begin{macrocode}
+\providecommand{\meinbefehl}{Hier steht der eigentliche Inhalt des Pakets}
+%    \end{macrocode}
+% \iffalse 
+%</package>
+% \fi
+% 
+\endinput
+\end{lstlisting}
+\end{frame}
+
+
+
+\nocite{clsguide,dtxtut,docstrip}
+\begin{frame}{Weiterführende Literatur}
+\printbibliography
+\end{frame}
+
+\end{document}
