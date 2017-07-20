@@ -1,10 +1,11 @@
 % !TEX encoding = UTF-8 Unicode
-% © 2016 Moritz Brinkmann, CC-by-sa
+% 
+% © 2015–2017 Moritz Brinkmann, CC-by-sa
 % http://latexkurs.github.io
 
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{latexkurs-slides}[2016/06/03 v0.1 beamer slides for LaTeX Course]
+\ProvidesClass{latexkurs-slides}[2017/07/20 v1.0 beamer slides for LaTeX Course]
 
 \LoadClassWithOptions{beamer}
 
@@ -65,6 +66,8 @@
 \DeclareBoolOption{vorläufig}
 \DeclareBoolOption{web}
 \DeclareBoolOption{noshortverb}
+\DeclareBoolOption{max}
+\DeclareBoolOption{mo}
 \ProcessKeyvalOptions{latexkurs}
 
 \ifltxkurs@noshortverb
@@ -86,7 +89,14 @@
 %% Titlepage
 \title{Einführung in das Textsatzsystem \LaTeX{}}
 \subtitle{\ltxkurs@titel}
-\author[Mo]{Moritz Brinkmann\\\url{moritz.brinkmann@iwr.uni-heidelberg.de}}
+\let\authorstring\@empty
+\ifltxkurs@mo
+	\g@addto@macro{\authorstring}{Moritz Brinkmann\\{\small\url{moritz.brinkmann@iwr.uni-heidelberg.de}}\ifltxkurs@max\\[1em]\fi}
+\fi
+\ifltxkurs@max
+	\g@addto@macro{\authorstring}{Maximilian Jalea\\{\small\url{max@mathphys.stura.uni-heidelberg.de}}}
+\fi
+\author{\authorstring}
 \AtBeginDocument{
 	\frame{\thispagestyle{empty}\titlepage}
 }

@@ -1,6 +1,6 @@
 % !TEX encoding = UTF-8 Unicode
 % 
-% © 2016 Moritz Brinkmann, CC-by-sa
+% © 2015–2017 Moritz Brinkmann, CC-by-sa
 % http://latexkurs.github.io
 
 
@@ -72,7 +72,7 @@
 \ihead{Einführung in das\\Textsatzsystem \LaTeX}
 \chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
 \ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{\DTMdate{\ltxkurs@datum}}{Ausgegeben: \DTMdate{\ltxkurs@ausgabe}}\\\ifthenelse{\equal{\ltxkurs@abgabe}{}}{}{Abgabe: \DTMdate{\ltxkurs@abgabe}}}
-\ifoot{Heidelberg, WS 2016}
+\ifoot{Heidelberg, WS 2017}
 \cfoot{}
 \ofoot{Seite~\thepage~von~\pageref{LastPage}}
 

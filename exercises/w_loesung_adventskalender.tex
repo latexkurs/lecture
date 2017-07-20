@@ -1,0 +1,15 @@
+% !TEX program = xelatex
+% !TEX root = weihnachtsblatt.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\noindent Mit den \TeX-Primitiven \texttt{\textbackslash day} und \texttt{\textbackslash month} lässt sich direkt auf Tag und Monat des aktuellen Datums zugreifen. Das Paket \pkg{ifthen} bietet praktische Makros für die Arbeit mit if-Conditions. Damit lässt sich zum Beispiel abfragen, ob gerade Dezember ist:
+
+\begin{lstlisting}
+\ifthenelse{\month = 12}{Es ist Dezember!}{Im Moment ist \emph{nicht} Dezember.}
+\end{lstlisting}
+
+\noindent Das erste Argument von \texttt{\textbackslash ifthenelse} stellt dabei eine Bedingung dar, die entweder wahr oder falsch sein kann. Ist die Bedingung wahr, so wird der Inhalt des zweiten, ist sie falsch, der Inhalt des dritten Arguments ausgegeben. Aus solchen \texttt{\textbackslash ifthenelse}-Konstruktionen lässt sich jetzt leicht z.\,B. ein Adventskalender erstellen.

@@ -1,0 +1,376 @@
+% !TEX program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2015–2017 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+	vorläufig=true,
+	datum=2017-01-19,
+	titel={Briefe und Lebensläufe},
+	web=true,
+%	noshortverb=true,
+	max,
+]{../tex/latexkurs-slides}
+
+
+\usepackage{
+	array,
+	booktabs,
+}
+
+\begin{document}
+
+\begin{frame}{Übersicht}
+	\tableofcontents
+\end{frame}
+
+
+\section{Briefe}
+\frame{\centering\alert{Teil I}\\\huge Briefe}
+
+\subsection{Briefe mit KOMA-Script: \texttt{scrlettr2}}
+
+\begin{frame}{scrlettr2: Grundidee}
+    \begin{itemize}
+		\item wie immer in \LaTeX: Trennung von Form und Inhalt
+		\item alle formalen Elemente werden per Makro gesetzt
+		\item Briefinhalt selbst wird direkt eingegeben
+		\item Positionierung von Elementen mittels Befehlen anpassbar
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{scrlettr2: neue Syntax}
+\LaTeX\ kennt folgende „Dinge“:
+    \begin{itemize}
+		\item Befehle (|\texttt{}|)
+		\item Umgebungen (|\begin{abstract} \end{abstract}|)
+		\item Zähler (|\thepage|)
+		\item Längen (|\pageheight=3cm|)
+		\item Optionen (einfacher Wert oder Key-Value: |ngerman|, |top=2cm|)
+	\end{itemize}
+KOMA-Skript erweitert dies um:
+    \begin{itemize}
+		\item Elemente (|\setkomafont{title}{\fontspec{Arno Pro}}|) \pause
+		\item \alert{Variablen} (nur in der Briefklasse \pkg{scrlettr2})
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Variablen in scrlettr2}
+    \begin{itemize}
+		\item Setzen von Variablen mittels |\setkomavar{|\meta{Variable}|}{|\meta{Wert}|}|
+		\item \alert{nicht zu verwechseln} mit |\KOMAoptions{}|
+		\item mögliche Elemente: (kleine Auswahl)
+	\end{itemize}
+
+\begin{tabular}{>{\ttfamily}ll}\toprule
+fromname & Absendername\\
+fromaddress & Absenderadresse\\
+fromemail & E-Mailadresse des Absenders\\\pause
+myref & Feld für „Mein Zeichen“\\
+specialmail & Versandart (Luftpost …)\\
+backaddressseparator & Trennzeichen in der Rücksendeadresse\\\bottomrule
+\end{tabular}\\[2ex]
+⇒ siehe \href{http://mirrors.ctan.org/macros/latex/contrib/koma-script/doc/scrguide.pdf}{\texttt{texdoc scrguide}}
+\end{frame}
+
+\begin{frame}[fragile]{Setzen von Variablen}
+    \begin{itemize}
+		\item Variablen verfügen über \alert{Inhalt}:\\%
+\begin{lstlisting}
+\setkomavar{fromname}{Mustermann}
+\end{lstlisting}
+		\item aber auch über \alert{Bezeichnung}:\\%
+\begin{lstlisting}
+\setkomavar*{fromname}{Absender}  % statt: Von
+\end{lstlisting}
+		\item Kurzform:\\%
+\begin{lstlisting}
+\setkomavar{fromname}[Absender]{Musterfrau}
+\end{lstlisting}
+		\item Ausgabe:\\%
+Absender: Musterfrau
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Nutzen von Variablen}
+	\begin{itemize}
+		\item normalerweise werden Variablen nur gesetzt und von der Klasse genutzt
+		\item Dokumentklasse kümmert sich dann um alles
+		\item eigene Variablen können definiert werden
+		\item Verwendung mittels |\usekomavar|
+	\end{itemize}
+	\vfill
+|\newkomavar[|\meta{Bezeichnung}|]{|\meta{Name}|}|\\[1ex]
+|\usekomavar[|\meta{Formatierung}|]{fromname}| ⇒ |Musterfrau|\\
+|\usekomavar*[|\meta{Formatierung}|]{fromname}| ⇒ |Absender|\\[1ex]
+Dabei kann mit \meta{Formatierung} beliebiger Code ausgeführt werden\\
+(z.\,B. |\bfseries|, |\MakeUppercase|)
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel}
+\begin{olcol}
+\begin{lstlisting}
+\documentclass{scrlttr2}
+
+\setkomavar{fromname}{Moritz Brinkmann}
+\setkomavar{fromaddress}{Sandhäuser Straße 15/1\\69124 Heidelberg}
+
+\begin{document}
+
+  \begin{letter}{Prof. Dr. Dr. h.c. Bernhard Eitel\\Grabengasse 1\\69117 Heidelberg}
+    \opening{Sehr geehrter Herr Rektor,}
+      dies ist mein erster Brief.
+    \closing{Gruß}
+  \end{letter}
+  
+\end{document}
+\end{lstlisting}
+\end{olcol}
+\overleaf{tex1201}
+\end{frame}
+
+\begin{frame}[fragile]{Besonderheiten}
+    \begin{itemize}
+		\item \pkg{scrlettr2} unterscheidet sich in der Bedienung von anderen Klassen:
+		\item es werden erst Briefe gesetzt, wenn |\opening{}| angegeben wird! % was wiederum nur in |letter|-Umgebung vorkommen darf …
+		\item nur sehr wenige Elemente werden dort angegeben, wo sie verwendet werden
+		\item[⇒] sehr strikte Trennung von Form und Inhalt
+	\end{itemize}
+\end{frame}
+
+\subsection{Letter Class Options}
+\begin{frame}[fragile]{letter class option}
+    \begin{itemize}
+		\item Für standardisiertes Layout: immer gleiche Einstellungen
+		\item[\alert{⇒}] copy \& paste?
+		\item[\alert{⇒}] eigene |.cls| oder |.sty|-Datei?
+		\item[\alert{⇒}] eigene |.tex|?
+		\item[\alert{⇒}] Inkompatibilität, nicht gut portierbar\pause
+		\item[⇒] eigenes Format für \pkg{scrlettr2}: |.lco|-Dateien
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{letter class option}
+    \begin{itemize}
+		\item KOMA definiert bereits einige |.lco|-Dateien
+		\item einfache Definition eigener |.lco|
+		\item leichter Austausch\\%
+⇒ normierte Geschäftsbriefe möglich
+		\item nach Laden Anpassungen möglich\\%
+⇒ dem Zweck angepasstes, schönes Format
+		\item Verwendung: Als Klassenoption:\\%
+|\documentclass[|\meta{lco-Name}|]{scrlttr2}|\\%
+oder im Dokument\\%
+|\LoadLetterOption{|\meta{lco-Name}|}|
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{letter class option}
+\begin{table}
+\begin{tabular}{ll}\toprule
+DIN & gemäß DIN 676\\
+DINmtext & Alternative für mehr Text auf der ersten Seite\\
+KOMAold & Aussehen der alten \pkg{scrlettr}-Klasse\\
+NipponEL & japanische Briefe\\
+NipponEH & alternative japanische Briefe\\
+SN & schweizer Briefe nach SN 010 130 (Anschrift rechts)\\
+SNleft & dito, Anschrift links\\\bottomrule
+\end{tabular}
+\caption{einige Voreinstellungen für lco-Dateien}
+\end{table}
+Erstellen eigener |.lco|: siehe Dokumentation
+\end{frame}
+
+\subsection{Adressverwaltung}
+\begin{frame}[fragile]{Adressverwaltung}
+    \begin{itemize}
+		\item Eingabe von Adressen nervig, zeitaufwändig und fehleranfällig
+		\item Widerspricht dem Ansatz von \LaTeX
+		\item[⇒] |.adr|-Dateien verwalten Adressen
+		\item Einträge mit |\adrentry| bzw. |\addrentry|
+		\item Verwenden mit |\input{adressen.adr}|
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{adrentry vs. addrentry}
+    \begin{itemize}
+		\item |\adrentry| nimmt 8 Argumente
+		\item |\addrentry| nimmt 9 Argumente
+		\item letztes Argument definiert Befehl |\Kürzel|
+	\end{itemize}
+\begin{columns}
+\begin{column}{.1\textwidth}
+\begin{verbatim}
+\adrentry{Name}
+  {Vorname}
+  {Adresse}
+  {Telefon}
+  {frei1}
+  {frei2}
+  {Kommentar}
+  {Kürzel}
+\end{verbatim}
+\end{column}
+\begin{column}{.1\textwidth}
+\begin{verbatim}
+\addrentry{Name}
+  {Vorname}
+  {Adresse}
+  {Telefon}
+  {frei1}
+  {frei2}
+  {frei3}
+  {frei4}
+  {Kürzel}
+\end{verbatim}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{automatische Adressen}
+    \begin{itemize}
+		\item Verwendung im Brief:
+	\end{itemize}
+\begin{verbatim}
+\begin{letter}{\Kürzel}
+\opening{...}
+\end{letter}
+\end{verbatim}
+⇒ Setzt automatisch die Adresse, die zum Eintrag |Kürzel| gehört\\
+(z.\,B. |\ATRAUT|)
+\end{frame}
+
+\begin{frame}[fragile]{adrconv}
+    \begin{itemize}
+		\item damit die ganze Arbeit nicht nur im Brief steht:
+		\item Paket \pkg{adrconv} kann Adressverzeichnisse oder Telefonlisten erstellen
+		\item verwendet |\adrentry|, |\adrchar{E}| (wird von \pkg{scrlttr2} ignoriert)\\%
+oder eigene Datenbank
+		\item[⇒] |texdoc adrconv|
+	\end{itemize}
+\end{frame}
+
+\subsection{Serienbriefe}
+\begin{frame}[fragile]{Serienbriefe}
+    \begin{itemize}
+		\item „Missbrauch“ der Adressdatei:
+		\item umdefinieren von |\ad(d)rentry| als Briefanfang
+		\item[⇒] erstellt Brief an alle Einträge
+	\end{itemize}
+\pause
+\begin{lstlisting}
+\renewcommand{\adrentry}[8]{%
+  \begin{letter}{#2 #1\\#3}
+    \opening{Sehr geehrte Geschäftsparnter,}
+    die nächste Sitzung findet morgen statt!
+    \closing{Hochachtungsvoll}
+  \end{letter}
+}
+\input{geschäftspartner.adr}
+\end{lstlisting}
+\end{frame}
+
+\section{Lebensläufe}
+\frame{\centering\alert{Teil II}\\\huge Lebensläufe}
+
+
+\begin{frame}{Lebensläufe}
+    \begin{itemize}
+		\item professionelles Layout für Bewerbungen
+		\item häufig standardisiert
+		\item schlichtes Layout besser als überladenes
+		\item Farben dezent einsetzen!
+		\item Layout dem Zweck anpassen\\%
+(Wohnheim, Universität, Bestattungsinstitut, \dots)
+	\end{itemize}
+\end{frame}
+
+\subsection[europecv]{europecv/europasscv – europäische Standards}
+\begin{frame}[fragile]{\href{http://ctan.org/pkg/europecv}{europecv}}
+\begin{fancyquote}
+\noindent As of 11 March 2002 the European Commission has defined a common format for curricula vitæ. This
+class is an unofficial \LaTeX\ implementation of that format. Although primarily intended for users in the
+European Union, the class can be used for any kind of curriculum vitæ.
+\end{fancyquote}
+    \begin{itemize}
+		\item gute Dokumentation
+		\item schlichtes, „klassisches“ Layout
+		\item ausreichend formatierbar
+	\end{itemize}
+	\begin{itemize}
+		\item Neues „offizielles“ Layout: \pkg{europasscv}
+	\end{itemize}
+	\overleaf{tex1202}
+\end{frame}
+
+\subsection{moderncv}
+\begin{frame}[fragile]{\href{http://ctan.org/pkg/moderncv}{moderncv}}
+    \begin{itemize}
+		\item bietet ein modernes, lockeres Layout
+		\item \alert{keine} offizielle Dokumentation
+		\item[⇒] Beispieldokumente, README (|texdoc -s moderncv|)
+		\item[⇒] |moderncv.cls| ansehen
+	\end{itemize}
+	\overleaf{tex1203}
+\end{frame}
+
+\subsection{curve – Trennung in Rubrikdateien}
+\begin{frame}[fragile]{\href{http://ctan.org/pkg/curve}{curve}}
+    \begin{itemize}
+		\item Grundidee: Trennung von Hauptdokument (skeleton) und Inhalt
+		\item Inhalte (Rubriken) stehen in eigenen Datein
+		\item unterschiedliche |\flavor| möglich: \\%
+je nach Zweck angepasster Lebenslauf
+		\item Dateinamen: |name.flavorname.rubrikname|:\\%
+|sprachkenntnisse.mpi.tex|\\%
+|programmierkenntnisse.mpi.tex|\\%
+|grogrammierkenntnisse.dante.tex|
+		\item Einbinden mittels |\makerubric{dateiname}|
+	\end{itemize}
+	\overleaf{tex1204}
+\end{frame}
+
+\subsection{simplecv – kiss}
+\begin{frame}[fragile]{\href{http://ctan.org/pkg/simplecv}{simplecv}}
+    \begin{itemize}
+		\item einfacher und schichter, schnell zu erzeugender Lebenslauf
+		\item Setzen von Headern: |\leftheader{}\rightheader{}|
+		\item |\title|, |\maketitle| wie gewohnt
+		\item |\section| und |\subsection| zur Strukturierung
+		\item Aufzählungen in der |topic|-Umgebung
+		\item Bibliographie möglich!
+		\item Dokumentation am einfachsten über Suchfunktion von \pkg{texdoc}\\ (u.\,U. selbst kompilieren)
+	\end{itemize} 
+	\overleaf{tex1205}
+\end{frame}
+
+\subsection{cv4tw}
+\begin{frame}[fragile]{\href{http://ctan.org/pkg/cv4tw}{cv4tw}}
+    \begin{itemize}
+		\item Lebenslauf-Klasse für die Web-2.0-Generation
+		\item Vielzahl von Social-Media-Icons
+		\item Skill-Level in $n$ von 5 Sternen
+		\item keine richtige Dokumentation, aber nette Beispiele (|texdoc -s cv4tw|)
+	\end{itemize} 
+	\overleaf{tex1206}
+\end{frame}
+
+\nocite{dante:koma, moderncv, europasscv}
+\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\printbibliography
+\end{frame}
+
+\begin{frame}{\dantelogo}
+\href{http://www.dante.de/index/Intern/Mitglied.html}{\dantelogo: Deutschsprachige Anwenderverenigung \TeX\ e.\,V.}\\
+\begin{itemize}
+	\item Fördert die Weiterentwicklung von \hologo{LaTeXTeX}
+	\item betreibt den deutschen CTAN-Knoten
+	\item zwei jährliche Konferenzen in wechselnden Städten
+	\item Mitgliederzeitschrift: \emph{Die \TeX nische Komödie}
+	\item Mitgliedsbeitrag für Studis: 20\,€\,a$^{-1}$
+\end{itemize}
+\end{frame}
+
+\end{document}
