@@ -1,0 +1,64 @@
+\documentclass[
+%% Satzspiegel mit KOMA-Skript (typearea):
+	twoside,
+%	DIV=10,
+	BCOR=12mm,
+]{scrreprt}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{blindtext}
+
+
+%% Satzspiegel mit geometry:
+%\usepackage[left=2cm, right=4cm]{geometry}
+
+
+%% Standard Kopf- und Fußzeilen:
+%\pagestyle{headings}
+
+
+%% Kopf- und Fußzeilen mit fancyhdr:
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+%% für oneside:
+% \lhead{}
+% \lfoot{}
+% \chead{}
+% \cfoot{}
+% \rhead{}
+% \rfoot{}
+%% für twoside:
+% \fancyhead[LO]{}
+% \fancyhead[RO,LE]{}
+% \fancyhead[CE]{}
+% \fancyfoot[LO]{}
+% \fancyfoot[RO,LE]{}
+% \fancyfoot[CE]{}
+
+
+%% Kopf- und Fußzeilen mit KOMA-Skript (sclayer-scrpage):
+\usepackage{scrlayer-scrpage}
+ \ihead[]{Test}
+% \mhead[]{}
+% \ohead[]{}
+ \pagestyle{scrheadings}
+
+\begin{document}
+
+\chapter{Hier kommt ein Blindtext}
+\blindtext[2]
+
+\blindtext[3]
+
+\chapter{Und noch ein bisschen Blindtext}
+\blindtext[2]
+
+\blindtext[5]
+
+\blindtext[2]
+
+%\thispagestyle{empty}
+\blindtext[4]
+\end{document}

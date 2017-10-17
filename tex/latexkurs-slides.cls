@@ -5,9 +5,10 @@
 
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{latexkurs-slides}[2017/07/20 v1.0 beamer slides for LaTeX Course]
+\ProvidesClass{latexkurs-slides}[2017/10/17 v1.1 beamer slides for LaTeX Course]
 
 \LoadClassWithOptions{beamer}
+\PassOptionsToClass{beamer}{aspectratio=169}
 
 %% Language
 \RequirePackage{polyglossia}

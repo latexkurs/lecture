@@ -1,0 +1,41 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[
+%	DIN,
+	NipponEL,
+%	SN,
+	fromphone=true,
+	fromemail=true,
+	fromalign=center,
+	fromrule=false,
+]{scrlttr2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{blindtext}
+
+\setkomavar{fromname}{Emil Erpel}
+\setkomavar{fromaddress}{Duckstraße 15\\98765 Entenhausen}
+\setkomavar{fromphone}{0123 456\,789\, 10}
+\setkomavar{fromemail}{emil@erpel.horse}
+
+\setkomavar{subject}{Dringende Mitteilung}
+
+%\setkomavar{yourref}{2016-09-AFK-13}
+%\setkomavar{myref}{AB123}
+%\setkomavar{yourmail}{15.01.2017}
+%\setkomavar{date}{27.01.2017}
+
+\begin{document}
+
+	\begin{letter}{Elmar Empfänger\\Anschriftstraße 42\\12345 Neustadt}
+		\opening{Sehr geehrter Herr Empfänger,}
+		
+		\Blindtext
+		
+		\closing{Mit freundlichem Gruß}
+	\end{letter}
+
+\end{document}

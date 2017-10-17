@@ -1,0 +1,87 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[totpages,german,helvetica,openbib]{europecv}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage[a4paper,top=1.27cm,left=1cm,right=1cm,bottom=2cm]{geometry}
+\usepackage{bibentry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+%\ecvLeftColumnWidth{4cm}
+\renewcommand{\ttdefault}{phv} % Uses Helvetica instead of fixed width font
+
+\ecvname{Nachname(n), Vorname(n)}
+%\ecvfootername{Vorname(n) Nachname(n)}
+\ecvaddress{Straße, Hausnummer, Postleitzahl, Ort, Staat }
+\ecvtelephone[(Falls nicht relevant, bitte löschen (siehe Anleitung)]{(Falls nicht relevant, bitte löschen (siehe Anleitung)}
+\ecvfax{(Falls nicht relevant, bitte löschen (siehe Anleitung)}
+\ecvemail{\url{email@address.com} (Falls nicht relevant, bitte löschen (siehe Anleitung)}
+\ecvnationality{(Falls nicht relevant, bitte löschen (siehe Anleitung)}
+\ecvdateofbirth{(Falls nicht relevant, bitte löschen (siehe Anleitung)}
+\ecvgender{(Falls nicht relevant, bitte löschen (siehe Anleitung)}
+%\ecvpicture[width=2cm]{mypicture}
+\ecvfootnote{Weitere Informationen finden Sie unter \url{http://europass.cedefop.eu.int}\\
+\textcopyright~ Europäische Gemeinschsften, 2003.}
+
+\begin{document}
+\selectlanguage{german}
+
+
+\begin{europecv}
+\ecvpersonalinfo[20pt]
+
+\ecvitem{\large\textbf{Gewünschte Beschäftigung / 
+Gewünschtes Berufsfeld}}{\large\textbf{(Falls nicht relevant, bitte löschen (siehe Anleitung)}}
+
+\ecvsection{Berufserfahrung}
+\ecvitem{Datum}{Mit der am kürzesten zurückliegenden Berufserfahrung beginnen und für jeden relevanten Arbeitsplatz separate Eintragungen vornehmen. Falls nicht relevant, Zeile bitte löschen (siehe Anleitung).}
+\ecvitem{Beruf oder Funktion}{\ldots}
+\ecvitem{Wichtigste Tätigkeiten und Zuständigkeiten}{\ldots}
+\ecvitem{Name und Adresse des Arbeitgebers}{\ldots}
+\ecvitem{Tätigkeitsbereich oder Branche}{\ldots}
+
+\ecvsection{Schul- und berufsbildung}
+
+\ecvitem{Datum}{Mit der am kürzesten zurückliegenden Maß nahme beginnen und für jeden abgeschlossenen Bildungs- und Ausbildungsgang separate Eintragungen vornehmen. Falls nicht relevant, Zeile bitte löschen (siehe Anleitung).}
+\ecvitem{Bezeichnung der erworbenen Qualifikation}{\ldots}
+\ecvitem{Hauptfächer/berufliche Fähigkeiten}{\ldots}
+\ecvitem{Name und Art der Bildungs- oder Ausbildungseinrichtung}{\ldots}
+\ecvitem{Stufe der nationalen oder internationalen Klassifikation}{\ldots}
+
+
+\ecvsection{Persönliche Fähigkeiten und Kompetenzen}
+
+\ecvmothertongue[5pt]{Muttersprache angeben}
+\ecvitem{\large Sonstige Sprache(n)}{}
+\ecvlanguageheader{(*)}
+\ecvlanguage{Sprache}{}{}{}{}{}
+\ecvlanguage{Sprache}{}{}{}{}{}
+\ecvlanguagefooter[10pt]{(*)}
+
+\ecvitem[10pt]{\large Soziale Fähigkeiten und Kompetenzen}{\ldots}
+\ecvitem[10pt]{\large Organisatorische Fähigkeiten und Kompetenzen}{\ldots}
+\ecvitem[10pt]{\large Technische Fähigkeiten und Kompetenzen}{\ldots}
+\ecvitem[10pt]{\large IKT-Kenntnisse und Kompetenzen}{\ldots}
+\ecvitem[10pt]{\large Künstlerische Fähigkeiten und Kompetenzen}{\ldots}
+\ecvitem[10pt]{\large Sonstige Fähigkeiten und Kompetenzen}{\ldots}
+\ecvitem{\large Führerschein(e)}{\ldots}
+
+\ecvsection{Zusätzliche Angaben}
+\ecvitem[10pt]{}{Hier weitere Angaben machen, die relevant sein können, z. B. zu Kontaktpersonen, Referenzen usw. Falls nicht relevant, Rubrik bitte löschen (siehe Anleitung)}
+\bibliographystyle{plain}
+\nobibliography{publications}
+\ecvitem{}{\textbf{Publikationen}}
+\ecvitem{}{\bibentry{pub1}}
+\ecvitem[10pt]{}{\bibentry{pub2}}
+\ecvitem{}{\textbf{rivate Interessen und Hobbies}}
+\ecvitem{}{\ldots}
+
+\ecvsection{Anlagen}
+\ecvitem{}{Gegebenenfalls Anlagen auflisten. Falls nicht relevant, Rubrik bitte löschen (siehe Anleitung)}
+\end{europecv}
+
+
+\end{document}  

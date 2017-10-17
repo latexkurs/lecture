@@ -1,3 +1,6 @@
+## generated pdf
+*.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -121,6 +124,9 @@ _minted*
 *.sout
 *.sympy
 sympy-plots-for-*.tex/
+
+# pgf-plot temp files
+*.pgf-plot.*
 
 # pdfcomment
 *.upa

@@ -1,5 +1,5 @@
 # LaTeX lecture
-This repository contains document s regarding a lecture on the document preparation system LaTeX regularly held at Heidelberg University.
+This repository contains documents regarding a lecture on the document preparation system LaTeX regularly held at Heidelberg University.
 
 ## structure
 The Folder ´lectures´ contains LaTeX beamer slides used as presentation during the lecture. In ´exercesies´ you find the weekly exercise sheets. ´examples´ contains  examples sometimes referenced in the lecture notes. In the ´tex´ folder are TeX/LaTeX headers, packages and class files, needed to typeset all documents.

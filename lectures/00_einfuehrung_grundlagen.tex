@@ -12,6 +12,7 @@
 	web=true,
 	max,
 	mo,
+	aspectratio=169,
 ]{../tex/latexkurs-slides}
 
 
@@ -281,25 +282,34 @@ Hallo Welt!
 \end{frame}
 
 \begin{frame}{Dokumentenklassen}
+\begin{columns}
+\column{.45\textwidth}
 	\begin{tabular}{rl}
 		&\kern-1.5cm \bf Standardklassen\\
 		article & (Kurze) Artikel\\
 		report & Reporte, Tagungsberichte\\
 		book & Bücher\\
 		letter & Briefe\\
-		minimal & Für Minimalbeispiele\\ \\
-		&\kern-1.5cm \bf KOMA-Script\\
-		scrartcl & Erweiterung von article\\
-		scrreprt & Erweiterung von report\\
-		scrbook & Erweiterung von book\\
-		scrlttr2 & Sehr mächtige Briefklasse\\ \\
+		minimal & Für Minimalbeispiele\\ \\ \\
 		&\kern-1.5cm \bf Spezialklassen\\
 		beamer & Für Präsentationen\\
 		tikzposter & Wissenschaftliche Poster
 	\end{tabular}
+\column{.45\textwidth}
+	\vspace*{-2.9cm}
+	
+	\begin{tabular}{rl}
+		&\kern-1.5cm \bf KOMA-Script\\
+		scrartcl & Erweiterung von article\\
+		scrreprt & Erweiterung von report\\
+		scrbook & Erweiterung von book\\
+		scrlttr2 & Sehr mächtige Briefklasse
+	\end{tabular}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Gliederungsbefehle}
+\begin{columns}\column{.45\textwidth}
 \begin{itemize}
 \item Gliederungen strukturieren Dokumente,
 \item ermöglichen automatische Nummerierung, Eintragung in Verzeichnisse, Kolumnentitel etc.
@@ -307,7 +317,9 @@ Hallo Welt!
 \item Grundstruktur im Kernel festgelegt
 \item[⇒] bestimmte Elemente immer verfügbar
 \end{itemize}
-\vfill
+
+\column{.45\textwidth}
+
 \begin{lstlisting}
 \part{Band I}
 \chapter{Kapitel}
@@ -317,16 +329,21 @@ Hallo Welt!
 \paragraph{Paragraph}
 \subparagraph{Unterparagraph}
 \end{lstlisting}
+\end{columns}
+
 \end{frame}
 
 \begin{frame}[fragile]{Pakete}
+\begin{columns}\column{.45\textwidth}
 \begin{itemize}
 \item Pakete bieten zusätzliche Funktionalität
 \item Arbeitserleicherungen
-\item Fehlerkorrekturen
+\item Fehlerkorrekturen\\\quad
 \item Einbinden in der Präambel mittels
-%\pdfmarginpar[Help]{Die Praeambel ist alles was zwischen documentclass{} und begin{document} steht}
-|\usepackage[|\meta{option(en)}|]{|\meta{paketname}|}|:
+\pdfmarginpar{Die Praeambel ist alles was zwischen documentclass{} und begin{document} steht}
+|\usepackage[|\meta{option(en)}|]{|\meta{paketname}|}|
+\end{itemize}
+\column{.45\textwidth}
 \begin{lstlisting}
 \documentclass{article}
 \usepackage{
@@ -335,7 +352,8 @@ Hallo Welt!
 }
 \usepackage[left=2cm]{geometry}
 \end{lstlisting}
-\end{itemize}
+\end{columns}
+
 \end{frame}
 
 \iffalse

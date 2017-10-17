@@ -1,0 +1,68 @@
+\documentclass[25pt,a1paper]{tikzposter}
+
+%% Tikzposter is highly customizable: please see
+%% https://bitbucket.org/surmann/tikzposter/downloads/styleguide.pdf
+
+%% Available themes: see also
+%% https://bitbucket.org/surmann/tikzposter/downloads/themes.pdf
+% \usetheme{Default}
+% \usetheme{Rays}
+% \usetheme{Basic}
+% \usetheme{Simple}
+%\usetheme{Envelope}
+ \usetheme{Wave}
+% \usetheme{Board}
+% \usetheme{Autumn}
+% \usetheme{Desert}
+
+\usepackage{polyglossia,xltxtra}
+
+\setmainlanguage{german}
+
+\author{Hans Dampf}
+\title{Toller Titel}
+\institute{Uni Heidelberg}
+%\titlegraphic{\includegraphics[width=7cm]{}}
+
+\begin{document}
+\maketitle
+
+\block{Block 1}{
+\begin{itemize}
+\item Erster Stichpunkt
+\item Zweiter Stichpunkt
+\item Dritter Stichpunkt
+\end{itemize}
+}
+\note[rotate=8, connection, width = 7cm,
+% roundedcorners=15, targetoffsetx=2cm
+]{Dies ist eine Notiz}
+
+\begin{columns}
+
+\column{0.7}
+\block{Block 2}{
+\begin{itemize}
+\item Erster Stichpunkt
+\item Zweiter Stichpunkt
+\item Dritter Stichpunkt
+\end{itemize}
+}
+
+\column{0.3}
+\block{Block 3}{
+\begin{itemize}
+\item Erster Stichpunkt
+\item Zweiter Stichpunkt
+\item Dritter Stichpunkt
+\end{itemize}
+}
+
+\end{columns}
+
+\block{Block mit Bild}{%
+\begin{tikzfigure}[Bildunterschrift]
+\fbox{\huge A}
+\end{tikzfigure}}
+
+\end{document}

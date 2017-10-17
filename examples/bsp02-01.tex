@@ -1,0 +1,133 @@
+\documentclass%[fleqn]% ← linksbündige Formeln
+{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{
+	amsmath,
+	amssymb,
+	icomma,
+	mathtools,
+}
+
+% Definition eigener Operatoren
+\usepackage{amsopn}
+\DeclareMathOperator{\myop}{megasin}
+
+
+\begin{document}
+
+\section{Eigene Befehle Definieren}
+
+\newcommand{\meinersterbefehl}{Jedes Mal wenn der Befehl ausgeführt wird, erscheint im Dokument dieser Text.}
+
+\meinersterbefehl
+\meinersterbefehl
+
+\renewcommand{\meinersterbefehl}{Ich kann es mir auch noch anders überlegen und stattdessen diesen Text ausgeben.}
+
+\meinersterbefehl
+\meinersterbefehl
+
+\subsection{Befehle mit Argumenten}
+
+\newcommand{\molekuel}[3][X]{Das Molekül #1$_{#2}$#3}
+
+\molekuel{2}{P}
+\molekuel[Co]{7}{O}
+
+
+
+
+
+\section{Mathe}
+\subsection{Mathe-Umgebungen}
+
+% inline-math:
+$ f(x) = n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots = \sum_{i=0}^\infty n_i \cdot x^i $
+
+% display-math
+\[
+	f(x) = n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots = \sum_{i=0}^\infty n_i \cdot x^i
+\]
+
+\begin{displaymath}
+	f(x) = n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots = \sum_{i=0}^\infty n_i \cdot x^i
+\end{displaymath}
+
+\begin{equation}
+	f(x) = n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots = \sum_{i=0}^\infty n_i \cdot x^i
+\end{equation}
+
+% an & ausgerichtete Formeln (mit Nummerierung):
+\begin{align}
+	f(x) &= n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots \\
+	     &= \sum_{i=0}^\infty n_i \cdot x^i
+\end{align}
+
+% an & ausgerichtete Formeln (ohne Nummerierung):
+\begin{align*}
+	f(x) &= n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots \\
+	     &= \sum_{i=0}^\infty n_i \cdot x^i
+\end{align*}
+
+\[ x_{n+1} = x_n - \frac{f(x_n)}{f’(x_n)} \]
+\[ x_{n+1} = x_n - \frac{f(x_n)}{f^\prime (x_n)} \]
+
+
+
+
+\subsection{Griechische Buchstaben}
+
+\begin{align*}
+\alpha        \theta        o           \tau         \\
+\beta         \vartheta    \pi          \upsilon     \\
+\gamma        \gamma       \varpi       \phi         \\
+\delta        \kappa       \rho         \varphi      \\
+\epsilon      \lambda      \varrho      \chi         \\
+\varepsilon   \mu          \sigma       \psi         \\
+\zeta         \nu          \varsigma    \omega       \\
+\eta          \xi                                    \\
+                                                     \\
+\Gamma        \Lambda      \Sigma       \Psi         \\
+\Delta        \Xi          \Upsilon     \Omega       \\
+\Theta        \Pi          \Phi
+\end{align*}
+
+% Zum finden aller möglicher Symbole:
+% http://detexify.kirelabs.org/classify.html
+
+
+\subsection{Operatoren}
+
+\begin{equation}
+	\sin(x)
+	\cos(y)
+	\lim_{\phi\rightarrow 0} \tan(\phi)
+\end{equation}
+
+% Eigene Operatoren können in der Präambel definiert werden
+\begin{equation}
+	\myop(x)
+\end{equation}
+
+
+
+\subsection{Matrizen}
+
+\begin{align}
+	A &= 
+ 		\begin{pmatrix}
+ 			a & b \\
+	 		c & d \\
+ 		\end{pmatrix} \\
+	\det(A) &= 
+		\begin{vmatrix}
+ 			a & b \\
+	 		c & d \\
+ 		\end{vmatrix}
+\end{align}
+
+\end{document}

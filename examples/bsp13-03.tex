@@ -1,0 +1,39 @@
+% !TEX program = lualatex
+\documentclass[fontsize=12pt]{scrartcl}
+
+\usepackage{polyglossia} 
+\setmainlanguage{german}
+\usepackage{amsmath}        % vor unicode-math laden
+\usepackage{unicode-math}   % lädt auch fontspec
+\usepackage{luacode}  
+
+
+% Lua erzeugt Pseudozufallszahlen
+\begin{luacode*}
+math.randomseed(os.time())
+a = math.random(5,20) 
+b = math.random(2,10)
+\end{luacode*}
+
+% Ausgabe vereinfachen
+\newcommand{\lprint}[1]{\directlua{tex.sprint(#1)}}
+
+\begin{document}
+	\begin{align*}
+		&\text{Zufallszahlen:} &
+			a &=\lprint{a}\\
+			&& b &=\lprint{b}\\[1em]
+		&\text{Summe:} &
+			\lprint{a}+\lprint{b} &= \lprint{a+b}\\[1em]
+		&\text{Differenz:} &
+			\lprint{a}-\lprint{b} &=\lprint{a-b}\\[1em]
+		&\text{Produkt:} &
+			\lprint{a}\cdot\lprint{b} &= \lprint{a*b}\\[1em]
+		&\text{Quotient:} &
+			\frac{\lprint{a}}{\lprint{b}} 
+			&= \lprint{math.floor(a/b)}\mod \luaexec{tex.print(a\%b)}\\
+			&&&= \lprint{a/b}
+	\end{align*}
+
+\end{document}
+              

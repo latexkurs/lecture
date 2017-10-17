@@ -1,0 +1,12 @@
+\documentclass{minimal}
+
+\usepackage{xparse}
+
+\NewDocumentCommand{\mymakro}{ m l m  s r^° D:+{bla} }{(#1,#2,#3,#5,#6) \IfBooleanTF{#4}{ :-)}{:-(}}
+
+\begin{document}
+
+	\mymakro{foo}bar{baz}*^bumm°:baeh+
+	
+
+\end{document}

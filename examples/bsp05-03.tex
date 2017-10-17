@@ -1,0 +1,29 @@
+\documentclass{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{subcaption,graphicx}
+
+\pagestyle{empty}
+
+
+\begin{document}
+
+\begin{figure}
+	\centering
+  \begin{subfigure}{.45\textwidth}
+ 	 \centering
+    \includegraphics[width=.5\textwidth]{raptor}
+    \caption{Erstes Teilbild}
+    \label{fig:raptor1}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
+	 \centering
+    \includegraphics[width=.5\textwidth]{raptor}
+    \caption{Zweites Teilbild}
+  \end{subfigure}
+  \caption{Zwei Bilder in einer Abbildung}
+\end{figure}
+
+\end{document}

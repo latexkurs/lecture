@@ -1,0 +1,122 @@
+\documentclass[]{beamer}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+%% allgemeine Themes
+%\usetheme{AnnAbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+%% Color Themes
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+\usecolortheme{whale}
+%\usecolortheme{wolverine}
+%\usecolortheme[named=green]{structure}
+
+%% Outer Themes
+%\useoutertheme{infolines}
+%\useoutertheme{miniframes}
+%\useoutertheme{smoothbars}
+%\useoutertheme{sidebar}
+%\useoutertheme{split}
+%\useoutertheme{shadow}
+%\useoutertheme{tree}
+%\useoutertheme{smoothtree}
+
+%% Inner Themes
+%\useinnertheme{circles}
+%\useinnertheme{rectangles}
+%\useinnertheme{rounded}
+%\useinnertheme{inmargin}
+
+%% Font Themes
+%\usefonttheme{serif}
+%\usefonttheme{structurebold}
+%\usefonttheme{structureitalicserif}
+\usefonttheme{structuresmallcapsserif}
+
+\begin{document}
+
+	\title{Doller Vortrag}
+	\author{Hans Wurst}
+	\frame{\titlepage}				% wie \maketitle
+	\frame{\tableofcontents}		% Folie mit Inhaltsverzeichnis
+
+	\begin{frame}{Erste Folie}
+		Inhalt der ersten Folie
+	\end{frame}
+	
+	\section{Overlays}
+	\begin{frame}{Liste mit Overlays}
+		% Overlay für die gesamte Liste:
+		\begin{itemize}[<+->]
+			\item erster Listenpunkt
+			\item zweiter Listenpunkt
+			\item dritter Listenpunkt
+		\end{itemize}
+		% Overlay für jeden einzelnen Punkt:
+		\begin{itemize}
+			\item<+> erster Listenpunkt
+			\item<+-> zweiter Listenpunkt % wird gar nicht angezeigt
+			\item<+> dritter Listenpunkt
+		\end{itemize}
+	\end{frame}
+	
+	\subsection{bla}
+
+	\begin{frame}{only, onslide, uncover}
+		\only<1>{dieser Satz steht nur auf der ersten Folie\\}%
+		\onslide<2>{dieser Satz steht nur auf der zweiten Folie\\}
+		\uncover<3>{dieser Satz steht nur auf der dritten Folie\\}
+	\end{frame}
+	
+	\section{Blocks}
+	\begin{frame}[t]{eine Folie mit Blocks}
+		\begin{block}{erster Block}
+			Inhalt
+		\end{block}
+		\begin{block}{zweiter Block}<2>
+			Inhalt
+		\end{block}
+		\begin{block}{dritter Block}
+			Inhalt
+		\end{block}
+	\end{frame}
+
+\end{document}

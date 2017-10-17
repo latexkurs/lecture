@@ -1,0 +1,18 @@
+\documentclass{standalone}
+\usepackage{pgfplots,xltxtra}
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}
+    \addplot+[
+      scatter,
+      samples=60,
+      visualization depends on =
+        {5*cos(deg(x)) \as \perpointmarksize},
+      scatter/@pre marker code/.append style =
+        {/tikz/mark size=\perpointmarksize},
+    ]
+    {sin(deg(x))};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

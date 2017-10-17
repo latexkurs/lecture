@@ -1,0 +1,39 @@
+% !TEX program = xelatex
+\documentclass{scrartcl}
+
+\usepackage{fontspec}
+\newfontfamily\arabicfont[Script=Arabic]{FreeFarsi}
+\usepackage{polyglossia}
+\setmainlanguage{german} 			% english, french
+\setotherlanguages{farsi,arabic}
+\usepackage{microtype}
+
+
+\usepackage{
+	lipsum,
+	kantlipsum,
+}
+\usepackage[pangram]{blindtext}		% bible, pangram
+\usepackage{
+	ptext,
+	quran,
+}
+
+\begin{document}
+	
+	\section{Blindtext}
+		\Blindtext
+	
+	\section{Lorem Ipsum}
+		\lipsum[1-150]
+	
+	\section{Kant}
+		\kant[1-164]
+	
+	\section{Persischer Blindtext}
+		\textfarsi{\ptext}
+	
+	\section{Koran}
+		\textarabic{\quransurah[1-114]}
+
+\end{document}
