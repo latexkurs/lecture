@@ -8,7 +8,7 @@
 \ProvidesClass{latexkurs-slides}[2017/10/17 v1.1 beamer slides for LaTeX Course]
 
 \LoadClassWithOptions{beamer}
-\PassOptionsToClass{beamer}{aspectratio=169}
+
 
 %% Language
 \RequirePackage{polyglossia}
@@ -113,8 +113,8 @@
 		{
 			\scalebox{.55}{\parbox{4.1cm}{
 				In Overleaf ausprobieren:\\[.8ex]
-				\qrcode[height=4cm]{http://polr.me/#1}\\[1ex]
-				\url{http://polr.me/#1}
+				\qrcode[height=4cm]{http://qn3.de/#1}\\[1ex]
+				\url{http://qn3.de/#1}
 			}}
 		};
 	\end{tikzpicture}
