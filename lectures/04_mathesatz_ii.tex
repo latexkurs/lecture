@@ -11,13 +11,15 @@
 	titel={Mathematiksatz II},
 	web=true,
 %	noshortverb=true,
-	max,
+	mo,
+	aspectratio=1610,
 ]{../tex/latexkurs-slides}
 
 \usepackage{
 	mathtools,
 	12many,
 	amsthm,
+	braket,
 	relsize,
 %	breqn,
 	cases,
@@ -41,6 +43,7 @@
 
 
 \section{Mathe}
+\teil{Mathe}
 \subsection{Relationen}
 \begin{frame}[fragile]{Relationen}
 \begin{LTXexample}
@@ -57,10 +60,10 @@ $\not = \neq \not\equiv
 
 \begin{LTXexample}
 $\stackrel{oben}{unten}$
-$\stackrel{\text e}{\text a} = $ ä
+$\stackrel{\text e}{\text a}=$ä
 $\stackrel . = \neq \doteq$
+$\stackrel != \stackrel ?=$
 \end{LTXexample}
-\hfill$\stackrel !=$
 \end{frame}
 
 
@@ -114,15 +117,18 @@ Verschiedene Matheschriften zusammen können Probleme bereiten.
 \subsection{Komplexe Matrizen}
 \begin{frame}[fragile]{Satz komplexer Matrizen}
 \begin{LTXexample}[width=.4\textwidth]
-\[\begin{pmatrix}
-a & b     & \dots & z\\
-b & \dots & \dots & z\\
-\vdots & \ddots& \reflectbox{$\ddots$} & \vdots\\
-\hdotsfor{4}\\
-z & b & \dots &
-\begin{pmatrix}a & b \\ c & d
-\end{pmatrix}
-\end{pmatrix}\]
+\[
+  \begin{pmatrix}
+    a & b     & \dots & z\\
+    b & \dots & \dots & z\\
+    \vdots & \ddots& \reflectbox{$\ddots$} & \vdots\\
+    \hdotsfor{4}\\
+    z & b & \dots &
+    \begin{pmatrix}
+      a & b \\ c & d
+    \end{pmatrix}
+  \end{pmatrix}
+\]
 
 \end{LTXexample}
 \end{frame}
@@ -141,7 +147,7 @@ Mit dem \AmS-Paket \pkg{amsthm} lassen sich typische Mathe-Umgebungen wie „Sat
 \end{lstlisting}
 \newtheorem{thm}{Satz}[section]
 \begin{LTXexample}
-\begin{thm}[Brinkmann]
+\begin{thm}[Brinkmann et al.]
   Sei $a=b$ und $b=c$. Dann ist $a=c$.
 \end{thm}
 \begin{proof}
@@ -153,6 +159,7 @@ Mit dem \AmS-Paket \pkg{amsthm} lassen sich typische Mathe-Umgebungen wie „Sat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Physik}
+\teil{Physik}
 \subsection{SI-Einheiten}
 \begin{frame}[fragile]{Setzen von Einheiten}
 Paket \pkg{siunitx} (Joseph Wright)
@@ -170,16 +177,15 @@ Paket \pkg{siunitx} (Joseph Wright)
 \begin{frame}[fragile]{Setzen von Einheiten}
 Ändern der Voreinstellungen mittels |\sisetup|
 \begin{LTXexample}
-\sisetup{negative-color}
+\sisetup{negative-color=red}
 $\num{-3}, \num{3},
 \num[negative-color=blue]{-5x5},
 \num{2}\cdot\num 2$\\
 
 \def\a{5.1}
 $\SI{\a x 5.3}{\milli\meter}$\\
-$\num{\a x 5.3}\si{\square\milli
-\meter}$\\
-$\num{\a x 5.3}\si{\milli\meter
+$\num{\a x 5.3}\,\si{\square\milli\meter}$\\
+$\num{\a x 5.3}\,\si{\milli\meter
 \squared}$
 \end{LTXexample}
 \end{frame}
@@ -190,7 +196,7 @@ $\num{\a x 5.3}\si{\milli\meter
 \ang{12.3}
 \ang{4,5}
 \\ Heidelberg:
-\ang{49;25;}N, \ang{8;43;}O, \ang{49;25;}N, \ang{8;43;}O
+\ang{49;25;}N, \ang{8;43;}O,
 \end{LTXexample}
 \end{frame}
 
@@ -199,8 +205,8 @@ $\num{\a x 5.3}\si{\milli\meter
 \SI{5.54}{ms^{-2}}\\
 \SI{5.54}{m s^{-2}}\\
 \SI{5.54}{m.s^{-2}}\\
-\SI{5.54}{\meter\per\second\squared}\\
-\SI{5.54}{\meter\per\square\second}\\
+\SI{5.54}{\meter\per \second\squared}\\
+\SI{5.54}{\meter\per \square\second}\\
 \end{LTXexample}
 \end{frame}
 
@@ -313,8 +319,9 @@ Paket \pkg{braket}
 \begin{frame}[fragile]{Akzente}
 Für Operatoren benötigt man das „Dach“:
 \begin{LTXexample}[width=.4\textwidth]
-$\hat A \hat{\mathrm{A}} \bar h \check a \dot a\\
-\ddot a \dddot a \ddddot a\\
+$\hat A \hat{\mathrm{A}} \check a \\
+\bar h \hbar \\ 
+\dot a \ddot a \dddot a \ddddot a\\
 \underbrace{E = mc^2}_\text{nach Einstein}\overbrace{\int_\infty}^{\text{Hinweis}}$
 \end{LTXexample}
 \end{frame}
@@ -413,6 +420,7 @@ p "04plotdata.gpt"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Finetuning}
+\teil{finetuning}
 \subsection{Schriften}
 \begin{frame}[fragile]{Matheschriften}
 \begin{itemize}
@@ -423,6 +431,7 @@ p "04plotdata.gpt"
 \item \pkg{cmbright}
 \item \pkg{mathpazo}
 \item \pkg{eulervm}
+\item \pkg{libertinus}%\href{https://github.com/khaledhosny/libertinus/}{Libertinus Math}
 \end{itemize}
 Eine Reihe nichtfreier Schriften ist in speziellen Paketen verfügbar.
 \end{frame}
@@ -505,10 +514,11 @@ a &= b\\
 
 \begin{frame}[fragile]{mathtools}{fine-tuning: smashing}
 \begin{LTXexample}[pos=t]
-\[X = \sum_{1\le i\le j\le n} X_{ij}
-X = \sum_{\mathclap{1\le i\le j\le n}} X_{ij}
-X = \sum_{\mathclap{1\le i\le j\le n}}^{a+b+c+d} X_{ij}
-X = \smashoperator[r]{\sum_{1\le i\le j\le n}^{a+b+c+d}} X_{ij}
+\[
+  X = \sum_{1\le i\le j\le n} X_{ij} \qquad
+  X = \sum_{\mathclap{1\le i\le j\le n}} X_{ij} \qquad
+  X = \sum_{\mathclap{1\le i\le j\le n}}^{a+b+c+d} X_{ij} \qquad
+  X = \smashoperator[r]{\sum_{1\le i\le j\le n}^{a+b+c+d}} X_{ij}
 \]
 \end{LTXexample}
 \end{frame}
@@ -570,9 +580,9 @@ X = \smashoperator[r]{\sum_{1\le i\le j\le n}^{a+b+c+d}} X_{ij}
 \end{itemize} 
 \begin{LTXexample}[pos=b]
 \begin{numcases}{E = mc^2}
-m \neq 0 & Masselose Teilchen\\
-m < 0 & Antiteilchen (?)\\
-m > 0 & normale Teilchen
+  m \neq 0 & Masselose Teilchen\\
+  m < 0 & Antiteilchen (?)\\
+  m > 0 & normale Teilchen
 \end{numcases}
 \end{LTXexample}
 \end{frame}

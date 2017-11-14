@@ -6,12 +6,13 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true, 
+	vorläufig=false, 
 	blattnr=2,
 	ausgabe=2017-11-03,
 	abgabe=2017-11-10,
-	lösung=false,
+	lösung=true,
 	shortverb,
+	web=false,
 ]{../tex/latexkurs-exercise}
 
 \usepackage{mathtools}
@@ -59,9 +60,11 @@
   \end{cases}                                                                                                                                                                                                                                                                                                                  
 \]                                                                                                                                                                                                                                                                                                                             
 \end{lstlisting} 
-   Das \emph{muss} zwar im Mathesatz passieren, kann aber auch für Textinhalte (im Mathemodus mit \texttt{\textbackslash text\{\meta{normaler Text}\}} zu setzen) nützlich sein. Alternativ kann man auch eine |matrix|-Umgebung verwenden und die nötige Klammer von Hand (z.\,B. \texttt{\textbackslash left(}) setzen. Verwenden Sie nun letzteres, um zwei Formeln aus dem tractatus philosophicus in folgender Form zu setzen:                                                                                                                                                                                                                            
+   Das \emph{muss} zwar im Mathesatz passieren, kann aber auch für Textinhalte (im Mathemodus mit \texttt{\textbackslash text\{\meta{normaler Text}\}} zu setzen) nützlich sein.
+   
+   Alternativ kann man auch eine |matrix|-Umgebung verwenden und die nötige Klammer von Hand (z.\,B. \texttt{\textbackslash left(}) setzen. Verwenden Sie nun letzteres, um zwei Formeln aus dem tractatus logico-philosophicus in folgender Form zu setzen:                                                                                                                                                                                                                            
      \begin{displaymath}                                                                                                                                                                                                                                                                                                    
-     \text{tractatus philosophicus, Satz 6.}                                                                                                                                                                                                                                                                        		\begin{cases}                                                                                                                                                                                                                                                                                                  
+     \text{tractatus logico-philosophicus, Satz 6.}                                                                                                                                                                                                                                                                        		\begin{cases}                                                                                                                                                                                                                                                                                                  
         03:\hspace*{0.65em} [o,\xi, \xi +1]\\                                                                                                                                                                                                                                                                  
      		231:\ 1+1+1+1 = (1+1) + (1+1)                                                                                                                                                                                                                                                                          
      	\end{cases}                                                                                                                                                                                                                                                                                                    

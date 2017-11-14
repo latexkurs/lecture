@@ -6,11 +6,12 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true,
+	vorläufig=false,
 	datum=2017-11-10,
 	titel={Gleitumgebungen und Tabellen},
-	web=true,
+	web=false,
 	noshortverb=true,
+	aspectratio=1610,
 	mo,
 ]{../tex/latexkurs-slides}
 
@@ -25,6 +26,7 @@
 	supertabular,
 	tabularx,
 	tabulary,
+	tabu,
 }
 
 %%%%
@@ -290,7 +292,7 @@ Weitere Befehle: \verb|\kill, \`|
 \item[\texttt{c}] zentrierte Spalte
 \item[\texttt{r}] rechtbündige Spalte
 \item[\texttt{|}] vertikale Linie zwischen Spalten
-\item[\texttt{||}] doppelte Linie zwischen Spalten (wird nicht durchgestrichen)
+\item[\texttt{||}] doppelte Linie zwischen Spalten% (wird nicht durchgestrichen)
 \item[\texttt{p\{\meta{Breite}\}}] Fügt eine \verb|\parbox[t]{|\meta{Breite}\verb|}| ein
 \item[\texttt{@\{\meta{Inhalt}\}}] setzt statt Spaltenabstand \verb/Inhalt/
 \item[\texttt{\kern-.95ex*\{n\}\{\meta{kürz}\}}] setzt $n$ mal \meta{kürz}, z.\,B. \verb/*{2}{|}/
@@ -397,6 +399,7 @@ links & rechts
 \item \verb/tabular*/ ändert \emph{Abstand} der Spalten
 \item \pkg{tabularx} verteilt \emph{Breite} der Spalten \emph{gleichmäßig}
 \item \pkg{tabulary} verteilet \emph{Breite} der Spalten \emph{am Inhalt orientiert}
+\item<2-> \pkg{tabu} versucht alle Funktionen von \verb|tabularx|, \verb|tabulary| und \pkg{colortbl} zu vereinen 
 \end{itemize}
 \end{frame}
 
@@ -456,6 +459,28 @@ Mögliche Spaltentypen:\\[1em]
 \item Alle Spalten verhalten sich wie \verb/p/-Spalten.
 \item Breite der Spalten ist \emph{nicht} vorher festgelegt.
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{tabu}
+
+Syntax:\quad 
+\verb|X[|\meta{Skalierungsfaktor}\verb|,| \meta{Ausrichtung}\verb|,| \meta{Typ}\verb|,| \meta{Mathe}\verb|]|
+\vfill
+
+\begin{LTXexample}[pos=b]
+\begin{tabu} to 6cm {| X[0.1] | X[c] | X[r] | X[$] |}
+  a & b b b b b b b b b & c c c c c c c c c c c c c c c c c  & \sum x
+\end{tabu}
+\end{LTXexample}
+\vfill
+
+\begin{tabu} to \textwidth {rX}
+\meta{Ausrichtung} & Rechtsbündig \texttt{r}, Zentriert \texttt{c},  Linksbündig \texttt{l}, Blocksatz \texttt{j}\\
+\meta{Typ} & Parbox \texttt{p}, Ausrichtung in der Mitte der Parox \texttt{m}, am Fuß der Parbox \texttt{b}\\
+\meta{Mathe} & Inline-Mathe \texttt{\$}, Display-Mathe \texttt{\$\$} 
+\end{tabu}
+
+%\pause tabu funktioniert auch im Mathe-Modus
 \end{frame}
 
 \subsection[supertabular, longtable]{Mehrseitige Tabellen – \texttt{supertabular}, \texttt{longtable}}

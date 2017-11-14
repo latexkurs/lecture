@@ -5,7 +5,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{latexkurs-slides}[2017/10/17 v1.1 beamer slides for LaTeX Course]
+\ProvidesClass{latexkurs-slides}[2017/11/14 v1.2 beamer slides for LaTeX Course]
 
 \LoadClassWithOptions{beamer}
 
@@ -38,20 +38,22 @@
 \RequirePackage{showexpl}
 \lstloadlanguages{TeX}
 \lstset{% for slides
-	language=TeX,
 	backgroundcolor=\color[RGB]{229, 229, 239},
 	basicstyle=\ttfamily\small,
 	breakindent=0em,
 	breaklines=true,
 	captionpos=b,
+	columns=flexible,
 	commentstyle=\color{blue},
 	explpreset={numbers=none},
 	frame=lines,
 	frameround=ffff,
 	identifierstyle=,
+	keepspaces=true,
 	keywordstyle=,
 	language=[LaTeX]TeX,
 	numbers=none,
+	tabsize=2,
 	pos=r,
 	rframe={single},
 }
@@ -102,6 +104,13 @@
 	\frame{\thispagestyle{empty}\titlepage}
 }
 
+% Part divider
+\newcounter{teil}
+\providecommand{\teil}[1]{%
+	\stepcounter{teil}%
+	\frame{\centering\alert{Teil \Roman{teil}}\\\huge #1}%
+}
+
 %% overleaf
 \RequirePackage{tikz,qrcode}
 \usetikzlibrary{calc}
@@ -121,9 +130,9 @@
 }
 % provide column layout for pages containing overleaf QRcode:
 \newenvironment{olcol}{
-	\begin{columns}\begin{column}{.8\textwidth}
+	\begin{columns}\begin{column}{.85\textwidth}
 }{
-	\end{column}\begin{column}{.108\textwidth}\relax\end{column}\end{columns}
+	\end{column}\begin{column}{.048\textwidth}\relax\end{column}\end{columns}
 }
 
 %% PDF Annotations for web release

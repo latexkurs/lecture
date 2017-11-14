@@ -5,7 +5,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{latexkurs-exercise}[2016/09/20 v0.2 Exercise sheets for LaTeX Course]
+\ProvidesClass{latexkurs-exercise}[2017/11/14 v0.3 Exercise sheets for LaTeX Course]
 
 \LoadClass{scrartcl}
 
@@ -85,18 +85,29 @@
 	breakindent=0em,
 	breaklines=true,
 	captionpos=b,
+	columns=fullflexible,
 	commentstyle=\color{gray},
 	%explpreset={numbers=none},
 	frame=single,
 	%frameround=ffff,
 	identifierstyle=,
+	keepspaces=true,
 	keywordstyle=,
 	language=[LaTeX]TeX,
 	numbers=none,
+	showspaces=false,
+	showstringspaces=false,
 	stepnumber=0,
+	tabsize=2,
 	pos=l,
 	rframe={single},
 }
+% make multiple spaces in listings copyable as suggested in:
+% https://tex.stackexchange.com/a/19978
+%\def\lst@outputspace{{\ifx\lst@bkgcolor\empty\color{codebg}\else\lst@bkgcolor\fi\lst@visiblespace}}
+% https://tex.stackexchange.com/a/19950
+%\def\lst@visiblespace{\textcolor{codebg}{-}}
+
 
 %% Preliminal Version
 \ifltxkurs@vorläufig

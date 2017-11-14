@@ -6,11 +6,12 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true,
+	vorläufig=false,
 	datum=2017-11-03,
 	titel={Mathematiksatz I},
-	web=true,
-	max,
+	web=false,
+	mo,
+	aspectratio=1610,
 ]{../tex/latexkurs-slides}
 
 \usepackage{
@@ -32,8 +33,70 @@
 	\tableofcontents
 \end{frame}
 
-\section{Eigene Befehle}
-\frame{\centering\alert{Teil I}\\\huge Eigene Befehle definieren}
+\section{Allgmeines}
+\teil{Fehlermeldungen und eigene Befehle}
+
+\subsection{Fehlermeldungen}
+\begin{frame}[t]{Umgang mit Fehlern}
+	\begin{block}{Was tun, wenn \LaTeX\ anhält?}
+		\begin{itemize}
+			\item Ruhe bewahren! (\texttt{tex}-Dateien können nicht beschädigt werden)
+			\item Mit der Fehlersuche beim den letzten Änderungen anfangen.
+			\item Ggf. Schreibfehler korrigieren.
+			\item \texttt{log}-Datei Lesen!
+			\item Viele Editoren helfen bei der Fehlersuche, indem sie zur Zeile springen, in der der Fehler aufgetreten ist. (Das muss nicht die fehlerhafte Zeile sein.)
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile,t]{Fehlermeldungen}
+Typische Fehlermeldung:
+\begin{lstlisting}
+! Undefined control sequence.
+l.3 Ein \Latex-Dokument
+                           .
+? 
+! Emergency stop.
+l.3 Ein \Latex-Dokument.
+                           .
+No pages of output.
+Transcript written on document.log.
+\end{lstlisting}
+⇒ Befehl in Zeile 3 falsch geschrieben
+\end{frame}
+
+\begin{frame}[fragile,t]{Fehlermeldungen}
+Typische Fehlermeldung:
+\begin{lstlisting}
+Runaway argument?
+{itemize \item Erstes Item 
+! Paragraph ended before \begin was complete.
+<to be read again> 
+                   \par 
+l.60 
+     
+? 
+\end{lstlisting}
+⇒ Irgendwo nach itemize ein |}| oder ein |\end{}| vergessen.
+\end{frame}
+
+\begin{frame}{Vollständiges Minimalbeispiel}
+Bei Hilfestellung in Webforen/Usenet wird in der Regel ein \emph{vollständiges Minimalbeispiel} (MWE) verlangt.
+\vskip1ex
+\begin{enumerate}
+\item solange Code aus dem Dokument löschen, bis der Fehler gerade noch auftritt
+\item alle überflüssigen Pakete entfernen
+\item falls Dokumentenklasse keine Rolle spielt, \pkg{minimal} verwenden
+\item wenn Fehler nur bei viel Text auftritt, \pkg{blindtext} verwenden
+\end{enumerate}
+
+\vskip1ex
+
+Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
+\end{frame}
+
+
+\subsection{Eigene Befehle}
 \begin{frame}[fragile]{Eigene Befehle}
 \overleaf{tex0201}
 \begin{itemize}
@@ -56,10 +119,12 @@
 \item<+-> Befehle im Text immer mit |\| oder |{}| beenden:
 \item<+-> \verb*|\LaTeX\ ist manchmal umständlich.|
 \end{itemize}
-\begin{block}{}\hspace{7em}{%
+\begin{olcol}
+\begin{block}{}\hfill{%\hspace{8em}{%
 \only<2-3>{\LaTeX ist manchmal umständlich}%
-\only<4>{\LaTeX\ ist manchmal umständlich}}
+\only<4>{\LaTeX\ ist manchmal umständlich}}\hfill\,
 \end{block}
+\end{olcol}
 \end{frame}
 
 \begin{frame}[fragile]{Befehle mit Argumenten}
@@ -77,10 +142,20 @@
 |\molekuel[Co]{7}{O}| ⇒ \molekuel[Co]{7}{O}\\
 \end{frame}
 
-\frame{\centering\alert{Teil II}\\\huge Mathe}
 
-\section{Mathe: inline vs. display}
-\subsection{Inlinemode}
+\section{Mathe}
+\teil{Mathematische Formeln in \LaTeX}
+\subsection{Modi}
+
+
+\begin{frame}{Inline- vs. Display-Formeln}
+\rmfamily
+\textbf{Inline-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
+\textbf{Inline-Mathe mit Displaystyle:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\displaystyle \int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
+\textbf{Display-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit \[\int^\infty_{-\infty}\sum_{n = 1}^5 dx,\] wobei diese zweite Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
+\end{frame}
+
+\subsubsection{Inlinemode}
 \begin{frame}[fragile]{Inlinemode}
 \begin{itemize}
 	\item Formeln, die direkt im Fließtext vorkommen
@@ -95,12 +170,6 @@ Seien $m$ und $n$ natürliche Zahlen mit $n=5 m$.
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}{Inline- vs. Display-Formeln}
-\rmfamily
-\textbf{Inline-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
-\textbf{Inline-Mathe mit Displaystyle:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\displaystyle \int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
-\textbf{Display-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit \[\int^\infty_{-\infty}\sum_{n = 1}^5 dx,\] wobei diese zweite Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
-\end{frame}
 
 \begin{frame}[fragile]{Inlinemode}
 Der Inlinemode ist über drei Wege zu erreichen:
@@ -122,14 +191,14 @@ Formeln können von \TeX{} umgebrochen werden:
 \item Umbruch kann durch Gruppierung vermieden werden. \hfill |{}|
 \end{itemize}
 \begin{LTXexample}
-Ein Text bis zum Zeilenende 
+Ein langer Text zum Zeilenende 
 $a + b + c$ \\
-Ein Text bis zum Zeilenende 
+Ein langer Text bis zum Zeilenende 
 ${a + b + c}$
 \end{LTXexample}
 \end{frame}
 
-\subsection{Displaymode}
+\subsubsection{Displaymode}
 \begin{frame}{Displaymode}
 	\begin{itemize}
 		\item Auszeichnung wichtiger Formeln
@@ -184,7 +253,7 @@ viel zu groß für den normalen Fließtext ist.
 \end{lstlisting}
 \end{frame}
 
-\section{\texttt{amsmath}}
+\subsection{\texttt{amsmath}}
 \begin{frame}[fragile]{Mehrzeilige Formeln}
 	Eine Reihe von untereinander ausgerichteten, zueinander angeordneten Gleichungen wird z.\,B. verwendet für:
 	\begin{itemize}
@@ -226,8 +295,8 @@ abc &= d \\
 \end{lstlisting}\pdfmarginpar{Genaugenommen reicht es aus, mathtools zu laden. Es läd amsmath automatisch.}
 \end{frame}
 
-\section{Grundbefehle}
-\subsection{Abstände}
+\subsection{Grundbefehle}
+\subsubsection{Abstände}
 \begin{frame}[fragile]{Abstände}
 	\begin{itemize}
 		\item \TeX\ bzw. \LaTeX\ bzw. geladene Pakete kontrollieren Abstände
@@ -239,7 +308,7 @@ abc &= d \\
 	\end{itemize}
 \end{frame}
 
-\subsection{Größe von Formeln}
+\subsubsection{Größe von Formeln}
 \begin{frame}[fragile]{Größenänderungen}
 	\begin{itemize}
 		\item Standardbefehle wie |\small|,  |\tiny|, |\Huge| haben in Formeln keine Wirkung
@@ -248,15 +317,15 @@ abc &= d \\
 	\pause
 \begin{LTXexample}[pos=b]
 \small \[ 
-  x_{n+1} = x_n - \frac{f(x_n)}{f^\prime(x_n)} 
+  x_{n+1} = x_n - \frac{f(x_n)}{f^{\,\prime}(x_n)} 
 \]
 \huge \[
-  x_{n+1} = x_n - \frac{f(x_n)}{f^\prime(x_n)}
+  x_{n+1} = x_n - \frac{f(x_n)}{f^{\,\prime}(x_n)}
 \]
 \end{LTXexample}
 \end{frame}
 
-\section{Variablen}
+\subsection{Variablen}
 \begin{frame}[fragile]{Variablen und Zahlen}
 	\begin{itemize}
 		\item Variablen werden kursiv gesetzt: |$a$|: $a$
@@ -310,7 +379,7 @@ Andere Möglichkeit: Paket |siunitx| → siehe Vorlesung Mathesatz II
 	\end{itemize}
 \end{frame}
 
-\subsection{Operatoren}
+\subsubsection{Operatoren}
 \begin{frame}[fragile]{Operatoren}
 Operatorennamen werden aufrecht gesetzt und sind vordefiniert
 	\begin{itemize}
@@ -435,7 +504,7 @@ oder \alert{\href{http://detexify.kirelabs.org/classify.html}{Detexify}}
 \end{LTXexample}
 \end{frame}
 
-\section{Vektoren, Matrizen, Tensoren}
+\subsection{Vektoren, Matrizen, Tensoren}
 \begin{frame}[fragile,t]{Vektoren}
 Vektoren sind vielfältig darstellbar:
 \begin{itemize}

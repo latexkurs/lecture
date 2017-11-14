@@ -16,6 +16,8 @@ Da dieses Makro in Tabellen verwendet werden soll, bietet es sich an, auf einen 
 \begin{LTXexample}[pos=t,preset=\centering]
 \begin{table}
   \centering
+  \caption{Adventsmästung}
+  \label{tab:essen}
   \begin{tabular}{ll}
     \toprule
     {\textbf{Uhrzeit}}  &  {\textbf{Speise}}           \\
@@ -25,8 +27,6 @@ Da dieses Makro in Tabellen verwendet werden soll, bietet es sich an, auf einen 
     \zeit{18}{00}       &  12 Knödel mit Rotkohl       \\
     \bottomrule
   \end{tabular}
-  \caption{Adventsmästung}
-  \label{tab:essen}
 \end{table}
 \end{LTXexample}
 
@@ -36,6 +36,8 @@ Da dieses Makro in Tabellen verwendet werden soll, bietet es sich an, auf einen 
 \begin{LTXexample}[pos=b,preset=\centering]
 \begin{table}
   \centering
+  \caption{erweiterte Adventsmästung}
+  \label{tab:mehressen}
   \begin{tabular}{llS}
     \toprule
     {\textbf{Uhrzeit}}  &  {\textbf{Speise}} & \textbf{Brennwert} [\si{\kilo\joule}] \\
@@ -45,8 +47,6 @@ Da dieses Makro in Tabellen verwendet werden soll, bietet es sich an, auf einen 
     \zeit{18}{00}       &  12 Knödel mit Rotkohl       & 33445 \\
     \bottomrule
   \end{tabular}
-  \caption{Adventsmästung}
-  \label{tab:essen}
 \end{table}
 \end{LTXexample}
 
@@ -69,8 +69,8 @@ Alternativ kann man die Befehle |\footnotemark| und |\footnotetext| verwenden, b
       \toprule
       Tabellenkopf	\\
       \midrule
-      Inhalt mit Fußnote\footnote{Fußnote in einer Tabelle}	\\
-      Mehr Inhalt\footnote{Noch eine Fußnote}	\\
+      Inhalt mit Fußnote\footnote{Fußnote in einer Tabelle} \\
+      Mehr Inhalt\footnote{Noch eine Fußnote} \\
       Zeile mit \verb|\footnotemark|\footnotemark	\\
       \bottomrule
     \end{tabular}

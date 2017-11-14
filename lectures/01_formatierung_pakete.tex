@@ -6,7 +6,8 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true,
+	vorläufig=false,
+	aspectratio=1610,
 	datum=2017-10-27,
 	titel={Allgemeine Formatierung und Pakete},
 	web=true,
@@ -496,7 +497,7 @@ Wer \emph{genau weiß}, was er will: |\fontsize{|\meta{Größe}|}{|\meta{Durchsc
 			\centering\rmfamily\Large\noindent%
 			\only<1>{\LARGE\hfill V\kern1pt A\hfill F\kern1.1pt o\hfill\,\\\hfill VA\hfill Fo\hfill}%
 			\only<2>{Text\\\scalebox{.98}{Text}}%
-			\only<3>{\tiny\parbox{\textwidth}{Lorem ipsum dolor sit amet\textcolor{red}{,} consectetur adipisici elit, sed ei\textcolor{red}{\-}usmod tempor incidunt ut labo\textcolor{red}{\-}re et dolore magna aliqua. Ut enim ad minim veniam, quis no\textcolor{red}{\-}strud exercitation ullamco labo\textcolor{red}{\-}ris nisi ut aliquid ex ea commodi consequat. Quis aute iure repre\textcolor{red}{\-}henderit in voluptate velit esse cillum dolore eu fugiat nulla pa\textcolor{red}{\-}riatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}}%
+			\only<3>{\tiny\parbox{\textwidth}{Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incid\textcolor{red}{\-}unt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ex\textcolor{red}{\-}ercitation ullamco labo\textcolor{red}{\-}ris nisi ut aliquid\textcolor{red}{,} ex ea commodi consequat. Quis aute iure repre\textcolor{red}{\-}henderit in voluptate velit esse cil\textcolor{red}{\-}lum dolore eu fugiat nulla pa\textcolor{red}{\-}riatur. Ex\textcolor{red}{\-}cepteur sint obcaecat cupiditat non pro\textcolor{red}{\-}ident, sunt in culpa qui officia deserunt mollit anim id est laborum.}}%
 			\only<4>{f\/i fi\\
 				f\/l fl\\
 				f\/f ff\\
@@ -609,64 +610,7 @@ Modernere Alternative für \hologo{LuaLaTeX} und \XeLaTeX:
 	Mit |texdoctk| existiert eine grafische Oberfläche
 \end{frame}
 
-\section{Fehlermeldungen}
-\begin{frame}[t]{Umgang mit Fehlern}
-	\begin{block}{Was tun, wenn \LaTeX anhält?}
-		\begin{itemize}
-			\item Ruhe bewahren! (\texttt{tex}-Dateien können nicht beschädigt werden)
-			\item Mit der Fehlersuche beim den letzten Änderungen anfangen.
-			\item Ggf. Schreibfehler korrigieren.
-			\item \texttt{log}-Datei Lesen!
-			\item Viele Editoren helfen bei der Fehlersuche, indem sie zur Zeile springen, in der der Fehler aufgetreten ist. (Das muss nicht die fehlerhafte Zeile sein.)
-		\end{itemize}
-	\end{block}
-\end{frame}
 
-\begin{frame}[fragile,t]{Fehlermeldungen}
-Typische Fehlermeldung:
-\begin{lstlisting}
-! Undefined control sequence.
-l.3 Ein \Latex-Dokument
-                           .
-? 
-! Emergency stop.
-l.3 Ein \Latex-Dokument.
-                           .
-No pages of output.
-Transcript written on document.log.
-\end{lstlisting}
-⇒ Befehl in Zeile 3 falsch geschrieben
-\end{frame}
-
-\begin{frame}[fragile,t]{Fehlermeldungen}
-Typische Fehlermeldung:
-\begin{lstlisting}
-Runaway argument?
-{itemize \item Erstes Item 
-! Paragraph ended before \begin was complete.
-<to be read again> 
-                   \par 
-l.60 
-     
-? 
-\end{lstlisting}
-⇒ Irgendwo nach itemize ein |}| oder ein |\end{}| vergessen.
-\end{frame}
-
-\begin{frame}{Vollständiges Minimalbeispiel}
-Bei Hilfestellung in Webforen/Usenet wird in der Regel ein \emph{vollständiges Minimalbeispiel} (MWE) verlangt.
-\vskip1ex
-\begin{enumerate}
-\item solange Code aus dem Dokument löschen, bis der Fehler gerade noch auftritt
-\item alle überflüssigen Pakete entfernen
-\item falls Dokumentenklasse keine Rolle spielt, \pkg{minimal} verwenden
-\item wenn Fehler nur bei viel Text auftritt, \pkg{blindtext} verwenden
-\end{enumerate}
-
-\vskip1ex
-
-Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
-\end{frame}
 
 \nocite{kohm:satzspiegel, microtype, detailtypo, bringhurst}
 \begin{frame}[allowframebreaks]{Weiterführende Literatur}
