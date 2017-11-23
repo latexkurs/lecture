@@ -10,10 +10,9 @@
 	datum=2018-01-12,
 	titel={Präsentationen mit beamer},
 	web=true,
-%	noshortverb=true,
+	noshortverb=false,
 	mo,
 ]{../tex/latexkurs-slides}
-
 
 \usepackage{
 	siunitx,
@@ -179,7 +178,7 @@ Auch bei |\includegraphics<|\meta{Kürzel}|>| u.\,a.
 \begin{frame}[fragile]{Überblendeffekte}{uncover}
 \begin{itemize}
     \item|\uncover<|\meta{Kürzel}|>{|\meta{Inhalt}|}| setzt den \meta{Inhalt} nur in den angegeben Seiten
-    \item Platz für den \meta{Inahlt} \emph{wird} freigehalten
+    \item Platz für den \meta{Inhalt} \emph{wird} freigehalten
     \item |\uncover<4>{|\meta{Inhalt}|}| setzt nur in der vierten Seite
     \item |\uncover<3->{|\meta{Inhalt}|}| setzt ab der dritten Seite
 \end{itemize}
