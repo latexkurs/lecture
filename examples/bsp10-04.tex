@@ -1,0 +1,385 @@
+% file pi.tex version 0.993
+%
+% **** Compute Pi in TeX! ****
+% 
+%
+% Author: D. Roegel (roegel@loria.fr)
+%  
+% Version 0.96: 22 July 1996 
+%    First release
+%
+% Version 0.97: 22 July 1996
+%    Modified by J. Gelinas (jacquesg@clic.net.ca)
+%    Added one term to get correct last digits
+%    Added a second optional argument: 
+%       100    prints decimals 0..100
+%       -2 100 prints only decimals 100..101
+%    Print exact number of decimals
+%
+% Version 0.98: 23 July 1996
+%    Modified by D. Roegel, so that the input -3 1 gives 141
+%    and not 3.141. Also, some unnecessary braces inside \loop...\repeat
+%    were removed. \ShowResult shortened by introduction of \NextDigit. 
+% 
+% Version 0.99: 23 July 1996
+%    Modified by D. Roegel.
+%    Improvements following suggestions by J. Gelinas (jacquesg@clic.net.ca).
+%    Bug corrected, which made some digits false (\fontdimen\firstpos\xb=0pt
+%    added in \updatefirstpos).
+%    \N replaced by \count2 in \ShowResult, this enabling calls 
+%    such as \ShowResult{1/\the\N...}{...}.
+%
+% Version 0.991: 23 July 1996
+%    Modified by D. Roegel.
+%    Two \UpdateFirstPos were removed.
+%
+% Version 0.992: 24 July 1996
+%    Modified by D. Roegel, following several simplifications suggested
+%    by J. Gelinas (jacquesg@clic.net.ca).
+%    \Multiply removed, \Add and \Sub merged.
+%    \ComputeArcTan shortened.
+%
+% Version 0.993: 24 July 1996
+%    Modified by D. Roegel, following several simplifications suggested
+%    by J. Gelinas (jacquesg@clic.net.ca).
+%    \ComputeArcTan1/n computes now completely arctan(1/n).
+%
+%------------------------------------------------------------------------
+% This programs uses the formula by John Machin:
+%
+%              Pi=16*arctan(1/5)-4*arctan(1/239)
+%
+% For arctan(x), we use the development
+%
+%  arctan(x)=\sum_{i=0}^\infty [{x^{2i+1}\over 2i+1} - {x^{2i+3}\over 2i+3}]
+%
+% One array (\xc) is used to store the partial sum up to {x^{2i+1}\over 2i+1}.
+% A second array (\xa) us used to store the value of x^{2i+1}.
+% A third array (\xb) is used to store {x^{2i+1}\over 2i+1}.
+%
+% The result is put in the array \xr.
+%
+% The implementation of arrays uses a trick shown by Tom Rokicki
+% in his game of life program (life.tex).
+%
+% The number of digits you can compute depends on your implementation
+% of TeX. I had no trouble computing 5000 digits. 
+%
+% The last digit can be wrong. And if it is a 0 or a 9, this decimal
+% and previous ones can be wrong too. However, the absolute error is
+% no greater than one unit of the last digit.
+%
+% If you want to know more about Pi, check the file sci.math.faq.
+% See also http://www.primus.com/staff/paulp/useless/pi.html
+% and http://www.tu-chemnitz.de/~arndt/joerg.html.
+%
+%------------------------------------------------------------------------
+%
+\newlinechar=`\^^J
+\message{^^J***** Computation of Pi with John Machin's formula *****}
+\message{^^J** i.e.: pi=16*arctan(1/5)-4*arctan(1/239)}
+\message{^^JHow many decimals of pi do you want ? }
+
+\read16to\nbdigits
+\newcount\n
+\n\nbdigits
+\ifnum\n<0
+  \multiply\n-1
+  \message{^^JFirst decimal to output ? }
+  \read16to\firstdigit
+\else
+  \advance\n1
+  \def\firstdigit{0}
+\fi
+\newcount\lastdigit
+\lastdigit\firstdigit
+\advance\lastdigit\n
+\advance\lastdigit-1
+
+\newcount\index
+\index\lastdigit
+\advance\index11 
+\divide\index4
+\def\base{10000}
+\def\basesp{10000sp}
+
+\newcount\lastplusone
+\lastplusone\index
+\advance\lastplusone1
+
+% \index is now the index for the last slot in the arrays
+
+% slot 1 -> integer digits
+% slot 2 -> digits 1 to 4
+% slot 3 -> digits 5 to 8
+% ...
+% slot \index -> digits (\index-2) * 4 +1 to (\index-1) * 4 
+%
+
+\font\xa=cmr10 at 11truept % array for current values of (1/5)^{2n+1}
+                           %                  and (1/239)^{2n+1}
+\fontdimen\lastplusone\xa=0sp % this creates room
+\font\xb=cmr10 at 13truept % array for current values of (1/5)^{2n+1}/(2n+1)
+                           %                  and (1/239)^{2n+1}/(2n+1)
+\fontdimen\lastplusone\xb=0sp % this creates room
+\font\xc=cmr10 at 15truept % array for current sums of arctan(1/5)
+                           %                    and arctan(1/239)
+\fontdimen\lastplusone\xc=0sp % this creates room
+\font\xr=cmr10 at 17truept % array for the result
+\fontdimen\lastplusone\xr=0sp % this creates room
+
+% (we have each time allocated one more slot than strictly necessary;
+%  this avoids a test on \lastplusone in \updatefirstpos)
+
+% \xa, \xb, \xc and \xr are now equal to 0
+
+% Some variables (some of them are not strictly necessary, and might be
+%  replaced by \count's):
+
+\newcount\dv       % will hold dividers
+\newcount\firstpos % first non empty slot
+\newcount\I        % scratch register for loops
+\newdimen\carry    % for carry (in additions) and borrows (in subtractions)
+\newdimen\x        % a scratch variable
+\newcount\N        % counts the terms
+\newif\ifcont      % flag used to find when an operation on bignums is not done
+\newcount\Sdv      % value of one digit (used in \ShowResult)
+\newcount\dir      % toggle for alternating sums
+
+% Initialization of working arrays
+
+\def\InitializeArrays{
+  {
+  \I=1
+  \loop
+      \fontdimen\I\xa=0sp
+      \fontdimen\I\xb=0sp
+      \fontdimen\I\xc=0sp
+      \advance\I1
+    \ifnum\I<\lastplusone
+  \repeat
+  }
+  }
+
+% Initialization of the result
+
+\newcount\I
+\I=1
+\loop
+  \fontdimen\I\xr=0sp
+  \advance\I1
+  \ifnum\I<\lastplusone
+\repeat
+
+
+% divide array #1 by #2 beginning at slot \firstpos and up to \index;
+% result is in array #3
+% Maximum carry is 9999, so we need to be able to store 99999999.
+% \dimen's can hold up to +/- 2,147,483,647 sp and
+% \count's up to +/- 2,147,483,647, so it fits.
+
+\def\Divide#1#2into#3{%
+  \carry0sp
+  \I\firstpos
+  {
+  \loop
+       \x=\fontdimen\I#1
+       \multiply\carry\base
+       \advance\x\carry
+       \carry\x
+       \divide\x#2
+       \fontdimen\I#3=\x
+       \multiply\x#2
+       \advance\carry-\x
+       \advance\I1
+     \ifnum\I<\lastplusone
+  \repeat
+  }
+  }
+
+% Add or Subtract #2 to #3, depending on #1. array #2 is not modified.
+
+\def\Add#1#2to#3{%
+  \carry0sp
+  \I\index
+  {
+  \loop
+      \x=\fontdimen\I#3
+      \advance\x by #1\fontdimen\I#2
+      \advance\x by #1\carry
+      \fontdimen\I#3=\x
+      \carry\x
+      \divide\carry\base
+      \multiply\carry\base
+      \advance\x-\carry
+      \divide\carry\base
+      \ifdim\x<0sp
+        \advance\x\basesp
+        \advance\carry1sp
+      \fi
+      \fontdimen\I#3=\x
+      \advance\I-1
+      \ifnum\I<\firstpos \ifnum\carry=0 \contfalse
+                         \else \conttrue \fi
+      \else \conttrue
+      \fi
+    \ifcont
+  \repeat
+  }
+  }
+
+
+% Multiply array #1 by #2. Result is in #1.
+% This macro is not used in this program, and only remains
+% here for didactic and historical reasons.
+
+\def\Multiply#1#2{%
+  \carry0sp
+  \I\index
+  \loop
+      \x=\fontdimen\I#1
+      \multiply\x by #2
+      \advance\x by \carry
+      \fontdimen\I#1=\x
+      \carry\x
+      \divide\carry\base
+      \multiply\carry\base
+      \advance\x-\carry
+      \fontdimen\I#1=\x
+      \divide\carry\base
+      \advance\I-1
+      \ifnum\I<\firstpos \ifnum\carry=0 \contfalse 
+                         \else \conttrue \fi
+      \else \conttrue
+      \fi
+    \ifcont
+  \repeat
+  }
+
+% update value of \firstpos; in the worst case, \firstpos
+% gets increased by 2.
+
+\def\updatefirstpos{
+  \ifdim\fontdimen\firstpos\xa=0sp 
+              \ifnum\firstpos<\lastplusone
+                 \fontdimen\firstpos\xb=0sp
+                 \advance\firstpos1 
+              \fi
+           \fi
+  }
+
+\def\UpdateFirstPos{\updatefirstpos\updatefirstpos}
+
+% Compute arctan(1/#1). Arrays \xa and \xb are used. Result is in \xc.
+
+\def\ComputeArcTan1/#1{%
+  \firstpos1
+  \InitializeArrays
+  % initialize \xa with 1:
+  \fontdimen1\xa=1sp
+  \Divide\xa{#1}into\xa
+  % now, \xa contains 1/#1
+  \Add1\xa to\xb
+  % \xb contains 1/#1
+  \firstpos=2
+  \dv=#1
+  \multiply\dv\dv
+  \N1
+  \dir-1
+  \message{^^JI am now computing the following sum: arctan(1/#1)=1/#1}
+  \Add1\xb to\xc % first term
+  \loop
+       \Divide\xa\dv into\xa
+       \UpdateFirstPos
+     \ifnum\firstpos<\lastplusone
+       \advance\N2
+       \Divide\xa\N into\xb
+       \ifnum\dir>0
+         \message{+1/\the\N*1/#1^\the\N}
+       \else
+         \message{-1/\the\N*1/#1^\the\N}
+       \fi
+       \Add\dir\xb to\xc
+       \multiply\dir-1
+  \repeat
+  }
+
+% Extract the next digit from \count1
+
+\def\NextDigit#1{
+    \ifnum\count2<\lastdigit
+       \Sdv\count1
+       \divide\Sdv#1
+       \advance\count2 1
+       \ifnum\count2>\firstdigit
+         \edef\res{\res\number\Sdv}
+       \fi
+       \multiply\Sdv#1
+       \advance\count1-\Sdv
+    \fi
+  }
+
+% Display the result; the digits are scanned one at a time,
+% and those between \firstdigit and \lastdigit are extracted
+% and saved in \res.
+
+\def\ShowResult#1#2{{     
+  \count0=2
+  \count2=1
+  \advance\lastdigit1
+  \def\res{}
+  \loop
+      \count1=\fontdimen\count0#2
+      \NextDigit{1000}
+      \NextDigit{100}
+      \NextDigit{10}
+      \NextDigit{1}
+      \advance\count0by 1
+    \ifnum\count2<\lastdigit
+  \repeat
+  \advance\lastdigit-1  % for correct display in next line
+  \message{^^J#1\res}
+  }
+}
+
+\ComputeArcTan1/5
+
+%\ShowResult{arctan(1/5)=0.}\xc
+
+\message{^^JI multiply it by 4...}
+\firstpos2
+\Add1\xc to\xc  % alternative method is to write \Multiply\xc4
+                % or to change \ComputeArcTan so that the initial value is 4
+\Add1\xc to\xc  
+\message{done}
+
+% add 4*arctan(1/5) to \xr
+\Add1\xc to\xr
+
+%\ShowResult{4*arctan(1/5)=0.}\xr
+
+\ComputeArcTan1/{239}
+
+%\ShowResult{arctan(1/239)=0.}\xc
+
+
+%\ShowResult{4*arctan(1/239)=0.}\xc
+
+\message{^^JI subtract arctan(1/239) to 4*arctan(1/5)...}
+
+\firstpos2
+\Add{-1}\xc to\xr
+\message{done}
+
+\message{^^JAnd finally, I multiply it by 4 giving:}
+\Add1\xr to\xr
+\Add1\xr to\xr
+
+\ifnum\firstdigit=0
+  \ShowResult{pi[0 .. \number\lastdigit]=3.}\xr
+\else
+  \ShowResult{pi[\firstdigit.. \number\lastdigit]=}\xr
+\fi
+
+\bye
+

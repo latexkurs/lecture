@@ -6,10 +6,10 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true,
+	vorläufig=false,
 	datum=2017-12-15,
 	titel={Bibliografien und mehrsprachiger Satz},
-	web=true,
+	web=false,
 %	noshortverb=true,
 	mo,
 	aspectratio=1610,
@@ -30,7 +30,7 @@
 
 
 \section{Bibliografien}
-\frame{\centering\alert{Teil I}\\\huge Bibliographien}
+\teil{Bibliographien}
 \begin{frame}[fragile]{Bibliografie}
 \begin{itemize}
 	\item Bibliografie enthält Liste verwendeter Quellen und ggf. weiterführende Literatur.
@@ -238,7 +238,7 @@ Jedes Item hat verschiedene mandatorische und optionale Felder.
 
 
 \section{Geschicktes Kompilieren}
-\frame{\centering\alert{Teil II}\\\huge Geschicktes Kompilieren}
+\teil{Geschicktes Kompilieren}
 \subsection{Makefiles}
 \begin{frame}[fragile, shrink]{Makefiles}
 \begin{itemize}
@@ -278,7 +278,7 @@ all: latex biber latex
 \end{itemize}
 \end{frame}
 
-\frame{\centering\alert{Teil III}\\\huge Mehrsprachige Dokumente}
+\teil{Mehrsprachige Dokumente}
 \section{Mehrsprachige Dokumente}
 \subsection{babel}
 \begin{frame}[fragile]{Mehrsprachigkeit mit |babel|}{Sprachen laden}

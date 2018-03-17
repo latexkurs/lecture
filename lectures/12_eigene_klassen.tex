@@ -6,12 +6,13 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true,
-	datum=2017-02-10,
+	vorläufig=false,
+	datum=2017-02-02,
 	titel={Eigene Klassen und Pakete schreiben},
 	web=true,
 %	noshortverb=true,
 	mo,
+	aspectratio=1610,
 ]{../tex/latexkurs-slides}
 
 
@@ -135,7 +136,7 @@ Oder mit \hologo{LaTeX3}-Syntax (\pkg{expl3}, siehe letzte Vorlesung)
 
 \begin{lstlisting}
 \PackageInfo{meinpaket}{Dies ist eine Info.}
-\PackageError{meinpaket}{Dies ist eine Warnung.}
+\PackageWarning{meinpaket}{Dies ist eine Warnung.}
 \PackageError{meinpaket}{Dies ist ein Fehler.}{Fehler lässt sich nicht beheben.}
 \end{lstlisting}
 \end{frame}

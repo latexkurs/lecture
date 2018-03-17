@@ -6,10 +6,11 @@
 % http://latexkurs.github.io
 
 \documentclass[
-	vorläufig=true,
+	vorläufig=false,
 	datum=2017-12-08,
 	titel={Umfangreiche Dokumente},
-	web=true,
+	web=false,
+	aspectratio=1610,
 %	noshortverb=true,
 	mo,
 ]{../tex/latexkurs-slides}
@@ -376,7 +377,8 @@ Das Paket \pkg{csquotes} passt Feinheiten von Anführungszeichen für den nicht-
 		\item mit \LaTeX\ dreistufiger Prozess:
 		\begin{itemize}
 			\item im \LaTeX-Lauf wird Hilfsdatei erstellt
-			\item Verarbeitung mittels Programm |makeindex| (Sortierung, Seitenangaben etc.)
+			\item Verarbeitung mittels Programm |makeindex| (Sortierung, Seitenangaben etc.)\\
+					moderne Variante: \href{http://www.xindy.org/}{\texttt{xindy}}
 			\item Einbettung im nächsten \LaTeX-Lauf
 		\end{itemize}
 	\end{itemize}
