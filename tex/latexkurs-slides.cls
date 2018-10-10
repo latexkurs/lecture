@@ -97,7 +97,7 @@
 	\g@addto@macro{\authorstring}{Moritz Brinkmann\\{\small\url{moritz.brinkmann@iwr.uni-heidelberg.de}}\ifltxkurs@max\\[1em]\fi}
 \fi
 \ifltxkurs@max
-	\g@addto@macro{\authorstring}{Maximilian Jalea\\{\small\url{max@mathphys.stura.uni-heidelberg.de}}}
+	\g@addto@macro{\authorstring}{Maximilian Jalea\\{\small\url{latexkurs@mntl.de}}}
 \fi
 \author{\authorstring}
 \AtBeginDocument{

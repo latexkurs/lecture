@@ -7,11 +7,10 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2017-10-20,
+	datum=2018-10-15,
 	titel={Einführung und grundlegende Bedienung},
 	web=true,
 	max,
-	mo,
 	aspectratio=1610,
 ]{../tex/latexkurs-slides}
 
@@ -25,7 +24,7 @@
 	\begin{block}<1->{Anmeldung}
 		\begin{itemize}
 			\item	 Anmeldung im \href{https://muesli.mathi.uni-heidelberg.de/lecture/view/750}{MÜSLI} obligatorisch
-			\item Verwaltung der Zettelpunkte über \href{https://muesli.mathi.uni-heidelberg.de/lecture/view/750}{MÜSLI}
+			\item Verwaltung der Zettelpunkte über \href{https://muesli.mathi.uni-heidelberg.de/lecture/view/921}{MÜSLI}
 		\end{itemize}
 	\end{block}
 	\begin{block}<2>{Materialien}
@@ -40,7 +39,7 @@
 		\begin{itemize}
 			\item Bearbeiten der wöchentlichen Übungszettel
 			\item Erreichen von mindestens 50\% der möglichen Gesamtpunktzahl
-			\item Übungspunkte ergeben Scheinnote 
+			\item Übungspunkte ergeben Scheinnote (Notentabelle auf Vorlesungshomepage) 
 			\item 2 ECTS-Punkte für Übergreifende Kompetenz
 		\end{itemize}
 	\end{block}
@@ -50,7 +49,7 @@
 %	\begin{block}{Übungszettel}
 		\begin{itemize}
 			\item Übungszettel auf \url{http://latexkurs.github.io/exercises/}
-			\item Ausgabe Freitag nach der Vorlesung
+			\item Ausgabe Montag nach der Vorlesung
 		\end{itemize}
 %	\end{block}
 	\pause
@@ -63,8 +62,8 @@
 		\end{description}
 		\vspace{-1ex}
 		\begin{itemize}
-			\item Abgabe per E-Mail bis Freitag 14:00
-			\item Abgabe der Ausdrucke Freitag in der Vorlesung\\oder in Zettelkästen in INF\,205 (1.\,OG)
+			\item Abgabe per E-Mail bis Montag 16:00
+			\item Abgabe der Ausdrucke Montag in der Vorlesung\\oder in Zettelkästen in INF\,205 (1.\,OG)
 			\item Abgabe in Dreiergruppen möglich (ausgenommen erstes Blatt)
 		\end{itemize}
 	\end{block}
@@ -340,7 +339,7 @@ Hallo Welt!
 \item Arbeitserleicherungen
 \item Fehlerkorrekturen\\\quad
 \item Einbinden in der Präambel mittels
-\pdfmarginpar{Die Praeambel ist alles was zwischen documentclass{} und begin{document} steht}
+%\pdfmarginpar{Die Praeambel ist alles was zwischen documentclass{} und begin{document} steht}
 |\usepackage[|\meta{option(en)}|]{|\meta{paketname}|}|
 \end{itemize}
 \column{.45\textwidth}
@@ -386,8 +385,8 @@ Hallo Welt!
 |\emph{Hervorhebung}| & \emph{Hervorhebung \quad Abcdxyz}\\
 |\\| & Zeilenende\\
 |\par| oder Leerzeile & Absatzende\\
-|$E = \frac{p^2}{2m}$| & Inline-Mathemodus: $E = \frac{p^2}{2m}$\\
-|\[E = \frac{p^2}{2m}\]| & Display-Mathemodus: $\displaystyle E = \frac{p^2}{2m}$\\ % Arno: „well that’s cheated …“ ;-)
+|\(E = \frac{p^2}{2m}\)| & Inline-Mathemodus: \(E = \frac{p^2}{2m}\)\\
+|\[E = \frac{p^2}{2m}\]| & Display-Mathemodus: \(\displaystyle E = \frac{p^2}{2m}\)\\ % Arno: „well that’s cheated …“ ;-)
 |\tableofcontents| & Produziert Inhaltsverzeichnis\\
 |\today| & aktuelles Datum
 \end{tabular}
