@@ -8,10 +8,10 @@
 \documentclass[
 	vorläufig=false,
 	aspectratio=1610,
-	datum=2017-10-27,
+	datum=2018-10-22,
 	titel={Allgemeine Formatierung und Pakete},
 	web=true,
-	mo,
+	max,
 ]{../tex/latexkurs-slides}
 
 
@@ -41,10 +41,10 @@
 \begin{frame}[fragile]{\TeX-Engines und -Formate}{Programm\/namen}
 	Ausgeführtes Programm bestimmt Engine und Format:\\[1em]
 	\begin{description}
-		\item[|pdftex|] \hologo{pdfTeX}-Engine, plain-Format
-		\item[|pdflatex|] \hologo{pdfTeX}-Engine, \LaTeXe-Format
+		\item[|pdftex|] \hologo{pdfTeX}-Engine, plain-Format, PDF-Output
+		\item[|pdflatex|] \hologo{pdfTeX}-Engine, \LaTeXe-Format, PDF-Output
 		\item[|latex|] \hologo{pdfTeX}-Engine, \LaTeXe-Format, DVI-Output
-		\item[|xelatex|] \XeTeX-Engine, \LaTeXe-Format
+		\item[|xelatex|] \XeTeX-Engine, \LaTeXe-Format, PDF-Output
 		\item[|lualatex|] \luaTeX-Engine, \LaTeXe-Format, PDF-Output
 	\end{description}
 \end{frame}
@@ -169,7 +169,7 @@
 	\item Bindekorrektur mittels Option |BCOR=|\meta{Länge}
 \end{itemize}
 \begin{lstlisting}
-\documentclass[DIV=9, BCOR=12mm]{scrbook}	
+\documentclass[DIV=9, BCOR=12mm]{scrbook}
 \end{lstlisting}
 \vfill
 \begin{olcol}
