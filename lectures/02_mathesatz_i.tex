@@ -7,10 +7,10 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2017-11-03,
+	datum=2018-10-29,
 	titel={Mathematiksatz I},
 	web=false,
-	mo,
+	max,
 	aspectratio=1610,
 ]{../tex/latexkurs-slides}
 
@@ -150,9 +150,9 @@ Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
 
 \begin{frame}{Inline- vs. Display-Formeln}
 \rmfamily
-\textbf{Inline-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
-\textbf{Inline-Mathe mit Displaystyle:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\displaystyle \int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
-\textbf{Display-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit \[\int^\infty_{-\infty}\sum_{n = 1}^5 dx,\] wobei diese zweite Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
+\textbf{Inline-Mathe:} \(E=mc^2\) kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit \(\int^\infty_{-\infty}\sum_{n = 1}^5 dx\), wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.\\
+\textbf{Inline-Mathe mit Displaystyle:} \(E=mc^2\) kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit \(\displaystyle \int^\infty_{-\infty}\sum_{n = 1}^5 dx\), wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.\\
+\textbf{Display-Mathe:} \(E=mc^2\) kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit \[\int^\infty_{-\infty}\sum_{n = 1}^5 dx,\] wobei diese zweite Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
 \end{frame}
 
 \subsubsection{Inlinemode}
@@ -166,7 +166,7 @@ Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
 \vfill
 \rmfamily
 \begin{LTXexample}
-Seien $m$ und $n$ natürliche Zahlen mit $n=5 m$.
+Seien \(m\) und \(n\) natürliche Zahlen mit \(n=5 m\).
 \end{LTXexample}
 \end{frame}
 
@@ -180,7 +180,7 @@ Der Inlinemode ist über drei Wege zu erreichen:
 \end{itemize}
 \overleaf{tex0201}
 \pause
-|$ $| ist meist die beste Variante
+|\( \)| ist meist die beste Variante
 \end{frame}
 
 \begin{frame}[fragile]{Umbrüche}
@@ -192,9 +192,9 @@ Formeln können von \TeX{} umgebrochen werden:
 \end{itemize}
 \begin{LTXexample}
 Ein langer Text zum Zeilenende 
-$a + b + c$ \\
+\(a + b + c\) \\
 Ein langer Text bis zum Zeilenende 
-${a + b + c}$
+\({a + b + c}\)
 \end{LTXexample}
 \end{frame}
 
@@ -202,7 +202,7 @@ ${a + b + c}$
 \begin{frame}{Displaymode}
 	\begin{itemize}
 		\item Auszeichnung wichtiger Formeln
-		\item Darstelling langer Rechnungen
+		\item Darstellung langer Rechnungen
 		\item komplexe Formeln
 		\item mehrfach indizierte Größen
 		\item geschachtelte Brüche
@@ -328,30 +328,30 @@ abc &= d \\
 \subsection{Variablen}
 \begin{frame}[fragile]{Variablen und Zahlen}
 	\begin{itemize}
-		\item Variablen werden kursiv gesetzt: |$a$|: $a$
+		\item Variablen werden kursiv gesetzt: |\(a\)|: \(a\)
 		\item Schriftart abhängig von der Dokumentenklasse!\\%
 		(Groteske, Serifen etc.)
-		\item Ziffern werden automatisch korrekt gesetzt: $12.2$ statt 12.2
+		\item Ziffern werden automatisch korrekt gesetzt: \(12.2\) statt 12.2
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Dezimaltrennzeichen}
 im amerikanischen Satz:
 \begin{LTXexample}[preset=\Large]
-$1,234.567$
+\(1,234.567\)
 \end{LTXexample}\pause
 im deutschen Satz:
 \begin{LTXexample}[preset=\Large]
-$1.234,567$
+\(1.234,567\)
 \end{LTXexample}
 \alert{⇒ falsche Spationierung!}
 \end{frame}
 
 \begin{frame}[fragile]{Dezimaltrennzeichen}
 \begin{block}{Einmalige Anpassung:}
-	|$1\mathpunct{.}234\mathpunct{.}567{,}89$|\\
-	$1\mathpunct{.}234\mathpunct{.}567{,}89$ (angepasst)\\
-	$1.234.567,89$ \normalsize (nicht angepasst)\\
+	|\(1\mathpunct{.}234\mathpunct{.}567{,}89\)|\\
+	\(1\mathpunct{.}234\mathpunct{.}567{,}89\) (angepasst)\\
+	\(1.234.567,89\) \normalsize (nicht angepasst)\\
 \end{block}
 %\pause
 %\begin{block}{Korrektur des Dezimaltrennzeichens}
@@ -368,13 +368,13 @@ Andere Möglichkeit: Paket |siunitx| → siehe Vorlesung Mathesatz II
 \begin{frame}[fragile]{Hoch- und Tiefstellung}
 	\begin{itemize}
 		\item Zeichen mit besonderer Bedeutung: |^| und |_|
-		\item Hochstellung: |a^b|\hfill $a^b$
-		\item Tiefstellung: |a_b|\hfill $a_b$
-		\item Gruppierungen sind möglich: |a^{bc}|, |a_{bc}|\hfill $a_{bc}$
-		\item Kombination ist möglich: |a_b^c|\hfill $a_b^c$
-		\item Ohne vorhergehendes Zeichen: |^{235}U|\hfill $^{235}\mathrm U$
+		\item Hochstellung: |a^b|\hfill \(a^b\)
+		\item Tiefstellung: |a_b|\hfill \(a_b\)
+		\item Gruppierungen sind möglich: |a^{bc}|, |a_{bc}|\hfill \(a_{bc}\)
+		\item Kombination ist möglich: |a_b^c|\hfill \(a_b^c\)
+		\item Ohne vorhergehendes Zeichen: |^{235}U|\hfill \(^{235}\mathrm U\)
 		\item Schachtelung nur mit Gruppierung:\\%
-		|a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}| \hfill \Large $a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}$\normalsize
+		|a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}| \hfill \Large \(a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}\)\normalsize
 		\item[] |a_b_c| produziert Fehler!
 	\end{itemize}
 \end{frame}
@@ -383,10 +383,10 @@ Andere Möglichkeit: Paket |siunitx| → siehe Vorlesung Mathesatz II
 \begin{frame}[fragile]{Operatoren}
 Operatorennamen werden aufrecht gesetzt und sind vordefiniert
 	\begin{itemize}
-		\item richtig: $\sin(x)$\quad falsch: $sin(x)$
+		\item richtig: \(\sin(x)\)\quad falsch: \(sin(x)\)
 	\end{itemize}
 \begin{LTXexample}[pos=b]
-$\sin(x) \cos(y) \tan(2\pi) \lim \arctan$
+\(\sin(x) \cos(y) \tan(2\pi) \lim \arctan\)
 \end{LTXexample}
 	\pause
 	\begin{itemize}
@@ -519,16 +519,16 @@ $\left.
 	\text{\quad}\\%[-.5ex]
 	\text{\hspace{12em}}
 \end{matrix}
-\right\rbrace\text{\parbox{9em}{\raggedright Typografisch unschön, nur für Handschriften}}$
+\right\rbrace\text{\parbox{10em}{\raggedright Typografisch unschön, nur für Handschriften}}$
 \vspace*{-2.9ex}
 }
 \item Unterstrichen mit |\underbar|
 \end{itemize}
 \vfill
 \begin{LTXexample}[pos=b, preset=\centering]
-$ \boldsymbol a\ \mathbf a $ \\
-$ \pmb a\ a $ \\
-$ \vec a\ \underbar a $
+\( \boldsymbol a\ \mathbf a \) \\
+\( \pmb a\ a \) \\
+\( \vec a\ \underbar a \)
 \end{LTXexample}
 \end{frame}
 
