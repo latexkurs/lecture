@@ -1,11 +1,12 @@
 % !TEX encoding = UTF-8 Unicode
 % 
 % © 2015–2017 Moritz Brinkmann, CC-by-sa
+% © 2018 Maximilian Jalea, CC-by-sa
 % http://latexkurs.github.io
 
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{latexkurs-exercise}[2017/11/14 v0.3 Exercise sheets for LaTeX Course]
+\ProvidesClass{latexkurs-exercise}[2018/11/08 v0.3.1 Exercise sheets for LaTeX Course]
 
 \LoadClass{scrartcl}
 
@@ -72,7 +73,7 @@
 \ihead{Einführung in das\\Textsatzsystem \LaTeX}
 \chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
 \ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{\DTMdate{\ltxkurs@datum}}{Ausgegeben: \DTMdate{\ltxkurs@ausgabe}}\\\ifthenelse{\equal{\ltxkurs@abgabe}{}}{}{Abgabe: \DTMdate{\ltxkurs@abgabe}}}
-\ifoot{Heidelberg, WS 2017}
+\ifoot{Heidelberg, WS 2018}
 \cfoot{}
 \ofoot{Seite~\thepage~von~\pageref{LastPage}}
 
