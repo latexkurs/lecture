@@ -7,11 +7,11 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2017-11-17,
+	datum=2018-11-12,
 	titel={Mathematiksatz II},
 	web=true,
 %	noshortverb=true,
-	mo,
+	max,
 	aspectratio=1610,
 ]{../tex/latexkurs-slides}
 
@@ -47,22 +47,22 @@
 \subsection{Relationen}
 \begin{frame}[fragile]{Relationen}
 \begin{LTXexample}
-$= \equiv \approx \asymp \bowtie \cong \dashv \doteq \sim \simeq \propto \smile$
+\(= \equiv \approx \asymp \bowtie \cong \dashv \doteq \sim \simeq \propto \smile\)
 \end{LTXexample}
 \pause Negierung mit |\not|
 
 \begin{LTXexample} 
-$\not = \neq \not\equiv
-\not \approx \not A
-\not\kern-.2em\int \not\kern-.2em\partial \not \smile$
+\(\not = \neq \not\equiv
+\not \approx \not A \not\kern-.25em A
+\not\kern-.2em\int \not\kern-.2em\partial \not \smile\)
 \end{LTXexample}
 \pause Stapeln von Symbolen
 
 \begin{LTXexample}
-$\stackrel{oben}{unten}$
-$\stackrel{\text e}{\text a}=$ä
-$\stackrel . = \neq \doteq$
-$\stackrel != \stackrel ?=$
+\(\stackrel{oben}{unten}\)
+\(\stackrel{\text e}{\text a}=\)ä
+\(\stackrel . = \neq \doteq\)
+\(\stackrel != \stackrel ?=\)
 \end{LTXexample}
 \end{frame}
 
@@ -71,15 +71,15 @@ $\stackrel != \stackrel ?=$
 \begin{frame}[fragile]{12many}
 \begin{itemize}
 \item Paket \pkg{12many} bietet Vereinfachung und Anpassung zum Mengensatz:\\%
-$\{1, \dots, m\}$
+\(\{1, \dots, m\}\)
 \item Befehle:\\
 |\nto{n}{m}|, |\ito{m}|, |\oto{m}|
 \item Stil ändern mit |\setOTMstyle[]{|\meta{style}|}|
 \end{itemize}
 \begin{LTXexample}[width=.6\textwidth]
-$ \nto{i}{k},
+\( \nto{i}{k},
   \ito{m},
-  \oto{\alpha_i} $
+  \oto{\alpha_i} \)
 \end{LTXexample}
 \end{frame}
 
@@ -118,16 +118,17 @@ Verschiedene Matheschriften zusammen können Probleme bereiten.
 \begin{frame}[fragile]{Satz komplexer Matrizen}
 \begin{LTXexample}[width=.4\textwidth]
 \[
-  \begin{pmatrix}
-    a & b     & \dots & z\\
-    b & \dots & \dots & z\\
-    \vdots & \ddots& \reflectbox{$\ddots$} & \vdots\\
-    \hdotsfor{4}\\
-    z & b & \dots &
-    \begin{pmatrix}
-      a & b \\ c & d
-    \end{pmatrix}
-  \end{pmatrix}
+\begin{pmatrix}
+  a & b     & \dots & z\\
+  b & \dots & \dots & z\\
+  \vdots & \ddots& \reflectbox{\(\ddots\)} 
+                              & \vdots\\
+  \hdotsfor{4}\\
+  z & b & \dots &
+      \begin{pmatrix}
+        a & b \\ c & d
+      \end{pmatrix}
+\end{pmatrix}
 \]
 
 \end{LTXexample}
@@ -147,8 +148,8 @@ Mit dem \AmS-Paket \pkg{amsthm} lassen sich typische Mathe-Umgebungen wie „Sat
 \end{lstlisting}
 \newtheorem{thm}{Satz}[section]
 \begin{LTXexample}
-\begin{thm}[Brinkmann et al.]
-  Sei $a=b$ und $b=c$. Dann ist $a=c$.
+\begin{thm}[Jalea et al.]
+  Sei \(a=b\) und \(b=c\). Dann ist \(a=c\).
 \end{thm}
 \begin{proof}
   Trivial.
@@ -178,15 +179,15 @@ Paket \pkg{siunitx} (Joseph Wright)
 Ändern der Voreinstellungen mittels |\sisetup|
 \begin{LTXexample}
 \sisetup{negative-color=red}
-$\num{-3}, \num{3},
+\(\num{-3}, \num{3},
 \num[negative-color=blue]{-5x5},
-\num{2}\cdot\num 2$\\
+\num{2}\cdot\num 2\)\\
 
 \def\a{5.1}
-$\SI{\a x 5.3}{\milli\meter}$\\
-$\num{\a x 5.3}\,\si{\square\milli\meter}$\\
-$\num{\a x 5.3}\,\si{\milli\meter
-\squared}$
+\(\SI{\a x 5.3}{\milli\meter}\)\\
+\(\num{\a x 5.3}\,\si{\square\milli\meter}\)\\
+\(\num{\a x 5.3}\,\si{\milli\meter
+\squared}\)
 \end{LTXexample}
 \end{frame}
 
@@ -319,10 +320,10 @@ Paket \pkg{braket}
 \begin{frame}[fragile]{Akzente}
 Für Operatoren benötigt man das „Dach“:
 \begin{LTXexample}[width=.4\textwidth]
-$\hat A \hat{\mathrm{A}} \check a \\
+\(\hat A \hat{\mathrm{A}} \check a \\
 \bar h \hbar \\ 
 \dot a \ddot a \dddot a \ddddot a\\
-\underbrace{E = mc^2}_\text{nach Einstein}\overbrace{\int_\infty}^{\text{Hinweis}}$
+\underbrace{E = mc^2}_\text{nach Einstein}\overbrace{\int_\infty}^{\text{Hinweis}}\)
 \end{LTXexample}
 \end{frame}
 
@@ -401,6 +402,7 @@ $\overleftarrow a
 \item viele \TeX-Formate (pstex, pslatex, texdraw, eepic, emtex, \dots)
 \item \emph{kein} pdf
 \item aus \LaTeX: unabhängig vom Treiber
+\item benötigt shell-escape um automatisiert die Plots erstellen zu können
 \end{itemize}
 \end{frame}
 
@@ -473,9 +475,9 @@ Hervorhebungen/besondere Buchstaben:
 
 \begin{frame}[fragile]{Phantome}
 \begin{LTXexample}[width=.4\textwidth]
-$a_x = b$\\
-$\hphantom{a_x} = b$\\
-$\underline{a_x} = \underline{b\vphantom{a_x}} c \underline{a_x} \underline b$
+\(a_x = b\)\\
+\(\hphantom{a_x} = b\)\\
+\(\underline{a_x} = \underline{b\vphantom{a_x}} c \underline{a_x} \underline b\)
 \end{LTXexample}
 \begin{LTXexample}
 \begin{align*}
@@ -488,9 +490,9 @@ c &= d\\
 
 \begin{frame}[fragile]{Phantome}
 \begin{LTXexample}[width=.4\textwidth]
-$a_x = b$\\
-$\hphantom{a_x} = b$\\
-$\underline{a_x} = \underline{b\vphantom{a_x}}\underline b$
+\(a_x = b\)\\
+\(\hphantom{a_x} = b\)\\
+\(\underline{a_x} = \underline{b\vphantom{a_x}}\underline b\)
 \end{LTXexample}
 \begin{LTXexample}
 \begin{align*}
@@ -621,7 +623,7 @@ a &= b\\
 \end{LTXexample}
 \end{frame}
 
-\nocite{amsthm, siunitx, gnuplottex, mathmode}
+\nocite{wikibooksmaths,amsthm, siunitx, gnuplottex, mathmode}
 \begin{frame}[allowframebreaks]{Weiterführende Literatur}
 \printbibliography
 \end{frame}
