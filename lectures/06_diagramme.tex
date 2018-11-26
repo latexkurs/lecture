@@ -7,11 +7,11 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2017-12-01,
+	datum=2018-11-26,
 	titel={Diagramme},
 	web=false,
 %	noshortverb=true,
-	mo,
+	max,
 	aspectratio=1610,
 ]{../tex/latexkurs-slides}
 
@@ -22,7 +22,7 @@
 }
 
 \pgfplotsset{
-	compat=1.14,
+	compat=1.16,
 	width=7cm,
 	lua backend=true,
 }
@@ -573,8 +573,10 @@ Es existieren diverse spezialisierte Pakete
 Konfiguration mittels |\pgfplotsset{|\meta{Optionen}|}|. Paketautor empfiehlt, für zukünftige Kompatbilität, die aktelle Version anzugeben.
 \begin{lstlisting}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.14}
+\pgfplotsset{compat=1.16}
 \end{lstlisting}
+Die Version 1.16 ist die im Moment aktuelle. Ab 1.6.1 wird es aber auch automatisch in die |LOG|-Files geschrieben. Es wird empfohlen (auch in der Ausgabe beim Kompilieren) die Version \emph{immer} anzugeben.
+
 \pause
 \pkg{pgfplots} basiert auf \href{http://ctan.org/pkg/pgf}{\TikZ/PGF} und steht deshalb innerhalb einer |tikzpicture|:
 \begingroup
@@ -970,13 +972,13 @@ Mit |\usepgfplotslibrary{polar}| versteht \pkg{pgfplots} Polarkoordinaten.\\
 \item extern erzeugte Plots (Bilder) in pgfplot-Koordinatensystem einfügen (auch 3D)
 \item in Matlab erzeugte Plot importieren
 \item beliebige Befehle in einer Shell ausführen und das Ergebnis plotten
-%\item Symbolische Koordinaten ($a,b,c,d$ statt $1,2,3,4$)
 \item Datum oder Uhrzeit als Koordinaten
 \item automatische Umrechnung von Koordinaten (z.\,B. polar in kartesisch)
 \item klickbare Plots (die ein Popup öffnen)
 \item Plots in einzelne externe Dateien ausgeben
 \item Flächen zwischen Kurven schraffieren
 \item Vektorfelder plotten
+\item Alle Diagramme als einzelne PDF generieren, um diese nicht immer wieder neu generieren zu müssen
 \item …
 \item alles was \TikZ\ kann
 \end{itemize}
