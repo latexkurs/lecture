@@ -7,17 +7,16 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2016-12-22,
-	titel={Witziges und Obskures},
+	datum=2018-12-17,
+	titel={Witziges, Obskures und Sinnvolles…},
 	web=false,
 %	noshortverb=true,
  	aspectratio=1610,
- 	mo,
+ 	max,
 ]{../tex/latexkurs-slides}
 
-\usepackage{comicneue,skull,CountriesOfEurope,simpsons}
+\usepackage{comicneue,skull,CountriesOfEurope,yfonts,recycle}
 \newfont{\cirth}{cirth scaled\magstep1}
-\font\ransom=ransom10 scaled 1  % leider fehlen dazu die map-files
 \newfont{\dancers}{dancers scaled\magstep1}
 
 \setsansfont{Linux Biolinum O}
@@ -83,11 +82,14 @@ Datei \href{http://www.ctan.org/pkg/happy4th}{|happy4th.tex|} enthält verwirren
 	\begin{itemize}[<+->]
 		\item \pkg{comicsans}\hfill{\fontspec[Scale=.9]{Comic Sans MS} ziemlich furchtbare Schrift}
 		\item \pkg{comicneue}\hfill{\comicneue neuere, nicht ganz so furchtbare Schrift}
-		\item \pkg{ransom}%\hfill{\ransom kaputte Schreibmaschine}
+                \item \pkg{yfonts}: Gotisch\hfill{\textgoth{eine deutsche Schrift}}
+                \item \pkg{yfonts}: Schwabacher\hfill{\textswab{eine sehr deutsche Schrift}}
+                \item \pkg{yfonts}: Fraktur\hfill{\textfrak{eine weitere deutsche Schrift}}
+%		\item \pkg{ransom}%\hfill{\ransom kaputte Schreibmaschine}
 		\item \pkg{cirth}\hfill{\cirth baliN SelN ov fuxiN, lon-d ov monia}
-		\vspace{.2ex}
-
-		\item \pkg{skull}\hfill{|\$\textbackslash skull\$|\quad\Large$\skull$}
+%		\vspace{.2ex}
+		\item \pkg{skull}\hfill{|$\textbackslash skull$| \quad \Large \(\skull\)}
+                \item \pkg{recycle}\hfill{|\textbackslash recycle| \quad \small \recycle}
 		\item \pkg{countriesofeurope}\hfill{\Large\EUCountry{140}\EUCountry{141}\EUCountry{142}\EUCountry{143}\EUCountry{147}}
 		\vspace{-.8em}
 
@@ -95,14 +97,14 @@ Datei \href{http://www.ctan.org/pkg/happy4th}{|happy4th.tex|} enthält verwirren
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{simpsons}
-Schriftart \pkg{simpsons} bietet Simpsons-Charaktere:\\[-.5em]
-|\textbackslash Homer| \uncover<2->{|\textbackslash Left\textbackslash Bart|}\hfill\Homer\uncover<2->{\Left\Bart} \\[2em]\pause\pause
-Position der Pupille anpassbar:\\[-.5em]
-|\textbackslash Goofy\textbackslash Lisa(1,1.6)(.85,1.6)|\hfill\Goofy\Lisa(1,1.6)(.85,1.6) \\[2em]
-\pause
-\hfill \Goofy\Marge(-.5,-.7)(1.5,.8) \Goofy\Maggie(1,-.6)(-.5,-.3) \quad \Left\Burns\hfill\,
-\end{frame}
+%\begin{frame}{simpsons}
+%Schriftart \pkg{simpsons} bietet Simpsons-Charaktere:\\[-.5em]
+%|\textbackslash Homer| \uncover<2->{|\textbackslash Left\textbackslash Bart|}\hfill\Homer\uncover<2->{\Left\Bart} \\[2em]\pause\pause
+%Position der Pupille anpassbar:\\[-.5em]
+%|\textbackslash Goofy\textbackslash Lisa(1,1.6)(.85,1.6)|\hfill\Goofy\Lisa(1,1.6)(.85,1.6) \\[2em]
+%\pause
+%\hfill \Goofy\Marge(-.5,-.7)(1.5,.8) \Goofy\Maggie(1,-.6)(-.5,-.3) \quad \Left\Burns\hfill\,
+%\end{frame}
 
 \begin{frame}[t]{chickenize}
 	Paket \pkg{chickenize} nutzt Lua um einzelne Buchstaben im \hologo{LuaTeX}-Input zu manipulieren.
@@ -116,6 +118,21 @@ Position der Pupille anpassbar:\\[-.5em]
 		\item Ersetzten aller Buchstaben durch zufällige Buchstaben
 		\item …
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Edu \LaTeX}
+    Es gibt ein Paket eines Heidelbergers, welches vor allem für Aufgabenstellung und Dokumentation für Lehrämtler in der Schule gilt. Ebenfalls gibt es ein ausgegliedertes Paket für Mathematik.
+
+\vspace{1em}
+    Einfaches Erstellen von:
+    \begin{itemize}
+        \item Kapitel, in denen man (Schul-)Mathematik erklärt.
+        \item Klausuren in allen Fächern
+        \item Zettel als Aufgabenstellung oder auch zur Abgabe
+        \item alles andere, was man auch didaktischen Gründen haben möchte…
+    \end{itemize}
+\vspace{1em}
+    Zu finden auf GitHub unter \url{https://github.com/wunderlich/edu} und \url{https://github.com/wunderlich/edumath}
 \end{frame}
 
 \begin{frame}{Spaßige Anforderungen}
