@@ -7,12 +7,12 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2018-01-12,
+	datum=2019-01-07,
 	titel={Präsentationen mit beamer},
 	web=true,
 	aspectratio=1610,
 %	noshortverb=true,
-	mo,
+	max,
 ]{../tex/latexkurs-slides}
 
 
@@ -372,6 +372,19 @@ Umgebungen können nummeriert werden mit Dokumentenoption |[envcountsec]|
 		\item implementiert (scheinbar) alle pdf-features\\%
 (kann Videos abspielen, Transitions etc.)
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{zathura}
+    \begin{itemize}
+        \item sehr schlanker PDF Betrachter
+        \item implementiert die Routinen (PDF-Libraries) von Poppler und MuPDF
+        \item Bedienung orientiert sich an VIM
+        \item mit |F5| wird der Präsentationsmodus gestartet
+        \item mit |--fork| kann zathura aus der Konsole als eigene Instanz gestartet werden
+        \item mit |-s| kann zathura wie auch in \TeX Studio vorhanden aus der PDF in den Quelltext springen (mit richtiger Konfiguration in z.B. Kyle)
+        \item nach Rekompilierung öffnet zathura das neue PDF automatisch
+    \end{itemize}
+    ⇒ Im Allgemeinen mein Go-To PDF-Betrachter
 \end{frame}
 
 \begin{frame}{impressive!}
