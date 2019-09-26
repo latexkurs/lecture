@@ -71,6 +71,7 @@
 \DeclareBoolOption{noshortverb}
 \DeclareBoolOption{max}
 \DeclareBoolOption{mo}
+\DeclareBoolOption{sebbo}
 \ProcessKeyvalOptions{latexkurs}
 
 \ifltxkurs@noshortverb
@@ -98,6 +99,9 @@
 \fi
 \ifltxkurs@max
 	\g@addto@macro{\authorstring}{Maximilian Jalea\\{\small\url{latexkurs@mntl.de}}}
+\fi
+\ifltxkurs@sebbo
+	\g@addto@macro{\authorstring}{Sebastian Blänsdorf\\{\small\url{blaensdorf@stud.uni-heidelberg.de}}}
 \fi
 \author{\authorstring}
 \AtBeginDocument{
