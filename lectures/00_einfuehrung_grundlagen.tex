@@ -7,10 +7,10 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2018-10-15,
+	datum=2021-10-20,
 	titel={Einführung und grundlegende Bedienung},
 	web=true,
-	sebbo,
+	max,
 	aspectratio=1610,
 ]{../tex/latexkurs-slides}
 
@@ -23,13 +23,18 @@
 \begin{frame}[t]{Organisatorisches}{Allgemeines}
 	\begin{block}<1->{Anmeldung}
 		\begin{itemize}
-			\item	 Anmeldung im \href{https://muesli.mathi.uni-heidelberg.de/lecture/view/750}{MÜSLI} obligatorisch
-			\item Verwaltung der Zettelpunkte über \href{https://muesli.mathi.uni-heidelberg.de/lecture/view/921}{MÜSLI}
-		\end{itemize}
+            \item Teilnahme am Kurs über den \href{https://moodle.uni-heidelberg.de/course/view.php?id=9677}{Moodle Kurs}  
+			\item Verwaltung der Zettelpunkte über \href{https://moodle.uni-heidelberg.de/course/view.php?id=9677}{Moodle Kurs}
+            \item Gruppen von 3 Studierenden im Normalfall \(\rightarrow\) in Moodle in Gruppen organisieren
+            \begin{itemize}
+                \item Erster Zettel wird von jedem abgegeben
+                \item Ab dem zweiten Zettel nur noch in Gruppen (durch Moodle) möglich
+            \end{itemize}
+        \end{itemize}
 	\end{block}
 	\begin{block}<2>{Materialien}
 		\begin{itemize}
-			\item Übungszettel und Vorlesungsfolien stehen auf der \href{http://latexkurs.github.io}{Vorlesungshomepage} zum Download
+			\item Übungszettel und Vorlesungsfolien stehen im \href{https://moodle.uni-heidelberg.de/course/view.php?id=9677}{Moodle Kurs} zum Download
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -39,37 +44,64 @@
 		\begin{itemize}
 			\item Bearbeiten der wöchentlichen Übungszettel
 			\item Erreichen von mindestens 50\% der möglichen Gesamtpunktzahl
-			\item Übungspunkte ergeben Scheinnote (Notentabelle auf Vorlesungshomepage) 
 			\item 2 ECTS-Punkte für Übergreifende Kompetenz
+			\item Übungspunkte ergeben Scheinnote
 		\end{itemize}
 	\end{block}
 \end{frame}
 
+\begin{frame}[t]{Organisatorisches}{Notentabelle}
+    \begin{table}[h!]
+        \begin{center}
+        \begin{tabular}{cr}
+            \textbf{Punkte} & \textbf{Note}\\
+            \hline
+            \(P < 66.0\) & 5.0\\
+            \(66.0 \leq P < 73.\bar{3}\) & 4.0\\
+            \(73.\bar{3} \leq P < 80.\bar{6}\) & 3.7\\
+            \(80.\bar{6} \leq P < 88.0\) & 3.3\\
+            \(88.0 \leq P < 95.\bar{3}\) & 3.0\\
+            \(95.\bar{3} \leq P < 102.\bar{6}\) & 2.7\\
+            \(102.\bar{6} \leq P < 110.0\) & 2.3\\
+            \(110.0 \leq P < 117.\bar{3}\) & 2.0\\
+            \(117.\bar{3} \leq P < 124.\bar{6}\) & 1.7\\
+            \(124.\bar{6} \leq P < 132\) & 1.3\\
+            \(132.0 \leq P\) & 1.0
+        \end{tabular}
+        \end{center}
+    \end{table}
+    \begin{itemize}
+        \item Bitte beachtet, dass es auf einigen Zetteln Bonuspunkte gibt (Moodle und Prozente)
+    \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile, t]{Organisatorisches}{Übungen}
-%	\begin{block}{Übungszettel}
-		\begin{itemize}
-			\item Übungszettel auf \url{http://latexkurs.github.io/exercises/}
-			\item Ausgabe Montag nach der Vorlesung
-		\end{itemize}
-%	\end{block}
+	\begin{itemize}
+		\item Übungszettel auf \url{https://moodle.uni-heidelberg.de/course/view.php?id=9677}{Moodle}
+		\item Ausgabe Mittwoch nach der Vorlesung
+	\end{itemize}
 	\pause
 	\begin{block}{Abgabe}
 	Je nach Aufgabenstellung per E-Mail oder ausgedruckt
 		\begin{description}
-			\item[E-Mail] \href{mailto:abgabe@latexkurs.de}{\texttt{abgabe@latexkurs.de}}\\
-			\item[Betreff] |LaTeX-Abgabe: Musterfrau, Mustermann|\\
-			\item[Dateinamen] |uebung2.1_musterfrau_mustermann.tex|
+			\item[Abgabe]       In Moodle\\
+			\item[Zip]          |zettel2_musterfrau_mustermann.zip|\\
+			\item[Dateinamen]   |uebung2.1_musterfrau_mustermann.tex|
 		\end{description}
-		\vspace{-1ex}
+		%\vspace{-1ex}
 		\begin{itemize}
-			\item Abgabe per E-Mail bis Montag 16:00
-			\item Abgabe der Ausdrucke Montag in der Vorlesung\\oder in Zettelkästen in INF\,205 (1.\,OG)
-			\item Abgabe in Dreiergruppen möglich (ausgenommen erstes Blatt)
+			\item Abgabe immer bis Mittwoch 16:15
+			\item Abgabe in Dreiergruppen (ausgenommen erstes Blatt)
 		\end{itemize}
 	\end{block}
 \end{frame}
 
-
+\begin{frame}[t]{Organisatorisches}
+    \vspace{5em}
+    \centering \Huge Noch organisatorische Fragen?\\
+    \vspace{2em}
+    \centering \normalsize Gerne auch im Moodle Forum \texttt{Organisatorische Fragen} stellen
+\end{frame}
 
 %%% ...
 
@@ -372,7 +404,8 @@ Hallo Welt!
 \fi
 
 \begin{frame}[c,fragile]{Grundbefehle}{allgemein}
-\overleaf{tex0001}
+%\overleaf{tex0001}
+\begin{center}
 \hspace{-1cm}
 \begin{tabular}{ll}
 |\textrm{Serifen}| & \textrm{Serifen \quad Abcdxyz}\\
@@ -390,10 +423,12 @@ Hallo Welt!
 |\tableofcontents| & Produziert Inhaltsverzeichnis\\
 |\today| & aktuelles Datum
 \end{tabular}
+\end{center}
 \end{frame}
 
 \begin{frame}[c,fragile]{Grundbefehle}{Schriftgrößen}
-\overleaf{tex0001}
+%\overleaf{tex0001}
+\begin{center}
 \begin{tabular}{ll}
 |\tiny| & \tiny winzig \\
 |\small| & \small klein \\
@@ -404,6 +439,7 @@ Hallo Welt!
 |\huge| & \huge riesig\\
 |\Huge| & \Huge noch riesiger\\
 \end{tabular}
+\end{center}
 %Manuelle Anpassung: |\fontsize{10}{12}\selectfont|
 \end{frame}
 
