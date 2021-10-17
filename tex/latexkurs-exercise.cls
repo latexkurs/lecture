@@ -17,6 +17,8 @@
 	../tex/latexkurs-commands,
 	xparse,
 }
+%% IfThenElse
+\RequirePackage{ifthen}
 
 %% Language
 \RequirePackage{polyglossia}
@@ -34,7 +36,7 @@
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
 	family=latexkurs,
-	prefix=ltxkurs@,
+	prefix=ltxkurs@
 }
 \DeclareStringOption{blattnr}
 \DeclareStringOption{datum}
@@ -73,7 +75,7 @@
 \ihead{Einführung in das\\Textsatzsystem \LaTeX}
 \chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
 \ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{\DTMdate{\ltxkurs@datum}}{Ausgegeben: \DTMdate{\ltxkurs@ausgabe}}\\\ifthenelse{\equal{\ltxkurs@abgabe}{}}{}{Abgabe: \DTMdate{\ltxkurs@abgabe}}}
-\ifoot{Heidelberg, WS 2018}
+\ifoot{Heidelberg, WS 2021}
 \cfoot{}
 \ofoot{Seite~\thepage~von~\pageref{LastPage}}
 
@@ -123,7 +125,8 @@
 \DeclareDocumentCommand\ltxkurs@bonusexercisename{}{Bonusaufgabe}
 \DeclareDocumentCommand\ltxkurs@solutionname{}{Lösung}
 \newcounter{ltxkursexercisecounter}
-%\setcounter{ltxkursexercisecounter}{0}
+\refstepcounter{ltxkursexercisecounter}
+\setcounter{ltxkursexercisecounter}{0}
 \newlength{\starlength}
 \DeclareDocumentEnvironment{aufgabe}{s o d<> m}{%
 		\stepcounter{ltxkursexercisecounter}%
