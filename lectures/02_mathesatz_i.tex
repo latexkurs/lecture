@@ -7,7 +7,7 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2018-10-29,
+	datum=2021-11-03,
 	titel={Mathematiksatz I},
 	web=false,
 	max,
@@ -38,6 +38,7 @@
 
 \subsection{Fehlermeldungen}
 \begin{frame}[t]{Umgang mit Fehlern}
+\vfill
 	\begin{block}{Was tun, wenn \LaTeX\ anhält?}
 		\begin{itemize}
 			\item Ruhe bewahren! (\texttt{tex}-Dateien können nicht beschädigt werden)
@@ -98,7 +99,6 @@ Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
 
 \subsection{Eigene Befehle}
 \begin{frame}[fragile]{Eigene Befehle}
-\overleaf{tex0201}
 \begin{itemize}
 \item |\newcommand{\wasser}{H$_2$O}| ⇒ H$_2$O
 \item Ermöglicht Abkürzungen im Text, die häufig vorkommen\pause
@@ -107,7 +107,6 @@ Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
 \end{frame}
 
 \begin{frame}[fragile,t]{Leerzeichen in \TeX}
-\overleaf{tex0201}
 \TeX\ „frisst“ gerne Leerzeichen – vor allem nach Befehlen:\\
 |\wasser ist nass| ⇒ H$_2$Oist nass.
 
@@ -178,7 +177,6 @@ Der Inlinemode ist über drei Wege zu erreichen:
 \item |\begin{math}|\meta{Formel}|\end{math}|
 \item |$|\meta{Formel}|$|
 \end{itemize}
-\overleaf{tex0201}
 \pause
 |\( \)| ist meist die beste Variante
 \end{frame}
@@ -242,7 +240,6 @@ viel zu groß für den normalen Fließtext ist.
 \end{frame}
 
 \begin{frame}[fragile]{Option fleqn}
-	\overleaf{tex0201}
 	\begin{itemize}
 		\item Formeln sehen oft zentriert nicht gut aus und wirken zerfleddert
 		\item linksbündige Ausrichtung ggf. besser
