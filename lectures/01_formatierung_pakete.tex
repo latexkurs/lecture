@@ -8,7 +8,7 @@
 \documentclass[
 	vorläufig=false,
 	aspectratio=1610,
-	datum=2018-10-22,
+	datum=2021-10-27,
 	titel={Allgemeine Formatierung und Pakete},
 	web=true,
 	max,
@@ -160,7 +160,6 @@
 
 \begin{frame}[fragile]{Satzspiegel mit KOMA-Skript}
 \vspace{-2em}
-\overleaf{tex0101}
 \begin{itemize}
 	\item KOMA-Skript bietet optimale Satzspiegelkonstruktion mittels eigenem Paket |typearea|
 	\item Anpassung eigentlich nur bei besonders breiten oder engen Schriften nötig: Option |DIV=|\meta{Faktor}
@@ -172,15 +171,13 @@
 \documentclass[DIV=9, BCOR=12mm]{scrbook}
 \end{lstlisting}
 \vfill
-\begin{olcol}
 Bei Nicht-KOMA-Klassen muss |typearea| direkt geladen werden:
 \begin{lstlisting}
 \usepackage[DIV=13, BCOR=2cm]{typearea}
 \end{lstlisting}
-\end{olcol}
 \end{frame}
 
-\begin{frame}[fragile]{Satzspiegel mit |geometry|}\overleaf{tex0101}%
+\begin{frame}[fragile]{Satzspiegel mit |geometry|}%
 Paket |geometry|  erlaubt manuelle Einstellung des Satzspiegels:
 \begin{lstlisting}
 \usepackage[top=2cm, bottom=5cm]{geometry}
@@ -195,8 +192,7 @@ oder:
 
 
 \begin{frame}[fragile,t]{Satzspiegel mit |geometry|}
-	\overleaf{tex0101}
-	\vspace{-1.5em}
+\vfill
 	\begin{block}{mögliche Optionen}
 		\vspace{-1em}
 \begin{verbatim}
@@ -215,8 +211,8 @@ hoffset, voffset, offset
 
 
 \subsection{Kopf- und Fußzeilen}
+\vfill
 \begin{frame}[fragile, t]{Kopf- und Fußzeilen}
-	\overleaf{tex0101}
 	\begin{itemize}
 		\item Kopf- und Fußzeilen enthalten wichtige Informationen über das Dokument 
 		\begin{itemize}
@@ -231,7 +227,7 @@ hoffset, voffset, offset
 
 
 \begin{frame}[fragile, t]{Kopf- und Fußzeilen mit fancyhdr}
-	\overleaf{tex0101}
+\vfill
 \begin{lstlisting}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -263,7 +259,6 @@ hoffset, voffset, offset
 
 
 \begin{frame}[fragile, t]{Kopf- und Fußzeilen mit scrlayer-scrpage}%
-\overleaf{tex0101}%
 \kern-.7ex Paket definiert zwei Seitenstile: |scrheadings| und |screadings.plain|
 
 Anpassung mittels z.\,B.\\|\lehead[|\meta{Inhalt plain.scrheadings}|]{|\meta{Inhalt scrheadings}|}|
@@ -332,7 +327,6 @@ Anpassung mittels z.\,B.\\|\lehead[|\meta{Inhalt plain.scrheadings}|]{|\meta{Inh
 \end{tikzpicture}
 \end{center}\vspace{-.5em}
 
-\begin{olcol}
 \begin{lstlisting}
 \documentclass{scrartcl}
 \usepackage{scrlayer-scrpage}
@@ -340,7 +334,6 @@ Anpassung mittels z.\,B.\\|\lehead[|\meta{Inhalt plain.scrheadings}|]{|\meta{Inh
 \rohead*{Seitenstile mit KOMA-Script}
 \pagestyle{scrheadings}
 \end{lstlisting}
-\end{olcol}
 \end{frame}
 
 
@@ -419,7 +412,7 @@ Kodierung kann mittels |\usepackage[utf8]{inputenc}| auf Unicode umgestellt werd
 
 \begin{frame}[fragile]{Ausgabekodierung}
 \begin{itemize}
-\item Auch wenn \hologo{pdfLaTeX} Unicode-Eingabe versteht, erscheinen in der Ausgabe nicht unbedingt Umlaute. \hfill z.\,B. ü → ¨u
+\item Auch wenn \hologo{pdfLaTeX} Unicode-Eingabe versteht, erscheinen in der Ausgabe nicht unbedingt Umlaute. \hspace{10em} z.\,B. ü → ¨u
 \item Ausgabekodierung kann festgelegt werden mittels |\usepackage[|\meta{Kodierung}|]{fontenc}|
 \item Es verschiedene Kodierungen zur Verfügung:
 \\|OT1| (original \TeX-Encoding, 7\,bit), |T1| (Latein, Mitteleuropa, 8\,bit), |T2A|\,–\,|T2C| (Kyrillisch), |T3| (Phonetisches Alphabet),\\|T4| (Latein, Afrika), |T5| (Vietnamesisch), …
@@ -434,7 +427,6 @@ Kodierung kann mittels |\usepackage[utf8]{inputenc}| auf Unicode umgestellt werd
 \end{frame}
 
 \begin{frame}[fragile,t]{Schriften in \hologo{pdfLaTeX}}
-\overleaf{tex0102}
 \begin{itemize}
 \item \hologo{pdfLaTeX} benötigt bestimmtes Schriftformat (\TeX{} font metrics)
 \item Schriften werden mittels Paketen geladen.
@@ -482,6 +474,7 @@ Wer \emph{genau weiß}, was er will: |\fontsize{|\meta{Größe}|}{|\meta{Durchsc
 \section{Mikrotypografie}
 \frame{\centering\alert{Teil III}\\\huge Mikrotypografie}
 \begin{frame}[t]{Mikrotypografie}
+\vfill
 	Mikrotypografie bezeichnet die Gestaltung von Feinheiten auf Buchstabenebene:
 	\begin{columns}
 		\begin{column}{.65\textwidth}
