@@ -12,8 +12,6 @@
 
 %% Language
 \RequirePackage{polyglossia}
-\setmainlanguage{german}
-\setotherlanguage{english}
 
 %% Fonts
 \RequirePackage{csquotes, fontspec, microtype}
@@ -227,3 +225,7 @@
 
 %% load shared package
 \RequirePackage{../tex/latexkurs-commands}
+
+%% Set Languages
+\setmainlanguage{german}
+\setotherlanguages{english,arabic}

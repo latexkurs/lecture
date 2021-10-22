@@ -7,7 +7,7 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2018-12-17,
+	datum=2021-12-22,
 	titel={Witziges, Obskures und Sinnvolles…},
 	web=false,
 %	noshortverb=true,
@@ -15,7 +15,7 @@
  	max,
 ]{../tex/latexkurs-slides}
 
-\usepackage{comicneue,skull,CountriesOfEurope,yfonts,recycle}
+\usepackage{comicneue,skull,countriesofeurope,yfonts,recycle}
 \newfont{\cirth}{cirth scaled\magstep1}
 \newfont{\dancers}{dancers scaled\magstep1}
 
@@ -55,7 +55,6 @@ Datei \href{http://www.ctan.org/pkg/happy4th}{|happy4th.tex|} enthält verwirren
 \end{frame}
 
 \begin{frame}[t,fragile]{Alternativen zu |blindtext|}
-\overleaf{tex1001}
 \begin{itemize}
 \item \pkg{lipsum}
 \item \pkg{blindtext} mit Optionen |bible| oder |pangram|
@@ -67,10 +66,10 @@ Datei \href{http://www.ctan.org/pkg/happy4th}{|happy4th.tex|} enthält verwirren
 
 \begin{frame}{Coffee Stains}
 	\begin{columns}
-		\begin{column}{.3\textwidth}
+		\begin{column}{.5\textwidth}
 			Paket \alert{\href{http://hanno-rein.de/archives/349}{\texttt{coffee}}} erzeugt vektorisierte Kaffee-Flecken auf dem Dokument.
 		\end{column}
-		\begin{column}{.6\textwidth}\vspace{-3.5em}
+		\begin{column}{.5\textwidth}\vspace{-3.5em}
 			\includegraphics[page=1,width=\textwidth]{coffee4.pdf}
 		\end{column}
 	\end{columns}
@@ -90,7 +89,7 @@ Datei \href{http://www.ctan.org/pkg/happy4th}{|happy4th.tex|} enthält verwirren
 %		\vspace{.2ex}
 		\item \pkg{skull}\hfill{|$\textbackslash skull$| \quad \Large \(\skull\)}
                 \item \pkg{recycle}\hfill{|\textbackslash recycle| \quad \small \recycle}
-		\item \pkg{countriesofeurope}\hfill{\Large\EUCountry{140}\EUCountry{141}\EUCountry{142}\EUCountry{143}\EUCountry{147}}
+		\item \pkg{countriesofeurope}\hfill{\Large\EUCountry{Germany}\EUCountry{Austria}\EUCountry{Italy}\EUCountry{Romania}\EUCountry{Greece}}
 		\vspace{-.8em}
 
 		\item \pkg{dancers}\hfill\scalebox{.6}{\dancers Sher­lock Holmes}\hspace{-2ex}\,
@@ -107,8 +106,8 @@ Datei \href{http://www.ctan.org/pkg/happy4th}{|happy4th.tex|} enthält verwirren
 %\end{frame}
 
 \begin{frame}[t]{chickenize}
+\vfill
 	Paket \pkg{chickenize} nutzt Lua um einzelne Buchstaben im \hologo{LuaTeX}-Input zu manipulieren.
-	\overleaf{tex1002}
 	
 	\begin{itemize}
 		\item Zufälliges wechseln der Schriftart

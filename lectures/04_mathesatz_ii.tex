@@ -7,7 +7,7 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2018-11-12,
+	datum=2021-11-17,
 	titel={Mathematiksatz II},
 	web=true,
 %	noshortverb=true,
@@ -441,7 +441,7 @@ Eine Reihe nichtfreier Schriften ist in speziellen Paketen verfügbar.
 \begin{frame}[fragile]{Matheschriften}
 Hervorhebungen/besondere Buchstaben:
 \begin{itemize}
-\item Kalligraphische Buchstaben |\mathcal|
+\item Kalligraphische Buchstaben |\mathcal| \hfill $\mathcal{A}, \mathcal{Z}$
 \item Serifenlose
 \item Fraktur |\Re \Im|: \hfill $\Re, \Im$
 \item Aufrechte Buchstaben
@@ -458,7 +458,7 @@ Hervorhebungen/besondere Buchstaben:
 \item Unterstützung noch sehr rudimentär
 \item zukünftige Entwicklung vielversprechend
 \item in \LaTeX3 evtl. stabil verfügbar \dots
-\item geplant für lua\TeX
+\item geplant für lua\TeX \, (aktuell einfache Konvertierung in runtime)
 \end{itemize}
 \end{frame}
 
@@ -506,8 +506,9 @@ a &= b\\
 
 \subsection{Smashing}
 \begin{frame}{mathtools}
+\vfill
+Paket \pkg{mathtools} bietet:
 \begin{itemize}
-\item Paket \pkg{mathtools} bietet:
 \item Erweiterungen/Ergänzungen/Bugfixes zu \pkg{amsmath}
 \item fine-tuning des Mathesatzes
 \item Sammlung von Tricks von Michael J. Downes

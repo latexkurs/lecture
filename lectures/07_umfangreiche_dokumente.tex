@@ -7,12 +7,12 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2018-12-03,
+	datum=2021-12-08,
 	titel={Umfangreiche Dokumente},
 	web=false,
 	aspectratio=1610,
 %	noshortverb=true,
-	mo,
+	max,
 ]{../tex/latexkurs-slides}
 
 \usepackage{
@@ -163,6 +163,7 @@ Setzen von \emph{magic comments:}\\ \verb*?% !TEX root = ?\meta{Hauptdokument}
 \section{Vor dem Inhalt}
 \subsection{Titelei}
 \begin{frame}[fragile,t]{Titelei}
+\vfill
 	\begin{itemize}
 		\item enthält alles bis zur ersten Inhaltsseite
 		\item enthält Autor, Titel, etc.
@@ -171,7 +172,6 @@ Setzen von \emph{magic comments:}\\ \verb*?% !TEX root = ?\meta{Hauptdokument}
 		\item Befehl |\maketitle| setzt vordefinierte Titelei
 		\item Angaben von |\title, \author, \extratitle| etc. nötig und möglich
 	\end{itemize}
-	\overleaf{tex0701}
 \end{frame}
 
 \begin{frame}[fragile,t]{Titeleibefehle im KOMA-Bundle}
@@ -235,7 +235,6 @@ Und hier fängt das eigentlich Dokument an
 		\item Aufnamhme der Verzeichnisse ins Inhaltsverzeichnis: Dokumentenoption |toc=totoc|
 		\item möglich: Codeverzeichnis, Beispielverzeichnis, …
 	\end{itemize} 
-	\overleaf{tex0701}
 \end{frame}
 
 \section{Im Inhalt}
