@@ -7,7 +7,7 @@
 
 \documentclass[
 	vorläufig=false,
-	datum=2018-11-05,
+	datum=2021-11-10,
 	titel={Gleitumgebungen und Tabellen},
 	web=false,
 	noshortverb=true,
@@ -518,9 +518,9 @@ Wichtige Einstellungsmöglichkeiten:
 \tablelasttail{Ende der Messdaten}
 \end{frame}
 
-\begin{supertabular}{cc}
-\messdaten
-\end{supertabular}
+%\begin{supertabular}{cc}
+%\messdaten
+%\end{supertabular}
 
 \begin{frame}[fragile]{longtable}
 Paket \verb|longtable| bietet Umgebung \verb|longtable|:
@@ -531,21 +531,21 @@ Paket \verb|longtable| bietet Umgebung \verb|longtable|:
 \end{itemize} 
 \end{frame}
 
-\begin{frame}[fragile]{longtable}
-\begin{LTXexample}[pos=b]
-\begin{longtable}{cc}
-\textbf{Messdaten}\\
-\endfirsthead
-links & rechts\\
-\endhead
-\small \textit{Weiter auf der nächsten Seite}
-\endfoot
-Ende der Tabelle.
-\endlastfoot
-\messdaten
-\end{longtable}
-\end{LTXexample}
-\end{frame}
+%\begin{frame}[fragile]{longtable}
+%\begin{LTXexample}[pos=b]
+%\begin{longtable}{cc}
+%\textbf{Messdaten}\\
+%\endfirsthead
+%links & rechts\\
+%\endhead
+%\small \textit{Weiter auf der nächsten Seite}
+%\endfoot
+%Ende der Tabelle.
+%\endlastfoot
+%\messdaten
+%\end{longtable}
+%\end{LTXexample}
+%\end{frame}
 
 \begin{longtable}{cc}
 \textbf{Messdaten}\\
