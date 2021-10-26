@@ -228,4 +228,4 @@
 
 %% Set Languages
 \setmainlanguage{german}
-\setotherlanguages{english,arabic}
+\setotherlanguage{english}
