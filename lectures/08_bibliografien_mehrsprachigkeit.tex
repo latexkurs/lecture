@@ -3,11 +3,12 @@
 % !TEX spellcheck = de_DE
 % 
 % © 2015–2017 Moritz Brinkmann, CC-by-sa
+% © 2018–2022 Maximilian Jalea, CC-by-sa
 % http://latexkurs.github.io
 
 \documentclass[
 	vorläufig=false,
-	datum=2021-12-15,
+	datum=2022-12-07,
 	titel={Bibliografien und mehrsprachiger Satz},
 	web=false,
 %	noshortverb=true,
@@ -192,6 +193,8 @@ Jedes Item hat verschiedene mandatorische und optionale Felder.
 \item andere Syntax als die „alten“ Pakete (verwenden \BibTeX-Code)
 \item Einstellungen über Paketoptionen\\(siehe \pkg{biblatex}-Dokumentation, Abschn. 3: User Guide)
 \item Möglichkeit zur Erstellung mehrerer Bibliografien\\(z.\,B. je Kapitel, oder automatisch nach bestimmten Kriterien)
+\vspace{2cm}
+\item[\href{https://www.jabref.org/}{Jabref}] GUI Tool um seine Bibliographie zu ordnen und bearbeiten
 \end{itemize} 
 \end{frame}
 
@@ -234,7 +237,6 @@ Jedes Item hat verschiedene mandatorische und optionale Felder.
 
 
 
-
 \section{Geschicktes Kompilieren}
 \teil{Geschicktes Kompilieren}
 \subsection{Makefiles}
@@ -267,9 +269,11 @@ all: latex biber latex
 \item kann mittels Datei |latexmkrc| konfiguriert werden
 \end{itemize}
 \begin{block}{in der Konsole}
-|$ latexmk -latex="xelatex --shell-escape %S" \|\\
-|  dokument.tex|\\
-|$ latexmk -c dokument.tex|
+|$ latexmk --xelatex dokument.tex|\\
+|$ latexmk -lualatex dokument.tex|\\
+|$ latexmk -pvc dokument.tex|\\
+|$ latexmk -e '$xelatex=q/xelatex -no-pdf -recorder -shell-escap %S/'\| \\
+|           dokument.tex|
 \end{block}
 \begin{itemize}
 \item genauere Infos: \href{http://man.cx/latexmk}{|man latexmk|} oder \href{http://mirrors.ctan.org/support/latexmk/latexmk.pdf}{|texdoc latexmk|}

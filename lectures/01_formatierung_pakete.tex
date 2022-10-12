@@ -3,16 +3,19 @@
 % !TEX spellcheck = de_DE
 % 
 % © 2015–2017 Moritz Brinkmann, CC-by-sa
+% © 2018–2022 Maximilian Jalea, CC-by-sa
 % http://latexkurs.github.io
 
 \documentclass[
 	vorläufig=false,
 	aspectratio=1610,
-	datum=2021-10-27,
+	datum=2022-10-26,
 	titel={Allgemeine Formatierung und Pakete},
 	web=true,
 	max,
 ]{../tex/latexkurs-slides}
+
+\usepackage{metalogo}
 
 
 \begin{document}
@@ -34,7 +37,7 @@
 		\item[\TeX] Das ursprüngliche, von Donald E. Knuth geschriebene Programm.
 		\item[\hologo{pdfTeX}] Engine, die direkt PDF-Dateien schreiben kann\\Ermöglicht viele PDF-spezifische Features wie z.\,B. Mikrotypografie.
 		\item[\XeTeX] Verarbeitet standardmäßig utf8-Encoding, bietet die Möglichkeit, Systemschriften zu benutzen und die Textrichtung einfach zu ändern.
-		\item[\luaTeX] Bietet quasi alles was \XeTeX kann und enthält die Skriptsprache Lua, die man aus dem \TeX-Dokument heraus aufrufen kann.
+		\item[\luaTeX] Bietet quasi alles was \XeTeX\, kann und enthält die Skriptsprache Lua, die man aus dem \TeX-Dokument heraus aufrufen kann.
 	\end{description}
 \end{frame}
 
@@ -404,13 +407,12 @@ z.\,B. ASCII-Zeichensatz:
 @ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_
 `abcdefghijklmnopqrstuvwxyz{|}~ 
 \end{verbatim*}
-\item<2-> \hologo{pdfLaTeX} geht von ASCII-Kodierung aus und versteht normalerweise keine Umlaute.\\
-Kodierung kann mittels |\usepackage[utf8]{inputenc}| auf Unicode umgestellt werden.
-\item<3-> \XeLaTeX und \hologo{LuaLaTeX} gehen von UTF8-Kodierung aus.
+\item<3-> \hologo{pdfLaTeX}, \XeLaTeX\, und \hologo{LuaLaTeX} gehen von UTF8-Kodierung aus.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Ausgabekodierung}
+\begin{frame}[fragile]{Ausgabekodierung (früher)}
+Seit LaTeX 2018 kann auch \hologo{pdfLaTeX} UTF8-Kodierung. Diese Infos sind hier nur noch, damit man davon mal gehört hat.\footnote{Nachzulesen unter \href{https://mirror.clientvps.com/CTAN/macros/latex/base/ltnews28.pdf}{LaTeXNews 28}.}
 \begin{itemize}
 \item Auch wenn \hologo{pdfLaTeX} Unicode-Eingabe versteht, erscheinen in der Ausgabe nicht unbedingt Umlaute. \hspace{10em} z.\,B. ü → ¨u
 \item Ausgabekodierung kann festgelegt werden mittels |\usepackage[|\meta{Kodierung}|]{fontenc}|
@@ -564,7 +566,7 @@ Modernere Alternative für \hologo{LuaLaTeX} und \XeLaTeX:
 \begin{lstlisting}
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc} % Nicht mehr notwendig, schadet aber nicht.
 \end{lstlisting}
 \vfill
 \XeLaTeX \pdfmarginpar{Das Paket xltxtra läd neben einigen XeTeX-spezifischen Definitionen fontspec automatisch, sodass fontspec hier nicht separat aufgerufen werden muss.}
