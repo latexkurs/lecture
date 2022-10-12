@@ -3,11 +3,12 @@
 % !TEX spellcheck = de_DE
 % 
 % © 2015–2017 Moritz Brinkmann, CC-by-sa
+% © 2018–2022 Maximilian Jalea, CC-by-sa
 % http://latexkurs.github.io
 
 \documentclass[
 	vorläufig=false,
-	datum=2021-11-17,
+	datum=2022-11-02,
 	titel={Mathematiksatz II},
 	web=true,
 %	noshortverb=true,
@@ -168,7 +169,7 @@ Paket \pkg{siunitx} (Joseph Wright)
 \SI[separate-uncertainty]{23.448(5)e23}{g.cm^3}
 \si[per-mode=fraction]{\joule\per\eV}
 \si{\joule\per\eV}
-\num[round-precision=2]{4.4583 x 3.2 e21}
+\numproduct[round-precision=2]{4.4583 x 3.2 e21}
 \num[mode=text]{4.58}
 \num[exponent-product=\cdot]{1e10}
 \ang[]{45}
@@ -180,13 +181,13 @@ Paket \pkg{siunitx} (Joseph Wright)
 \begin{LTXexample}
 \sisetup{negative-color=red}
 \(\num{-3}, \num{3},
-\num[negative-color=blue]{-5x5},
+\numproduct[negative-color=blue]{-5x5},
 \num{2}\cdot\num 2\)\\
 
 \def\a{5.1}
-\(\SI{\a x 5.3}{\milli\meter}\)\\
-\(\num{\a x 5.3}\,\si{\square\milli\meter}\)\\
-\(\num{\a x 5.3}\,\si{\milli\meter
+\(\SI{\a}{\milli\meter}\)\\
+\(\numproduct{\a x 5.3}\,\si{\square\milli\meter}\)\\
+\(\numproduct{\a x 5.3}\,\si{\milli\meter
 \squared}\)
 \end{LTXexample}
 \end{frame}
