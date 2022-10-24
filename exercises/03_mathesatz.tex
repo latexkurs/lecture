@@ -3,25 +3,26 @@
 % !TEX spellcheck = de_DE
 % 
 % © 2015–2018 Moritz Brinkmann, CC-by-sa
+% © 2019–2022 Maximilian Jalea, CC-by-sa
 % http://latexkurs.github.io
 
 \documentclass[
 	vorläufig=false, 
-	blattnr=2,
-	ausgabe=2021-11-03,
-	abgabe=2021-11-10,
+	blattnr=3,
+	ausgabe=2022-10-26,
+	abgabe=2022-11-09,
 	lösung=true,
 	shortverb,
 ]{../tex/latexkurs-exercise}
 
-\usepackage{mathtools}
+\usepackage{mathtools, siunitx, booktabs}
 
 
 
 \begin{document}
 
 
-\begin{aufgabe}[6]{Maxwell-Gleichungen}
+\begin{aufgabe}[3 (+1 Bonus)]{Maxwell-Gleichungen}
 	Jeder Physiker sollte einmal im Leben die Maxwell-Gleichungen \TeX{}en, und auch für Studis anderer Fächer bieten diese Formeln eine gute Möglichkeit, den Mathesatz zu testen. Die vier Gleichungen lauten:                                                                                                           
                                                                                                                                                                                                                                                                                                                                
         \[\textstyle \nabla \times \vec E = -\frac{\partial \vec B}{\partial t}\quad \nabla \times \vec B = \vec j + \frac{\partial \vec E}{\partial t}\quad \nabla \cdot \vec E = \rho\quad                                                                                                                                   
@@ -29,27 +30,27 @@
                                                                                                                                                                                                                                                                                                                                
    \noindent Überlegen Sie sich eine passende Formatierung und eine gute, übersichtliche Darstellung.\footnote{Die hier gezeigte Darstellung ist nicht optimal; sie sollen sich also explizit eine bessere überlegen.} Korrigieren Sie Abstände, falls nötig, wählen Sie eine gute und passende Schrift, überlegen Sie sich mögliche Auszeichnungsformen vektorieller Größen etc.                                                                                                                                                                                                                                                                       
                                                                                                                                                                                                                                                                                                                                
-   Die nötigen Zeichen für diese Aufgabe finden Sie in der Datei |symbols-a4|\footnote{\texttt{texdoc symbols-a4}} oder mit dem \href{http://detexify.kirelabs.org/classify.html}{Detexify-Tool}.\footnote{\url{http://detexify.kirelabs.org/classify.html}}                                                              
+   Die nötigen Zeichen für diese Aufgabe finden Sie in der Datei |symbols-a4|\footnote{\texttt{texdoc symbols-a4}} oder mit dem \href{http://detexify.kirelabs.org/classify.html}{Detexify-Tool}.\footnote{\url{http://detexify.kirelabs.org/classify.html}} Der Bonus kann durch eine besonders schöne Formatierung mit dazugehöriger Begründung erlangt werden.
                                                                                                                                                                                                                                                                                                                                
-   \abgabe{Den Quelltext per Mail und als Ausdruck.}
+   \abgabe{Den Quelltext und PDF als ZIP in Moodle.}
 \end{aufgabe}
 
-\lösung{02_loesung_maxwell}
+\lösung{03_loesung_maxwell}
 
 \begin{aufgabe}[3]{Integrale}
    Ein befreundeter Mathematiker hat eine eine großartige neue Theorie aufgestellt, die mit folgendem Integral-Konstrukt notiert wird:                                                                                                                                                                                    
    \begin{center}                                                                                                                                                                                                                                                                                                         
-        \includegraphics{02_komischeintegrale} % Das habt Ihr Euch wohl so gedacht ;-)                                                                                                                                                                                                                                  
+        \includegraphics{03_komischeintegrale} % Das habt Ihr Euch wohl so gedacht ;-)                                                                                                                                                                                                                                  
    \end{center}                                                                                                                                                                                                                                                                                                           
    Helfen Sie Ihrem Mathematiker-Freund beim Setzen seiner Theorie und bauen Sie das seltsame Integral aus vorhandenen Integralsymbolen in \hologo{pdfLaTeX} nach.                                                                                                                                                        
    
 	\tipp{Suchen Sie in |symbols-a4| nach |txfonts/pxfonts| und benutzen Sie den \texttt{\textbackslash kern}-Befehl um horizontale Abstände zu verändern.}
-   \abgabe{Den Quelltext per Mail, das fertige PDF als Ausdruck.} 
+   \abgabe{Den Quelltext und PDF als ZIP in Moodle.}
 \end{aufgabe}
 
-\lösung{02_loesung_integrale}
+\lösung{03_loesung_integrale}
 
-\begin{aufgabe}[3]{Fallunterscheidung mit Cases}
+\begin{aufgabe}[0 (+3 Bonus)]{Fallunterscheidung mit Cases}
 	Die Umgebung |cases| ermöglicht den Satz von Fallunterscheidungen:                                                                                                                                                                                                                                                     	\begin{lstlisting}                                                                                                                                                                                                                                                                                                             
 \[ a =                                                                                                                                                                                                                                                                                                                         
   \begin{cases}                                                                                                                                                                                                                                                                                                                
@@ -68,11 +69,40 @@
      		231:\ 1+1+1+1 = (1+1) + (1+1)                                                                                                                                                                                                                                                                          
      	\end{cases}                                                                                                                                                                                                                                                                                                    
    \end{displaymath}                                                                                                                                                                                                                                                                                                      
-	\abgabe{Den Quelltext per Mail, das fertige PDF als Ausdruck.}
+   \abgabe{Den Quelltext und PDF als ZIP in Moodle.}
 \end{aufgabe}
 
-\lösung{02_loesung_fallunterscheidung}
+\lösung{03_loesung_fallunterscheidung}
 
+\begin{aufgabe}[6 (+4 Bonus)]{Geburten im Zoo von \TeX -Hausen}
+    Als Aushilfe im seit einigen Jahren bestehenden Zoo von \TeX -Hausen wurde Ihnen die Aufgabe auferlegt die Geburten der letzten Jahre für eine wissenschaftlich Veröffentlichung in eine ansehnliche Form zu bringen. Damit die Tabelle möglichst einfach gleichmäßig aussieht haben Sie sich folgenden Plan zurecht gelegt:
+    \begin{enumerate}[label=\alph*)]
+        \item Als erstes ist es natürlich wichtig, den genauen Zeitpunkt der Geburt zu dokumentieren. Definieren Sie daher ein Makro \texttt{\textbackslash zeitpunkt}, dass ein Datum und Uhrzeit schön formatiert ausgibt. Erinnern Sie sich an die Befehle zur Makro-Definition (\texttt{\textbackslash newcommand}, etc.) und definieren sie das \texttt{\textbackslash zeitpunkt}-Makro so, dass es fünf Argumente annimmt (Tag, Monat, Jahr, Stunde, Minute) und in der von Ihnen bevorzugten Art ausgibt.
+        \item Erstellen Sie nun eine schöne Tabelle, in deren erster Spalte die Tierart, in der zweiten der Name des Tiers und in der dritten der Geburtszeitpunkt steht. Da in den letzten zwei Jahren mehr als 3 Tiere geboren wurden, sollte diese Tabelle logischerweise mindestens drei Zeilen enthalten.
+        \item Fügen Sie nun eine vierte Spalte hinzu, die das Geburtsgewicht des Tieres enthält. Verwenden Sie dazu die Fähigkeiten des \pkg{siunitx}-Pakets. Sie können damit jede Zeile einzeln eingeben. Das ist aber mühselig und vor allem bei langen Tabellen überflüssig, denn das Paket bietet eine hervorragende Tabellenformatierungsmöglichkeit.
+
+        Konsultieren Sie dazu die Paketdokumentation auf Seite 44 (Suche nach \emph{tabular material}) unter \emph{Package control options}. Dort ist ein ausführliches Beispiel; die dort angegeben Formatierung ist genau die Richtige. Geben Sie aber die Einheit (g oder kg) im Tabellenkopf an - mit der korrekten Formatierung mittels des \pkg{siunitx}-Pakets.
+    \end{enumerate}
+    Die Tabelle sollte also folgenden Kopf haben
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{llll}
+            \toprule
+            Tierart & Name & Geburtszeitpunkt & Gewicht $[\mathrm{kg}]$\\
+            \midrule
+        \end{tabular}
+    \end{table}\\
+    Die weiter Aufgaben sind für die Bonuspunkte, jede Aufgabe kann 2 Bonuspunkte geben.
+    \begin{enumerate}[resume, label=\alph*)]
+        \item Geben Sie einen (realistischen) Fehler zu den Werten in der letzten Spalte an. Mittels des \pkg{siunitx}-Paketes ist das eine sehr einfache und schnelle Angabe: z.\,B. |50(3)|. Entscheiden Sie, in welcher Form der Fehler ausgegeben werden soll und stellen Sie dies durch entsprechende Konfiguration von \pkg{siunitx} ein.
+        \item Da alle Tiere unterschiedlich sind, machen Sie zu jedem Tier eine Zusatzangabe in Form einer Fußnote (\texttt{Schnecke\textbackslash footnote\{schleimig\}}). Die Fußnote soll einen kurzen Kommentar zum Tier enthalten.
+
+        Wenn Sie den \texttt{\textbackslash footnote}-Befehl innerhalb einer Gleitumgebung verwneden, \emph{verschwinden} die Fußnoten, weil \TeX{} nicht weiß auf welcher Seite die Gleitumgebung am Ende landen wird. Es gibt verschiedene Wege und Pakete mit diesem Problem umzugehen. Recherchieren Sie, wie Sie trotz Gleitumgebung Fußnoten verwenden können und entscheiden Sie sich für die aus Ihrer Sicht eleganteste Methode.
+    \end{enumerate}
+    \abgabe{Quellcode und fertiges Dokument per Zip in Moodle abgeben.}
+\end{aufgabe}
+
+\lösung{03_loesung_tabelle}
 
 
 \end{document}

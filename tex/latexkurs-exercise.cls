@@ -75,7 +75,7 @@
 \ihead{Einführung in das\\Textsatzsystem \LaTeX}
 \chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
 \ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{\DTMdate{\ltxkurs@datum}}{Ausgegeben: \DTMdate{\ltxkurs@ausgabe}}\\\ifthenelse{\equal{\ltxkurs@abgabe}{}}{}{Abgabe: \DTMdate{\ltxkurs@abgabe}}}
-\ifoot{Heidelberg, WS 2021}
+\ifoot{Heidelberg, WS 2022/23}
 \cfoot{}
 \ofoot{Seite~\thepage~von~\pageref{LastPage}}
 
