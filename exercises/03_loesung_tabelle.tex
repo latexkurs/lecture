@@ -1,50 +1,53 @@
 % !TEX program = xelatex
-% !TEX root = 04_masseinheiten.tex
+% !TEX root = 02_mathesatz.tex
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = de_DE
 % 
 % © 2016 Moritz Brinkmann, CC-by-sa
+% © 2022 Maximilian Jalea, CC-by-sa
 % http://latexkurs.github.io
 
+\newcommand\zeitpunkt[5]{#1.#2.#3 #4:#5}
+
 \begin{enumerate}[label=\alph*)]
-\item Es war ein Makro wie das Folgende gefordert. Die Formatierung war dabei beliebig (z.\,B. \zeit{19}{32} oder 19:32\,Uhr).
+\item Es war ein Makro wie das Folgende gefordert. Die Formatierung war dabei beliebig (z.\,B. \zeitpunkt{05}{10}{2021}{19}{32} oder 5. Oktober 2021 um 19\,Uhr und 32\,Minuten).
 \begin{lstlisting}
-\newcommand\zeit[2]{#1\textsuperscript{#2}}
+\newcommand\zeitpunkt[5]{#1.#2.#3 #4:#5}
 \end{lstlisting}
-Da dieses Makro in Tabellen verwendet werden soll, bietet es sich an, auf einen Zusatz wie \emph{Uhr} zu verzichten.
+Da dieses Makro in Tabellen verwendet werden soll, bietet es sich an, auf einen Zusatz wie \emph{Uhr} und ausgeschriebene Monatsnamen zu verzichten.
 \item In dieser Aufgabe war eine Tabelle wie die folgende gefordert:
 \begin{LTXexample}[pos=t,preset=\centering]
 \begin{table}
   \centering
-  \caption{Adventsmästung}
-  \label{tab:essen}
-  \begin{tabular}{ll}
+  \caption{Geburten im Zoo \TeX -Hausen}
+  \label{tab:geburten}
+  \begin{tabular}{lll}
     \toprule
-    {\textbf{Uhrzeit}}  &  {\textbf{Speise}}           \\
+    {\textbf{Tierart}}& {\textbf{Name}} &  {\textbf{Geburtszeitpunkt}}    \\
     \midrule 
-    \zeit{10}{00}       &  Spekulatius auf Schwarzbrot \\
-    \zeit{12}{00}       &  Weihnachtsganzsuppe         \\
-    \zeit{18}{00}       &  12 Knödel mit Rotkohl       \\
+    Elefant           & Getrude         & \zeitpunkt{03}{04}{2020}{04}{20}\\
+    Tiger             & Streif          & \zeitpunkt{23}{10}{2020}{18}{43}\\
+    Hamster           & Kringel         & \zeitpunkt{15}{01}{2021}{09}{04}\\
     \bottomrule
   \end{tabular}
 \end{table}
 \end{LTXexample}
 
 \pagebreak
-\item Nun sollte man die Tabelle um eine Kalorienangabe erweitern. \pkg{siunitx} bietet mit dem Spaltentyp |S| eine praktische Hilfestellung:\\[.1ex]
+\item Nun sollte man die Tabelle um eine Gewichtsangabe erweitern. \pkg{siunitx} bietet mit dem Spaltentyp |S| eine praktische Hilfestellung:\\[.1ex]
 
 \begin{LTXexample}[pos=b,preset=\centering]
 \begin{table}
   \centering
-  \caption{erweiterte Adventsmästung}
-  \label{tab:mehressen}
-  \begin{tabular}{llS}
+  \caption{erweiterte Geburten im Zoo \TeX -Hausen}
+  \label{tab:mehrgeburten}
+  \begin{tabular}{lllS}
     \toprule
-    {\textbf{Uhrzeit}}  &  {\textbf{Speise}} & \textbf{Brennwert} [\si{\kilo\joule}] \\
+    {\textbf{Tierart}}&{\textbf{Name}}&{\textbf{Geburtszeitpunkt}}&\textbf{Gewicht} [\si{\kilo\gram}]\\
     \midrule 
-    \zeit{10}{00}       &  Spekulatius auf Schwarzbrot & 1354 \\ 
-    \zeit{12}{00}       &  Weihnachtsganzsuppe         & 21443 \\
-    \zeit{18}{00}       &  12 Knödel mit Rotkohl       & 33445 \\
+    Elefant           & Getrude & \zeitpunkt{03}{04}{2020}{04}{20} & 100    \\
+    Tiger             & Streif  & \zeitpunkt{23}{10}{2020}{18}{43} & 1.21   \\
+    Hamster           & Kringel & \zeitpunkt{15}{01}{2021}{09}{04} & 0.003  \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -53,7 +56,7 @@ Da dieses Makro in Tabellen verwendet werden soll, bietet es sich an, auf einen 
 
 \item Das Paket \pkg{siunitx} fasst jede Eingabe in der Form |364(5)| oder |97+-3| als Wert mit Fehler auf. Will man in der Ausgabe statt z.\,B. \num{97(3)} den Fehler durch $\pm$ getrennt haben (\num[separate-uncertainty]{97(3)}), muss man Tabellen-Definition entsprechen verändern:
 \begin{lstlisting}
-\begin{tabular}{llS[separate-uncertainty]}
+\begin{tabular}{lllS[separate-uncertainty]}
 \end{lstlisting}
 
 \pagebreak

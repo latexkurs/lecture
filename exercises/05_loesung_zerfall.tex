@@ -1,9 +1,10 @@
 % !TEX program = xelatex
-% !TEX root = 06_diagramme.tex
+% !TEX root = 05_diagramme.tex
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = de_DE
 % 
 % © 2016 Moritz Brinkmann, CC-by-sa
+% © 2018-2022 Maximilian Jalea, CC-by-sa
 % http://latexkurs.github.io
 
 Daten aus externen Dateien lassen sich in \pkg{pgfplots} mit dem |table|-Befehl einbinden. Eine Mögliche Darstellung wäre die folgende:
@@ -27,7 +28,7 @@ Daten aus externen Dateien lassen sich in \pkg{pgfplots} mit dem |table|-Befehl 
     ] table [
       x=zeit,
       y=zerfaelle,
-    ] {06_messwerte.dat};
+    ] {05_messwerte.dat};
   \end{axis}
 \end{tikzpicture}
 \end{LTXexample}
@@ -54,7 +55,7 @@ Für exponentielle Zusammenhänge eignet sich besonders eine logarithmische Dars
     ] table [
       x=zeit,
       y=zerfaelle,
-    ] {06_messwerte.dat};
+    ] {05_messwerte.dat};
   \end{semilogyaxis}
 \end{tikzpicture}
 \end{center}
@@ -63,5 +64,5 @@ Mithilfe des Pakets \pkg{pgfplots-table} lassen sich aus den Tabellendaten leich
 
 \begin{lstlisting}
 \addplot table [y={create col/linear regression={y=zerfaelle}}, mark=none]
-  {06_messwerte.dat};
+  {05_messwerte.dat};
 \end{lstlisting}
